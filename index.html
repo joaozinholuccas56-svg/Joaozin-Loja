@@ -255,11 +255,12 @@
             cursor: pointer;
         }
 
-        .instagram-btn {
+        /* Botão de Telefone/WhatsApp */
+        .whatsapp-btn {
             position: fixed;
             bottom: 20px;
             left: 20px;
-            background: radial-gradient(circle at 30% 110%, #ffdb8f, #ff6b35, #d62976, #962fbf, #4f5bd5);
+            background-color: #25D366;
             width: 55px;
             height: 55px;
             border-radius: 50%;
@@ -271,11 +272,29 @@
             transition: all 0.3s ease;
             z-index: 1000;
             text-decoration: none;
+            animation: pulse 2s infinite;
         }
 
-        .instagram-btn svg {
-            width: 30px;
-            height: 30px;
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            background-color: #128C7E;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        .whatsapp-btn svg {
+            width: 32px;
+            height: 32px;
             fill: white;
         }
 
@@ -556,10 +575,10 @@
         <button class="btn-finalizar" onclick="finalizarCompra()">FINALIZAR COMPRA</button>
     </div>
 
-    <a href="https://www.instagram.com/"lojagamer target="_blank" class="instagram-btn">
+    <!-- Botão do WhatsApp/Telefone (substituiu o Instagram) -->
+    <a href="https://wa.me/5511999999999?text=Olá!%20Vim%20pela%20Joaozin%20Loja%20e%20gostaria%20de%20mais%20informações!" target="_blank" class="whatsapp-btn">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z"/>
-            <path d="M12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162z"/>
+            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.514 1.058 3.584l-1.092 3.999 4.104-1.056c1.005.535 2.131.818 3.291.817 3.18 0 5.766-2.587 5.766-5.768 0-3.18-2.586-5.766-5.766-5.766zm0 9.334c-.912 0-1.797-.243-2.564-.7l-1.138.293.314-1.106c-.508-.79-.78-1.706-.78-2.645 0-2.682 2.18-4.862 4.862-4.862 2.682 0 4.862 2.18 4.862 4.862s-2.18 4.862-4.862 4.862z"/>
         </svg>
     </a>
 
@@ -707,7 +726,7 @@
             if (msg.includes('teclado')) return '⌨️ Teclado Magnético: R$ 200,90 - Conforto e precisão!';
             if (msg.includes('rtx') || msg.includes('5090')) return '🎮 RTX 5090: R$ 2.000,00 - Desempenho extremo em 8K!';
             if (msg.includes('preço') || msg.includes('precos')) return '💰 Mouse: R$150 | Teclado: R$200,90 | Controle: R$300 | Monitor: R$1200 | Headset: R$250 | Cadeira: R$950 | SSD: R$380 | RTX 5090: R$2000';
-            if (msg.includes('contato')) return '📞 Contato: Instagram @rodriiguesxz__';
+            if (msg.includes('contato')) return '📞 Contato: WhatsApp (11) 99999-9999';
             return 'Olá! Pergunte sobre produtos, preços ou contato.';
         }
 
