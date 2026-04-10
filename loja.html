@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joaozin Loja - Equipamentos Gamer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #333;
+        }
+
+        /* Header */
+        .header {
+            background-color: #0f0f1a;
+            color: white;
+            padding: 25px 0;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #ff6b35;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 15px;
+            transition: all 0.3s;
+            border-radius: 5px;
+        }
+
+        .nav a:hover {
+            background-color: #ff6b35;
+            color: white;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .titulo-secao {
+            text-align: center;
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        /* Grid de produtos */
+        .produtos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        /* Card do produto */
+        .produto-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .produto-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        .produto-icone {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+
+        .produto-card h3 {
+            font-size: 1.5rem;
+            color: #1a1a2e;
+            margin-bottom: 10px;
+        }
+
+        .produto-descricao {
+            color: #666;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .produto-preco {
+            font-size: 1.8rem;
+            color: #ff6b35;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .btn-comprar {
+            background-color: #ff6b35;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-comprar:hover {
+            background-color: #e55a2b;
+            transform: scale(1.02);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #0f0f1a;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 40px;
+        }
+
+        .footer a {
+            color: #ff6b35;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer p {
+            margin: 10px 0;
+        }
+
+        /* ========== CHATBOT ========== */
+        .chatbot-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #ff6b35;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            border: none;
+        }
+
+        .chatbot-btn:hover {
+            transform: scale(1.1);
+            background-color: #e55a2b;
+        }
+
+        .chatbot-window {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1000;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chatbot-header {
+            background-color: #ff6b35;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chatbot-header h3 {
+            font-size: 1.1rem;
+        }
+
+        .close-chat {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.3rem;
+            cursor: pointer;
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background-color: #f5f5f5;
+        }
+
+        .message {
+            max-width: 85%;
+            padding: 10px 15px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+
+        .bot-message {
+            background-color: #1a1a2e;
+            color: white;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+
+        .user-message {
+            background-color: #ff6b35;
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+
+        .chatbot-input-area {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+            background: white;
+        }
+
+        .chatbot-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+            font-size: 0.9rem;
+        }
+
+        .chatbot-send {
+            background-color: #ff6b35;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 25px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        /* Instagram Button */
+        .instagram-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: linear-gradient(45deg, #f09433, #d62976, #962fbf);
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            text-decoration: none;
+        }
+
+        .instagram-btn:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                gap: 15px;
+            }
+            
+            .produtos-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .chatbot-window {
+                width: 90%;
+                right: 5%;
+                left: 5%;
+                bottom: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <div class="header">
+        <h1>🛍️ Joaozin Loja</h1>
+        <div class="nav">
+            <a href="#">NOVO</a>
+            <a href="#">LOJA</a>
+            <a href="#">SOBRE NÓS</a>
+            <a href="#">CONTATO</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="titulo-secao">🔥 Produtos em Destaque</h2>
+        
+        <div class="produtos-grid">
+            <!-- Produto 1 -->
+            <div class="produto-card">
+                <div class="produto-icone">🖱️</div>
+                <h3>Mouse Gamer</h3>
+                <p class="produto-descricao">Tecnologia e conforto</p>
+                <div class="produto-preco">R$ 150,00</div>
+                <button class="btn-comprar" onclick="alert('Mouse Gamer adicionado ao carrinho! 🎉')">COMPRAR</button>
+            </div>
+
+            <!-- Produto 2 -->
+            <div class="produto-card">
+                <div class="produto-icone">⌨️</div>
+                <h3>Teclado Magnético</h3>
+                <p class="produto-descricao">Conforto e precisão</p>
+                <div class="produto-preco">R$ 200,90</div>
+                <button class="btn-comprar" onclick="alert('Teclado Magnético adicionado ao carrinho! 🎉')">COMPRAR</button>
+            </div>
+
+            <!-- Produto 3 -->
+            <div class="produto-card">
+                <div class="produto-icone">🎮</div>
+                <h3>Controle Videogame</h3>
+                <p class="produto-descricao">O melhor do momento</p>
+                <div class="produto-preco">R$ 300,00</div>
+                <button class="btn-comprar" onclick="alert('Controle adicionado ao carrinho! 🎉')">COMPRAR</button>
+            </div>
+
+            <!-- Produto 4 -->
+            <div class="produto-card">
+                <div class="produto-icone">🖥️</div>
+                <h3>Monitor Gamer 144Hz</h3>
+                <p class="produto-descricao">Imagem fluida e cores vibrantes</p>
+                <div class="produto-preco">R$ 1.200,00</div>
+                <button class="btn-comprar" onclick="alert('Monitor adicionado ao carrinho! 🎉')">COMPRAR</button>
+            </div>
+
+            <!-- Produto 5 -->
+            <div class="produto-card">
+                <div class="produto-icone">🎧</div>
+                <h3>Headset Gamer</h3>
+                <p class="produto-descricao">Som surround 7.1</p>
+                <div class="produto-preco">R$ 250,00</div>
+                <button class="btn-comprar" onclick="alert('Headset adicionado ao carrinho! 🎉')">COMPRAR</button>
+            </div>
+
+            <!-- Produto 6 -->
+            <div class="produto-card">
+                <div class="produto-icone">💺</div>
+                <h3>Cadeira Gamer</h3>
+                <p class="produto-descricao">Ergonomia e conforto</p>
+                <div class="produto-preco">R$ 950,00</div>
+                <button class="btn-comprar" onclick="alert('Cadeira Gamer adicionada ao carrinho! 🎉')">COMPRAR</button>
+            </div>
+
+            <!-- Produto 7 -->
+            <div class="produto-card">
+                <div class="produto-icone">💾</div>
+                <h3>SSD 1TB</h3>
+                <p class="produto-descricao">Velocidade extrema</p>
+                <div class="produto-preco">R$ 380,00</div>
+                <button class="btn-comprar" onclick="alert('SSD adicionado ao carrinho! 🎉')">COMPRAR</button>
+            </div>
+
+            <!-- Produto 8 -->
+            <div class="produto-card">
+                <div class="produto-icone">🔊</div>
+                <h3>Caixa de Som</h3>
+                <p class="produto-descricao">Som potente RGB</p>
+                <div class="produto-preco">R$ 180,00</div>
+                <button class="btn-comprar" onclick="alert('Caixa de Som adicionada ao carrinho! 🎉')">COMPRAR</button>
+            </div>
+
+            <!-- Produto 9 -->
+            <div class="produto-card">
+                <div class="produto-icone">🖨️</div>
+                <h3>Mousepad Gamer</h3>
+                <p class="produto-descricao">Grande e antiderrapante</p>
+                <div class="produto-preco">R$ 65,00</div>
+                <button class="btn-comprar" onclick="alert('Mousepad adicionado ao carrinho! 🎉')">COMPRAR</button>
+            </div>
+
+            <!-- Produto 10 -->
+            <div class="produto-card">
+                <div class="produto-icone">🔌</div>
+                <h3>Fonte 650W</h3>
+                <p class="produto-descricao">80 Plus Bronze</p>
+                <div class="produto-preco">R$ 420,00</div>
+                <button class="btn-comprar" onclick="alert('Fonte adicionada ao carrinho! 🎉')">COMPRAR</button>
+            </div>
+
+            <!-- PRODUTO 11 - NOVO! Placa de Vídeo RTX 5090 -->
+            <div class="produto-card">
+                <div class="produto-icone">🎮</div>
+                <h3>Placa de Vídeo RTX 5090</h3>
+                <p class="produto-descricao">Desempenho extremo para jogos 8K</p>
+                <div class="produto-preco">R$ 2.000,00</div>
+                <button class="btn-comprar" onclick="alert('Placa de Vídeo RTX 5090 adicionada ao carrinho! 🎉')">COMPRAR</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rodapé -->
+    <div class="footer">
+        <p>
+            📧 <a href="#">www.Joaozin.Com</a> | 
+            <a href="#">Joaozin Loja - Equipamentos de Pc</a>
+        </p>
+        <p>© 2024 Joaozin Loja - Todos os Produtos Que Você Precisa</p>
+    </div>
+
+    <!-- Botão do Instagram (canto esquerdo) -->
+    <a href="https://www.instagram.com/rodriiguesxz__" target="_blank" class="instagram-btn">
+        📷
+    </a>
+
+    <!-- Botão do Chatbot (canto direito) -->
+    <button class="chatbot-btn" id="chatbotBtn">
+        💬
+    </button>
+
+    <!-- Janela do Chatbot -->
+    <div class="chatbot-window" id="chatbotWindow">
+        <div class="chatbot-header">
+            <h3>🤖 Atendente Joaozin</h3>
+            <button class="close-chat" id="closeChat">✕</button>
+        </div>
+        <div class="chatbot-messages" id="chatMessages">
+            <div class="message bot-message">
+                Olá! 👋 Bem-vindo à Joaozin Loja!<br>
+                Posso ajudar com:<br>
+                📦 Produtos<br>
+                💰 Preços<br>
+                🚚 Entregas<br>
+                📞 Contato<br>
+                Como posso te ajudar hoje?
+            </div>
+        </div>
+        <div class="chatbot-input-area">
+            <input type="text" class="chatbot-input" id="chatInput" placeholder="Digite sua pergunta...">
+            <button class="chatbot-send" id="sendChat">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        // Abrir/fechar chatbot
+        const chatbotBtn = document.getElementById('chatbotBtn');
+        const chatbotWindow = document.getElementById('chatbotWindow');
+        const closeChat = document.getElementById('closeChat');
+        const chatInput = document.getElementById('chatInput');
+        const sendChat = document.getElementById('sendChat');
+        const chatMessages = document.getElementById('chatMessages');
+
+        chatbotBtn.addEventListener('click', () => {
+            chatbotWindow.style.display = 'flex';
+        });
+
+        closeChat.addEventListener('click', () => {
+            chatbotWindow.style.display = 'none';
+        });
+
+        // Função para adicionar mensagem
+        function addMessage(text, isUser) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+            messageDiv.innerHTML = text;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Respostas do bot (inteligente sobre o site)
+        function getBotResponse(userMessage) {
+            const msg = userMessage.toLowerCase();
+            
+            // Produtos
+            if (msg.includes('mouse') || msg.includes('mouse gamer')) {
+                return '🖱️ <strong>Mouse Gamer</strong><br>Preço: R$ 150,00<br>Tecnologia e conforto para suas partidas!';
+            }
+            if (msg.includes('teclado') || msg.includes('teclado magnético')) {
+                return '⌨️ <strong>Teclado Magnético</strong><br>Preço: R$ 200,90<br>Conforto e precisão para digitar e jogar!';
+            }
+            if (msg.includes('controle') || msg.includes('videogame')) {
+                return '🎮 <strong>Controle Videogame</strong><br>Preço: R$ 300,00<br>O melhor do momento para sua gameplay!';
+            }
+            if (msg.includes('monitor') || msg.includes('144hz')) {
+                return '🖥️ <strong>Monitor Gamer 144Hz</strong><br>Preço: R$ 1.200,00<br>Imagem fluida e cores vibrantes!';
+            }
+            if (msg.includes('headset') || msg.includes('fone')) {
+                return '🎧 <strong>Headset Gamer</strong><br>Preço: R$ 250,00<br>Som surround 7.1 para imersão total!';
+            }
+            if (msg.includes('cadeira') || msg.includes('cadeira gamer')) {
+                return '💺 <strong>Cadeira Gamer</strong><br>Preço: R$ 950,00<br>Ergonomia e conforto para longas sessões!';
+            }
+            if (msg.includes('ssd') || msg.includes('1tb')) {
+                return '💾 <strong>SSD 1TB</strong><br>Preço: R$ 380,00<br>Velocidade extrema para seu PC!';
+            }
+            if (msg.includes('caixa de som') || msg.includes('rgb')) {
+                return '🔊 <strong>Caixa de Som</strong><br>Preço: R$ 180,00<br>Som potente com RGB!';
+            }
+            if (msg.includes('mousepad')) {
+                return '🖨️ <strong>Mousepad Gamer</strong><br>Preço: R$ 65,00<br>Grande e antiderrapante!';
+            }
+            if (msg.includes('fonte') || msg.includes('650w')) {
+                return '🔌 <strong>Fonte 650W</strong><br>Preço: R$ 420,00<br>80 Plus Bronze, qualidade e segurança!';
+            }
+            if (msg.includes('placa de video') || msg.includes('rtx') || msg.includes('rtx 5090') || msg.includes('placa') || msg.includes('5090')) {
+                return '🎮 <strong>Placa de Vídeo RTX 5090</strong><br>Preço: R$ 2.000,00<br>Desempenho extremo para jogos em 8K! A mais potente do mercado!';
+            }
+            
+            // Preços em geral
+            if (msg.includes('preço') || msg.includes('precos') || msg.includes('valores')) {
+                return '💰 <strong>Nossos preços:</strong><br>🖱️ Mouse: R$150<br>⌨️ Teclado: R$200,90<br>🎮 Controle: R$300<br>🖥️ Monitor: R$1200<br>🎧 Headset: R$250<br>💺 Cadeira: R$950<br>💾 SSD: R$380<br>🔊 Caixa de Som: R$180<br>🖨️ Mousepad: R$65<br>🔌 Fonte: R$420<br>🎮 RTX 5090: R$2000';
+            }
+            
+            // Contato
+            if (msg.includes('contato') || msg.includes('falar') || msg.includes('atendente')) {
+                return '📞 <strong>Contato:</strong><br>📧 Email: contato@joaozin.com<br>📷 Instagram: @rodriiguesxz__<br>💬 Nosso chat está sempre disponível!';
+            }
+            
+            // Entrega / Frete
+            if (msg.includes('entrega') || msg.includes('frete') || msg.includes('envio')) {
+                return '🚚 <strong>Entregas:</strong><br>Entregamos para todo Brasil!<br>Frete grátis para compras acima de R$200!<br>Prazo: 3 a 7 dias úteis.';
+            }
+            
+            // Pagamento
+            if (msg.includes('pagamento') || msg.includes('cartão') || msg.includes('pix')) {
+                return '💳 <strong>Formas de pagamento:</strong><br>✅ Pix (10% off)<br>✅ Cartão de Crédito (até 12x)<br>✅ Boleto Bancário<br>✅ PayPal';
+            }
+            
+            // Garantia
+            if (msg.includes('garantia') || msg.includes('troca')) {
+                return '🛡️ <strong>Garantia:</strong><br>Todos os produtos têm 1 ano de garantia!<br>Troca gratuita em até 30 dias.';
+            }
+            
+            // Sobre a loja
+            if (msg.includes('sobre') || msg.includes('loja') || msg.includes('quem somos')) {
+                return '🏪 <strong>Sobre a Joaozin Loja:</strong><br>Somos uma loja especializada em equipamentos gamer e de PC. Qualidade e preço justo para você!';
+            }
+            
+            // Resposta padrão
+            return 'Olá! 😊<br><br>Posso ajudar com:<br>📦 <strong>Produtos</strong> (Mouse, Teclado, Monitor, RTX 5090...)<br>💰 <strong>Preços</strong><br>🚚 <strong>Entregas e Frete</strong><br>💳 <strong>Pagamentos</strong><br>📞 <strong>Contato</strong><br><br>Qual desses você quer saber?';
+        }
+
+        // Enviar mensagem
+        function sendMessage() {
+            const userText = chatInput.value.trim();
+            if (userText === '') return;
+            
+            addMessage(userText, true);
+            chatInput.value = '';
+            
+            setTimeout(() => {
+                const botResponse = getBotResponse(userText);
+                addMessage(botResponse, false);
+            }, 500);
+        }
+
+        sendChat.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+    </script>
+</body>
+</html>
