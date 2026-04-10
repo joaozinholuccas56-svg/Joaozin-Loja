@@ -624,3 +624,367 @@
     </div>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle Videogame - Joaozin Loja</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); min-height: 100vh; padding: 40px 20px; }
+        .container { max-width: 1000px; margin: 0 auto; background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .produto-header { background: #ff6b35; padding: 30px; text-align: center; color: white; }
+        .produto-header h1 { font-size: 2.5rem; }
+        .produto-content { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 40px; }
+        .produto-imagem { font-size: 10rem; text-align: center; background: #f5f5f5; border-radius: 15px; padding: 40px; }
+        .produto-info h2 { color: #ff6b35; font-size: 2rem; margin-bottom: 20px; }
+        .produto-info p { color: #666; line-height: 1.6; margin-bottom: 20px; }
+        .preco { font-size: 2.5rem; color: #ff6b35; font-weight: bold; margin: 20px 0; }
+        .btn-comprar { background-color: #ff6b35; color: white; border: none; padding: 15px 40px; font-size: 1.2rem; font-weight: bold; border-radius: 50px; cursor: pointer; width: 100%; transition: all 0.3s; }
+        .btn-comprar:hover { background-color: #e55a2b; transform: scale(1.02); }
+        .btn-voltar { display: inline-block; margin-top: 20px; background: #1a1a2e; color: white; text-decoration: none; padding: 12px 30px; border-radius: 50px; text-align: center; }
+        .btn-voltar:hover { background: #2a2a4e; }
+        @media (max-width: 768px) { .produto-content { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="produto-header">
+            <h1>🎮 Controle Videogame</h1>
+        </div>
+        <div class="produto-content">
+            <div class="produto-imagem">🎮</div>
+            <div class="produto-info">
+                <h2>Controle Sem Fio Premium</h2>
+                <p>Controle ergonômico com conectividade Bluetooth e fio, bateria de longa duração e compatível com PC, PlayStation e Xbox.</p>
+                <p><strong>Características:</strong></p>
+                <ul style="margin-left: 20px; color: #666;">
+                    <li>Conexão Bluetooth + Cabo USB-C</li>
+                    <li>Bateria de 20 horas de duração</li>
+                    <li>Motores de vibração duplos</li>
+                    <li>Botões turbo programáveis</li>
+                    <li>Compatível com PC, PS4, PS5, Xbox</li>
+                    <li>Garantia de 1 ano</li>
+                </ul>
+                <div class="preco">R$ 300,00</div>
+                <button class="btn-comprar" onclick="alert('Controle adicionado ao carrinho! 🎉')">COMPRAR AGORA</button>
+                <br>
+                <a href="index.html" class="btn-voltar">← VOLTAR PARA LOJA</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitor Gamer - Joaozin Loja</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); min-height: 100vh; padding: 40px 20px; }
+        .container { max-width: 1000px; margin: 0 auto; background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .produto-header { background: #ff6b35; padding: 30px; text-align: center; color: white; }
+        .produto-header h1 { font-size: 2.5rem; }
+        .produto-content { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 40px; }
+        .produto-imagem { font-size: 10rem; text-align: center; background: #f5f5f5; border-radius: 15px; padding: 40px; }
+        .produto-info h2 { color: #ff6b35; font-size: 2rem; margin-bottom: 20px; }
+        .produto-info p { color: #666; line-height: 1.6; margin-bottom: 20px; }
+        .preco { font-size: 2.5rem; color: #ff6b35; font-weight: bold; margin: 20px 0; }
+        .btn-comprar { background-color: #ff6b35; color: white; border: none; padding: 15px 40px; font-size: 1.2rem; font-weight: bold; border-radius: 50px; cursor: pointer; width: 100%; transition: all 0.3s; }
+        .btn-comprar:hover { background-color: #e55a2b; transform: scale(1.02); }
+        .btn-voltar { display: inline-block; margin-top: 20px; background: #1a1a2e; color: white; text-decoration: none; padding: 12px 30px; border-radius: 50px; text-align: center; }
+        .btn-voltar:hover { background: #2a2a4e; }
+        @media (max-width: 768px) { .produto-content { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="produto-header">
+            <h1>🖥️ Monitor Gamer 144Hz</h1>
+        </div>
+        <div class="produto-content">
+            <div class="produto-imagem">🖥️</div>
+            <div class="produto-info">
+                <h2>Monitor Gamer 27" 144Hz</h2>
+                <p>Monitor com taxa de atualização de 144Hz, painel IPS, 1ms de resposta e tecnologia FreeSync para imagem sem quebras.</p>
+                <p><strong>Características:</strong></p>
+                <ul style="margin-left: 20px; color: #666;">
+                    <li>27 polegadas Full HD (1920x1080)</li>
+                    <li>144Hz de taxa de atualização</li>
+                    <li>Tempo de resposta 1ms</li>
+                    <li>Painel IPS com cores vibrantes</li>
+                    <li>FreeSync Premium</li>
+                    <li>Garantia de 1 ano</li>
+                </ul>
+                <div class="preco">R$ 1.200,00</div>
+                <button class="btn-comprar" onclick="alert('Monitor adicionado ao carrinho! 🎉')">COMPRAR AGORA</button>
+                <br>
+                <a href="index.html" class="btn-voltar">← VOLTAR PARA LOJA</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Headset Gamer - Joaozin Loja</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); min-height: 100vh; padding: 40px 20px; }
+        .container { max-width: 1000px; margin: 0 auto; background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .produto-header { background: #ff6b35; padding: 30px; text-align: center; color: white; }
+        .produto-header h1 { font-size: 2.5rem; }
+        .produto-content { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 40px; }
+        .produto-imagem { font-size: 10rem; text-align: center; background: #f5f5f5; border-radius: 15px; padding: 40px; }
+        .produto-info h2 { color: #ff6b35; font-size: 2rem; margin-bottom: 20px; }
+        .produto-info p { color: #666; line-height: 1.6; margin-bottom: 20px; }
+        .preco { font-size: 2.5rem; color: #ff6b35; font-weight: bold; margin: 20px 0; }
+        .btn-comprar { background-color: #ff6b35; color: white; border: none; padding: 15px 40px; font-size: 1.2rem; font-weight: bold; border-radius: 50px; cursor: pointer; width: 100%; transition: all 0.3s; }
+        .btn-comprar:hover { background-color: #e55a2b; transform: scale(1.02); }
+        .btn-voltar { display: inline-block; margin-top: 20px; background: #1a1a2e; color: white; text-decoration: none; padding: 12px 30px; border-radius: 50px; text-align: center; }
+        .btn-voltar:hover { background: #2a2a4e; }
+        @media (max-width: 768px) { .produto-content { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="produto-header">
+            <h1>🎧 Headset Gamer</h1>
+        </div>
+        <div class="produto-content">
+            <div class="produto-imagem">🎧</div>
+            <div class="produto-info">
+                <h2>Headset Gamer Surround 7.1</h2>
+                <p>Headset com som surround 7.1, microfone com cancelamento de ruído e almofadas em espuma de memória para máximo conforto.</p>
+                <p><strong>Características:</strong></p>
+                <ul style="margin-left: 20px; color: #666;">
+                    <li>Áudio surround 7.1 virtual</li>
+                    <li>Microfone flexível com cancelamento de ruído</li>
+                    <li>Almofadas em espuma de memória</li>
+                    <li>Iluminação RGB</li>
+                    <li>Conexão USB/P2</li>
+                    <li>Garantia de 1 ano</li>
+                </ul>
+                <div class="preco">R$ 250,00</div>
+                <button class="btn-comprar" onclick="alert('Headset adicionado ao carrinho! 🎉')">COMPRAR AGORA</button>
+                <br>
+                <a href="index.html" class="btn-voltar">← VOLTAR PARA LOJA</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSD 1TB - Joaozin Loja</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); min-height: 100vh; padding: 40px 20px; }
+        .container { max-width: 1000px; margin: 0 auto; background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .produto-header { background: #ff6b35; padding: 30px; text-align: center; color: white; }
+        .produto-header h1 { font-size: 2.5rem; }
+        .produto-content { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 40px; }
+        .produto-imagem { font-size: 10rem; text-align: center; background: #f5f5f5; border-radius: 15px; padding: 40px; }
+        .produto-info h2 { color: #ff6b35; font-size: 2rem; margin-bottom: 20px; }
+        .produto-info p { color: #666; line-height: 1.6; margin-bottom: 20px; }
+        .preco { font-size: 2.5rem; color: #ff6b35; font-weight: bold; margin: 20px 0; }
+        .btn-comprar { background-color: #ff6b35; color: white; border: none; padding: 15px 40px; font-size: 1.2rem; font-weight: bold; border-radius: 50px; cursor: pointer; width: 100%; transition: all 0.3s; }
+        .btn-comprar:hover { background-color: #e55a2b; transform: scale(1.02); }
+        .btn-voltar { display: inline-block; margin-top: 20px; background: #1a1a2e; color: white; text-decoration: none; padding: 12px 30px; border-radius: 50px; text-align: center; }
+        .btn-voltar:hover { background: #2a2a4e; }
+        @media (max-width: 768px) { .produto-content { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="produto-header">
+            <h1>💾 SSD 1TB</h1>
+        </div>
+        <div class="produto-content">
+            <div class="produto-imagem">💾</div>
+            <div class="produto-info">
+                <h2>SSD NVMe 1TB</h2>
+                <p>SSD NVMe com velocidade de leitura de até 3500MB/s, perfeito para carregar jogos e programas em segundos.</p>
+                <p><strong>Características:</strong></p>
+                <ul style="margin-left: 20px; color: #666;">
+                    <li>Capacidade: 1TB</li>
+                    <li>Interface NVMe M.2</li>
+                    <li>Leitura: até 3500MB/s</li>
+                    <li>Escrita: até 3000MB/s</li>
+                    <li>Compatível com PC e PS5</li>
+                    <li>Garantia de 3 anos</li>
+                </ul>
+                <div class="preco">R$ 380,00</div>
+                <button class="btn-comprar" onclick="alert('SSD adicionado ao carrinho! 🎉')">COMPRAR AGORA</button>
+                <br>
+                <a href="index.html" class="btn-voltar">← VOLTAR PARA LOJA</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caixa de Som - Joaozin Loja</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); min-height: 100vh; padding: 40px 20px; }
+        .container { max-width: 1000px; margin: 0 auto; background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .produto-header { background: #ff6b35; padding: 30px; text-align: center; color: white; }
+        .produto-header h1 { font-size: 2.5rem; }
+        .produto-content { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 40px; }
+        .produto-imagem { font-size: 10rem; text-align: center; background: #f5f5f5; border-radius: 15px; padding: 40px; }
+        .produto-info h2 { color: #ff6b35; font-size: 2rem; margin-bottom: 20px; }
+        .produto-info p { color: #666; line-height: 1.6; margin-bottom: 20px; }
+        .preco { font-size: 2.5rem; color: #ff6b35; font-weight: bold; margin: 20px 0; }
+        .btn-comprar { background-color: #ff6b35; color: white; border: none; padding: 15px 40px; font-size: 1.2rem; font-weight: bold; border-radius: 50px; cursor: pointer; width: 100%; transition: all 0.3s; }
+        .btn-comprar:hover { background-color: #e55a2b; transform: scale(1.02); }
+        .btn-voltar { display: inline-block; margin-top: 20px; background: #1a1a2e; color: white; text-decoration: none; padding: 12px 30px; border-radius: 50px; text-align: center; }
+        .btn-voltar:hover { background: #2a2a4e; }
+        @media (max-width: 768px) { .produto-content { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="produto-header">
+            <h1>🔊 Caixa de Som RGB</h1>
+        </div>
+        <div class="produto-content">
+            <div class="produto-imagem">🔊</div>
+            <div class="produto-info">
+                <h2>Caixa de Som Bluetooth RGB</h2>
+                <p>Caixa de som com iluminação RGB, conexão Bluetooth 5.0, graves potentes e bateria de longa duração.</p>
+                <p><strong>Características:</strong></p>
+                <ul style="margin-left: 20px; color: #666;">
+                    <li>Potência: 20W RMS</li>
+                    <li>Iluminação RGB personalizável</li>
+                    <li>Conexão Bluetooth 5.0</li>
+                    <li>Entrada USB e P2</li>
+                    <li>Bateria de 8 horas</li>
+                    <li>Garantia de 1 ano</li>
+                </ul>
+                <div class="preco">R$ 180,00</div>
+                <button class="btn-comprar" onclick="alert('Caixa de Som adicionada ao carrinho! 🎉')">COMPRAR AGORA</button>
+                <br>
+                <a href="index.html" class="btn-voltar">← VOLTAR PARA LOJA</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mousepad Gamer - Joaozin Loja</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); min-height: 100vh; padding: 40px 20px; }
+        .container { max-width: 1000px; margin: 0 auto; background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .produto-header { background: #ff6b35; padding: 30px; text-align: center; color: white; }
+        .produto-header h1 { font-size: 2.5rem; }
+        .produto-content { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 40px; }
+        .produto-imagem { font-size: 10rem; text-align: center; background: #f5f5f5; border-radius: 15px; padding: 40px; }
+        .produto-info h2 { color: #ff6b35; font-size: 2rem; margin-bottom: 20px; }
+        .produto-info p { color: #666; line-height: 1.6; margin-bottom: 20px; }
+        .preco { font-size: 2.5rem; color: #ff6b35; font-weight: bold; margin: 20px 0; }
+        .btn-comprar { background-color: #ff6b35; color: white; border: none; padding: 15px 40px; font-size: 1.2rem; font-weight: bold; border-radius: 50px; cursor: pointer; width: 100%; transition: all 0.3s; }
+        .btn-comprar:hover { background-color: #e55a2b; transform: scale(1.02); }
+        .btn-voltar { display: inline-block; margin-top: 20px; background: #1a1a2e; color: white; text-decoration: none; padding: 12px 30px; border-radius: 50px; text-align: center; }
+        .btn-voltar:hover { background: #2a2a4e; }
+        @media (max-width: 768px) { .produto-content { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="produto-header">
+            <h1>🖨️ Mousepad Gamer</h1>
+        </div>
+        <div class="produto-content">
+            <div class="produto-imagem">🖨️</div>
+            <div class="produto-info">
+                <h2>Mousepad Gamer XXL</h2>
+                <p>Mousepad tamanho XXL com superfície de alta precisão, base antiderrapante e bordas costuradas para maior durabilidade.</p>
+                <p><strong>Características:</strong></p>
+                <ul style="margin-left: 20px; color: #666;">
+                    <li>Tamanho: 900x400mm</li>
+                    <li>Superfície de tecido de alta precisão</li>
+                    <li>Base emborrachada antiderrapante</li>
+                    <li>Bordas costuradas reforçadas</li>
+                    <li>Ideal para FPS e MOBA</li>
+                    <li>Garantia de 1 ano</li>
+                </ul>
+                <div class="preco">R$ 65,00</div>
+                <button class="btn-comprar" onclick="alert('Mousepad adicionado ao carrinho! 🎉')">COMPRAR AGORA</button>
+                <br>
+                <a href="index.html" class="btn-voltar">← VOLTAR PARA LOJA</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fonte 650W - Joaozin Loja</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); min-height: 100vh; padding: 40px 20px; }
+        .container { max-width: 1000px; margin: 0 auto; background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .produto-header { background: #ff6b35; padding: 30px; text-align: center; color: white; }
+        .produto-header h1 { font-size: 2.5rem; }
+        .produto-content { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 40px; }
+        .produto-imagem { font-size: 10rem; text-align: center; background: #f5f5f5; border-radius: 15px; padding: 40px; }
+        .produto-info h2 { color: #ff6b35; font-size: 2rem; margin-bottom: 20px; }
+        .produto-info p { color: #666; line-height: 1.6; margin-bottom: 20px; }
+        .preco { font-size: 2.5rem; color: #ff6b35; font-weight: bold; margin: 20px 0; }
+        .btn-comprar { background-color: #ff6b35; color: white; border: none; padding: 15px 40px; font-size: 1.2rem; font-weight: bold; border-radius: 50px; cursor: pointer; width: 100%; transition: all 0.3s; }
+        .btn-comprar:hover { background-color: #e55a2b; transform: scale(1.02); }
+        .btn-voltar { display: inline-block; margin-top: 20px; background: #1a1a2e; color: white; text-decoration: none; padding: 12px 30px; border-radius: 50px; text-align: center; }
+        .btn-voltar:hover { background: #2a2a4e; }
+        @media (max-width: 768px) { .produto-content { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="produto-header">
+            <h1>🔌 Fonte 650W</h1>
+        </div>
+        <div class="produto-content">
+            <div class="produto-imagem">🔌</div>
+            <div class="produto-info">
+                <h2>Fonte 650W 80 Plus Bronze</h2>
+                <p>Fonte com certificação 80 Plus Bronze, eficiência energética e proteções contra surtos, curto-circuito e sobrecarga.</p>
+                <p><strong>Características:</strong></p>
+                <ul style="margin-left: 20px; color: #666;">
+                    <li>Potência: 650W reais</li>
+                    <li>Certificação 80 Plus Bronze</li>
+                    <li>Cabo flat para melhor gerenciamento</li>
+                    <li>Ventilador silencioso de 120mm</li>
+                    <li>Proteções OVP, OCP, OPP, SCP</li>
+                    <li>Garantia de 2 anos</li>
+                </ul>
+                <div class="preco">R$ 420,00</div>
+                <button class="btn-comprar" onclick="alert('Fonte adicionada ao carrinho! 🎉')">COMPRAR AGORA</button>
+                <br>
+                <a href="index.html" class="btn-voltar">← VOLTAR PARA LOJA</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
