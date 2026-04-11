@@ -427,6 +427,72 @@
             font-weight: bold;
         }
 
+        /* Modal do QR Code */
+        .qrcode-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .qrcode-content {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .qrcode-content h3 {
+            color: #ff6b35;
+            margin-bottom: 20px;
+        }
+
+        .qrcode-content canvas {
+            margin: 20px auto;
+            border: 10px solid white;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .qrcode-content p {
+            color: #666;
+            margin: 10px 0;
+        }
+
+        .close-qrcode {
+            background-color: #ff6b35;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .close-qrcode:hover {
+            background-color: #e55a2b;
+        }
+
         @media (max-width: 768px) {
             .nav { gap: 15px; }
             .produtos-grid { grid-template-columns: 1fr; }
@@ -451,7 +517,7 @@
         
         <div class="produtos-grid">
             <!-- Produto 1 - Mouse Gamer -->
-         <div class="produto-card">
+            <div class="produto-card">
                 <div class="produto-icone">🖱️</div>
                 <h3>Mouse Gamer</h3>
                 <p class="produto-descricao">Tecnologia e conforto</p>
@@ -575,7 +641,19 @@
         <button class="btn-finalizar" onclick="finalizarCompra()">FINALIZAR COMPRA</button>
     </div>
 
-    <!-- Botão do WhatsApp/Telefone (substituiu o Instagram) -->
+    <!-- Modal do QR Code -->
+    <div class="qrcode-modal" id="qrcodeModal">
+        <div class="qrcode-content">
+            <h3>📱 Pague com QR Code</h3>
+            <div id="qrcode"></div>
+            <p><strong>Total do Pedido: R$ <span id="qrTotal">0,00</span></strong></p>
+            <p>Escaneie o QR Code acima com seu celular para pagar via PIX</p>
+            <p style="font-size: 0.8rem; color: #999;">Após o pagamento, seu pedido será confirmado em até 5 minutos</p>
+            <button class="close-qrcode" onclick="fecharQRCode()">FECHAR</button>
+        </div>
+    </div>
+
+    <!-- Botão do WhatsApp/Telefone -->
     <a href="https://wa.me/5511999999999?text=Olá!%20Vim%20pela%20Joaozin%20Loja%20e%20gostaria%20de%20mais%20informações!" target="_blank" class="whatsapp-btn">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.514 1.058 3.584l-1.092 3.999 4.104-1.056c1.005.535 2.131.818 3.291.817 3.18 0 5.766-2.587 5.766-5.768 0-3.18-2.586-5.766-5.766-5.766zm0 9.334c-.912 0-1.797-.243-2.564-.7l-1.138.293.314-1.106c-.508-.79-.78-1.706-.78-2.645 0-2.682 2.18-4.862 4.862-4.862 2.682 0 4.862 2.18 4.862 4.862s-2.18 4.862-4.862 4.862z"/>
@@ -598,9 +676,12 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+
     <script>
         // Carrinho
         let cart = [];
+        let currentQR = null;
 
         function saveCart() {
             localStorage.setItem('cart', JSON.stringify(cart));
@@ -668,14 +749,68 @@
             cartCountSpan.textContent = itemCount;
         }
 
+        function gerarQRCode(total) {
+            // Criar dados para o QR Code (simulação de pagamento PIX)
+            const dadosPIX = {
+                valor: total,
+                loja: "Joaozin Loja",
+                data: new Date().toLocaleString(),
+                pedido: Math.floor(Math.random() * 1000000),
+                chave_pix: "joaozin@loja.com"
+            };
+            
+            const textoQR = `Pagamento PIX - Joaozin Loja\nValor: R$ ${total.toFixed(2)}\nChave PIX: joaozin@loja.com\nPedido: ${dadosPIX.pedido}\nData: ${dadosPIX.data}`;
+            
+            // Limpar QR Code anterior
+            const qrcodeDiv = document.getElementById('qrcode');
+            qrcodeDiv.innerHTML = '';
+            
+            // Gerar novo QR Code
+            currentQR = new QRCode(qrcodeDiv, {
+                text: textoQR,
+                width: 200,
+                height: 200,
+                colorDark: "#1a1a2e",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+            
+            document.getElementById('qrTotal').innerText = total.toFixed(2);
+        }
+
+        function abrirQRCode(total) {
+            gerarQRCode(total);
+            document.getElementById('qrcodeModal').style.display = 'flex';
+            // Fechar carrinho automaticamente
+            document.getElementById('cartWindow').style.display = 'none';
+        }
+
+        function fecharQRCode() {
+            document.getElementById('qrcodeModal').style.display = 'none';
+        }
+
         function finalizarCompra() {
             if (cart.length === 0) {
                 alert('Seu carrinho está vazio! Adicione produtos antes de finalizar.');
                 return;
             }
-            alert('Pedido finalizado com sucesso! ✅\nTotal: R$ ' + cart.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2));
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            // Abrir modal com QR Code
+            abrirQRCode(total);
+            
+            // Limpar carrinho após mostrar QR Code (opcional)
+            // cart = [];
+            // saveCart();
+        }
+
+        function confirmarPagamento() {
+            // Simular confirmação de pagamento
+            alert('✅ Pagamento confirmado! Seu pedido será processado em breve.\nObrigado por comprar na Joaozin Loja! 🎉');
             cart = [];
             saveCart();
+            fecharQRCode();
         }
 
         function showNotification(message) {
@@ -746,4 +881,3 @@
     </script>
 </body>
 </html>
-
