@@ -1238,3 +1238,794 @@
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja Oficial - Página 2</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+            color: #333;
+        }
+
+        .header {
+            background-color: #000000;
+            color: white;
+            padding: 25px 0;
+            text-align: center;
+            border-bottom: 3px solid #ff0000;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #ff0000;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 15px;
+            transition: all 0.3s;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .nav a:hover {
+            background-color: #ff0000;
+            color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .titulo-secao {
+            text-align: center;
+            font-size: 2rem;
+            color: #000000;
+            margin-bottom: 40px;
+        }
+
+        .produtos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .produto-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border: 1px solid #eee;
+        }
+
+        .produto-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            border-color: #ff0000;
+        }
+
+        .produto-icone {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+
+        .produto-card h3 {
+            font-size: 1.5rem;
+            color: #000000;
+            margin-bottom: 10px;
+        }
+
+        .produto-descricao {
+            color: #666;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .produto-preco {
+            font-size: 1.8rem;
+            color: #ff0000;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .btn-comprar {
+            background-color: #ff0000;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-comprar:hover {
+            background-color: #cc0000;
+            transform: scale(1.02);
+        }
+
+        .footer {
+            background-color: #000000;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 40px;
+            border-top: 3px solid #ff0000;
+        }
+
+        .footer a {
+            color: #ff0000;
+            text-decoration: none;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .pagination a {
+            background-color: #ff0000;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .pagination a:hover {
+            background-color: #cc0000;
+            transform: scale(1.05);
+        }
+
+        .pagination .active {
+            background-color: #000000;
+            cursor: default;
+        }
+
+        /* Botões flutuantes */
+        .top-buttons {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 15px;
+            z-index: 1001;
+        }
+
+        .search-btn {
+            background-color: #ff0000;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .search-btn:hover {
+            transform: scale(1.1);
+            background-color: #cc0000;
+        }
+
+        .search-bar {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            width: 350px;
+            background: white;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: none;
+            align-items: center;
+            padding: 5px 15px;
+            z-index: 1001;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            border-radius: 50px;
+        }
+
+        .search-bar button {
+            background-color: #ff0000;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .close-search {
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+            color: #999;
+            margin-left: 10px;
+        }
+
+        .cart-btn {
+            background-color: #ff0000;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            border: none;
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: #000000;
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .cart-window {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            width: 350px;
+            max-height: 500px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1001;
+        }
+
+        .cart-header {
+            background-color: #ff0000;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.3rem;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            max-height: 350px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .cart-item-price {
+            color: #ff0000;
+            font-size: 0.9rem;
+        }
+
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: #ff4444;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .cart-total {
+            padding: 15px;
+            text-align: right;
+            font-weight: bold;
+            border-top: 2px solid #eee;
+        }
+
+        .btn-finalizar {
+            background-color: #000000;
+            color: white;
+            border: none;
+            padding: 12px;
+            margin: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .chatbot-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #ff0000;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            border: none;
+        }
+
+        .chatbot-window {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1000;
+        }
+
+        .chatbot-header {
+            background-color: #ff0000;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .close-chat {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.3rem;
+            cursor: pointer;
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background-color: #f5f5f5;
+        }
+
+        .message {
+            max-width: 85%;
+            padding: 10px 15px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+
+        .bot-message {
+            background-color: #000000;
+            color: white;
+            align-self: flex-start;
+        }
+
+        .user-message {
+            background-color: #ff0000;
+            color: white;
+            align-self: flex-end;
+        }
+
+        .chatbot-input-area {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+            background: white;
+        }
+
+        .chatbot-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+        }
+
+        .chatbot-send {
+            background-color: #ff0000;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 25px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: #25D366;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            text-decoration: none;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        .whatsapp-btn svg {
+            width: 32px;
+            height: 32px;
+            fill: white;
+        }
+
+        .qrcode-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .qrcode-content {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            animation: fadeIn 0.3s ease;
+            border: 2px solid #ff0000;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .qrcode-content h3 { color: #ff0000; margin-bottom: 20px; }
+        .qrcode-content canvas { margin: 20px auto; border: 10px solid white; }
+        .close-qrcode {
+            background-color: #ff0000;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .sobre-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .sobre-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            animation: fadeIn 0.3s ease;
+            border: 2px solid #ff0000;
+        }
+
+        .sobre-content h2 { color: #ff0000; margin-bottom: 20px; text-align: center; }
+        .close-sobre {
+            background-color: #ff0000;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 20px;
+            width: 100%;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .nav { gap: 15px; }
+            .produtos-grid { grid-template-columns: 1fr; }
+            .chatbot-window { width: 90%; right: 5%; left: 5%; bottom: 80px; }
+            .cart-window { width: 90%; right: 5%; left: 5%; top: 80px; }
+            .search-bar { width: 90%; right: 5%; left: 5%; }
+            .pagination a { padding: 8px 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🛍️ Loja Oficial Online</h1>
+        <div class="nav">
+            <a href="index.html">NOVO</a>
+            <a href="index.html">LOJA</a>
+            <a id="sobreBtn">SOBRE NÓS</a>
+            <a id="contatoBtn">CONTATO</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="titulo-secao">🔥 Produtos em Destaque - Página 2</h2>
+        
+        <div class="produtos-grid" id="produtosGrid">
+            <!-- Produtos serão carregados via JavaScript -->
+        </div>
+
+        <div class="pagination">
+            <a href="index.html">Página 1</a>
+            <a class="active">Página 2</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>📧 <a href="#">https://lojaoficial.com.br</a></p>
+        <p>© 2024 Loja Oficial - Todos os Produtos Que Você Precisa</p>
+    </div>
+
+    <div class="top-buttons">
+        <button class="search-btn" id="searchBtn">🔍</button>
+        <button class="cart-btn" id="cartBtn">🛒<span class="cart-count" id="cartCount">0</span></button>
+    </div>
+
+    <div class="search-bar" id="searchBar">
+        <input type="text" id="searchInput" placeholder="🔍 Pesquisar...">
+        <button id="buscarBtn">Buscar</button>
+        <button class="close-search" id="closeSearch">✕</button>
+    </div>
+
+    <div class="cart-window" id="cartWindow">
+        <div class="cart-header"><h3>🛒 Meu Carrinho</h3><button class="close-cart" id="closeCart">✕</button></div>
+        <div class="cart-items" id="cartItems"><div style="text-align:center;padding:20px;"><div style="font-size:4rem;">🛒</div><p>Seu carrinho está vazio</p></div></div>
+        <div class="cart-total" id="cartTotal">Total: R$ 0,00</div>
+        <button class="btn-finalizar" onclick="finalizarCompra()">FINALIZAR COMPRA</button>
+    </div>
+
+    <div class="qrcode-modal" id="qrcodeModal">
+        <div class="qrcode-content"><h3>📱 Pague com QR Code</h3><div id="qrcode"></div><p><strong>Total: R$ <span id="qrTotal">0,00</span></strong></p><button class="close-qrcode" onclick="fecharQRCode()">FECHAR</button></div>
+    </div>
+
+    <div class="sobre-modal" id="sobreModal">
+        <div class="sobre-content"><h2>🏪 Sobre a Loja</h2><p>Loja especializada em equipamentos gamers desde 2022.</p><button class="close-sobre" id="closeSobre">FECHAR</button></div>
+    </div>
+
+    <div class="sobre-modal" id="contatoModal">
+        <div class="sobre-content"><h2>📞 Contato</h2><p>WhatsApp: (11) 99999-9999<br>E-mail: contato@lojaoficial.com</p><button class="close-sobre" id="closeContato">FECHAR</button></div>
+    </div>
+
+    <a href="https://wa.me/5511999999999" target="_blank" class="whatsapp-btn"><svg viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.514 1.058 3.584l-1.092 3.999 4.104-1.056c1.005.535 2.131.818 3.291.817 3.18 0 5.766-2.587 5.766-5.768 0-3.18-2.586-5.766-5.766-5.766z"/></svg></a>
+
+    <button class="chatbot-btn" id="chatbotBtn">💬</button>
+    <div class="chatbot-window" id="chatbotWindow">
+        <div class="chatbot-header"><h3>🤖 Atendente</h3><button class="close-chat" id="closeChat">✕</button></div>
+        <div class="chatbot-messages" id="chatMessages"><div class="message bot-message">Olá! Como posso ajudar?</div></div>
+        <div class="chatbot-input-area"><input type="text" class="chatbot-input" id="chatInput"><button class="chatbot-send" id="sendChat">Enviar</button></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <script>
+        const produtosLista = [
+            { id: 7, nome: 'SSD 1TB', preco: 380, icone: '💾', descricao: 'SSD NVMe 1TB com leitura de até 3500MB/s', palavrasChave: ['ssd', '1tb'] },
+            { id: 8, nome: 'Caixa de Som', preco: 180, icone: '🔊', descricao: 'Caixa de Som Bluetooth RGB com 20W de potência', palavrasChave: ['caixa de som', 'speaker'] },
+            { id: 9, nome: 'Mousepad Gamer', preco: 65, icone: '🖨️', descricao: 'Mousepad Gamer XXL com superfície antiderrapante', palavrasChave: ['mousepad'] },
+            { id: 10, nome: 'Fonte 650W', preco: 420, icone: '🔌', descricao: 'Fonte 650W 80 Plus Bronze com proteções', palavrasChave: ['fonte', '650w'] },
+            { id: 11, nome: 'Placa de Vídeo RTX 5090', preco: 2000, icone: '⚡', descricao: 'Placa de Vídeo RTX 5090 com 24GB GDDR7, 8K', palavrasChave: ['placa de video', 'rtx', '5090'] },
+            { id: 12, nome: 'Memória RAM HyperX 16GB', preco: 280, icone: '🧠', descricao: 'Memória RAM HyperX 16GB DDR3', palavrasChave: ['memoria ram', 'ram', 'hyperx'] }
+        ];
+
+        function renderizarProdutos(produtos) {
+            const grid = document.getElementById('produtosGrid');
+            grid.innerHTML = produtos.map(p => `
+                <div class="produto-card">
+                    <div class="produto-icone">${p.icone}</div>
+                    <h3>${p.nome}</h3>
+                    <p class="produto-descricao">${p.descricao}</p>
+                    <div class="produto-preco">R$ ${p.preco.toFixed(2)}</div>
+                    <button class="btn-comprar" onclick="addToCart('${p.nome}', ${p.preco})">COMPRAR</button>
+                </div>
+            `).join('');
+        }
+
+        function searchProducts() {
+            const termo = document.getElementById('searchInput').value.toLowerCase();
+            const resultados = termo === '' ? produtosLista : produtosLista.filter(p => p.nome.toLowerCase().includes(termo) || p.descricao.toLowerCase().includes(termo));
+            renderizarProdutos(resultados);
+            document.getElementById('searchBar').style.display = 'none';
+        }
+
+        let cart = [];
+        function saveCart() { localStorage.setItem('cart', JSON.stringify(cart)); updateCartDisplay(); }
+        function loadCart() { const saved = localStorage.getItem('cart'); if (saved) cart = JSON.parse(saved); updateCartDisplay(); }
+        function addToCart(name, price) {
+            const existing = cart.find(i => i.name === name);
+            existing ? existing.quantity++ : cart.push({ name, price, quantity: 1 });
+            saveCart();
+        }
+        function removeFromCart(index) { cart.splice(index, 1); saveCart(); }
+        function updateCartDisplay() {
+            const itemsDiv = document.getElementById('cartItems');
+            const countSpan = document.getElementById('cartCount');
+            const totalDiv = document.getElementById('cartTotal');
+            let total = 0, count = 0;
+            if (cart.length === 0) {
+                itemsDiv.innerHTML = '<div style="text-align:center;padding:20px;"><div style="font-size:4rem;">🛒</div><p>Seu carrinho está vazio</p></div>';
+                totalDiv.innerHTML = 'Total: R$ 0,00';
+                countSpan.textContent = '0';
+                return;
+            }
+            itemsDiv.innerHTML = '';
+            cart.forEach((item, idx) => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                count += item.quantity;
+                itemsDiv.innerHTML += `<div class="cart-item"><div class="cart-item-info"><div class="cart-item-name">${item.name}</div><div class="cart-item-price">R$ ${item.price.toFixed(2)} x ${item.quantity} = R$ ${itemTotal.toFixed(2)}</div></div><button class="cart-item-remove" onclick="removeFromCart(${idx})">🗑️</button></div>`;
+            });
+            totalDiv.innerHTML = `Total: R$ ${total.toFixed(2)}`;
+            countSpan.textContent = count;
+        }
+        function gerarQRCode(total) { new QRCode(document.getElementById('qrcode'), { text: `Pagamento PIX - Valor: R$ ${total.toFixed(2)}`, width: 200, height: 200 }); document.getElementById('qrTotal').innerText = total.toFixed(2); }
+        function finalizarCompra() {
+            if (cart.length === 0) { alert('Carrinho vazio!'); return; }
+            const total = cart.reduce((s, i) => s + (i.price * i.quantity), 0);
+            gerarQRCode(total);
+            document.getElementById('qrcodeModal').style.display = 'flex';
+            document.getElementById('cartWindow').style.display = 'none';
+        }
+        function fecharQRCode() { document.getElementById('qrcodeModal').style.display = 'none'; }
+
+        document.getElementById('cartBtn').addEventListener('click', () => document.getElementById('cartWindow').style.display = 'flex');
+        document.getElementById('closeCart').addEventListener('click', () => document.getElementById('cartWindow').style.display = 'none');
+        document.getElementById('searchBtn').addEventListener('click', () => { document.getElementById('searchBar').style.display = 'flex'; document.getElementById('searchInput').focus(); });
+        document.getElementById('closeSearch').addEventListener('click', () => document.getElementById('searchBar').style.display = 'none');
+        document.getElementById('buscarBtn').addEventListener('click', searchProducts);
+        document.getElementById('searchInput').addEventListener('keypress', e => { if (e.key === 'Enter') searchProducts(); });
+
+        document.getElementById('sobreBtn').addEventListener('click', () => document.getElementById('sobreModal').style.display = 'flex');
+        document.getElementById('closeSobre').addEventListener('click', () => document.getElementById('sobreModal').style.display = 'none');
+        document.getElementById('contatoBtn').addEventListener('click', () => document.getElementById('contatoModal').style.display = 'flex');
+        document.getElementById('closeContato').addEventListener('click', () => document.getElementById('contatoModal').style.display = 'none');
+
+        const chatbotBtn = document.getElementById('chatbotBtn'), chatbotWindow = document.getElementById('chatbotWindow'), closeChat = document.getElementById('closeChat');
+        chatbotBtn.addEventListener('click', () => chatbotWindow.style.display = 'flex');
+        closeChat.addEventListener('click', () => chatbotWindow.style.display = 'none');
+
+        function addMessage(t, u) { const d = document.createElement('div'); d.className = `message ${u ? 'user-message' : 'bot-message'}`; d.innerHTML = t; document.getElementById('chatMessages').appendChild(d); d.scrollIntoView(); }
+        function getBotResponse(m) {
+            if (m.includes('ssd')) return '💾 SSD 1TB: R$ 380,00';
+            if (m.includes('caixa')) return '🔊 Caixa de Som: R$ 180,00';
+            if (m.includes('mousepad')) return '🖨️ Mousepad: R$ 65,00';
+            if (m.includes('fonte')) return '🔌 Fonte 650W: R$ 420,00';
+            if (m.includes('rtx') || m.includes('5090')) return '⚡ RTX 5090: R$ 2.000,00';
+            if (m.includes('ram') || m.includes('memoria')) return '🧠 Memória RAM HyperX 16GB: R$ 280,00';
+            if (m.includes('preço')) return '💰 SSD: R$380 | Caixa: R$180 | Mousepad: R$65 | Fonte: R$420 | RTX 5090: R$2000 | RAM: R$280';
+            return 'Pergunte sobre SSD, Caixa de Som, Mousepad, Fonte, RTX 5090 ou Memória RAM!';
+        }
+        function sendMessage() {
+            const t = document.getElementById('chatInput').value.trim();
+            if (!t) return;
+            addMessage(t, true);
+            document.getElementById('chatInput').value = '';
+            setTimeout(() => addMessage(getBotResponse(t.toLowerCase()), false), 300);
+        }
+        document.getElementById('sendChat').addEventListener('click', sendMessage);
+        document.getElementById('chatInput').addEventListener('keypress', e => { if (e.key === 'Enter') sendMessage(); });
+
+        renderizarProdutos(produtosLista);
+        loadCart();
+    </script>
+</body>
+</html>
