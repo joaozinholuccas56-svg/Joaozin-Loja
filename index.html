@@ -704,7 +704,7 @@
 </head>
 <body>
     <div class="header">
-        <h1> Loja Oficial Online</h1>
+        <h1>🛍️ Loja Oficial Online</h1>
         <div class="nav">
             <a onclick="resetSearch()">NOVO</a>
             <a onclick="resetSearch()">LOJA</a>
@@ -714,14 +714,14 @@
     </div>
 
     <div class="container">
-        <h2 class="titulo-secao" id="tituloPagina">🔥 Produtos em Destaque</h2>
+        <h2 class="titulo-secao" id="tituloPagina">🔥 Produtos em Destaque - Página 1</h2>
         
         <div class="produtos-grid" id="produtosGrid">
             <!-- Produtos serão carregados via JavaScript -->
         </div>
 
         <!-- Paginação -->
-        <div class="page-info" id="pageInfo">Mostrando produtos 1 a 6 de 12</div>
+        <div class="page-info" id="pageInfo">Mostrando produtos 1 a 9 de 18</div>
         <div class="pagination">
             <button id="btnPagina1" class="active">📄 Página 1</button>
             <button id="btnPagina2">📄 Página 2</button>
@@ -834,24 +834,33 @@
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 
     <script>
-        // ========== LISTA DE TODOS OS PRODUTOS ==========
+        // ========== LISTA DE TODOS OS PRODUTOS (AGORA COM 18 PRODUTOS) ==========
         const todosProdutos = [
+            // Página 1 - Produtos 1 a 9
             { id: 1, nome: 'Mouse Gamer', preco: 150, icone: '🖱️', descricao: 'Mouse Gamer com sensor de alta precisão, 6 botões programáveis e iluminação RGB', palavrasChave: ['mouse', 'gamer'] },
             { id: 2, nome: 'Teclado Magnético', preco: 210.99, icone: '⌨️', descricao: 'Teclado Magnético Gamer com switches magnéticos, RGB por tecla e design compacto', palavrasChave: ['teclado', 'keyboard'] },
             { id: 3, nome: 'Controle Videogame', preco: 300, icone: '🎮', descricao: 'Controle Sem Fio com Bluetooth, bateria de 20h, compatível com PC, PS4, PS5 e Xbox', palavrasChave: ['controle', 'joystick'] },
             { id: 4, nome: 'Monitor Gamer 144Hz', preco: 1200, icone: '🖥️', descricao: 'Monitor Gamer 27" 144Hz, 1ms, FreeSync Premium para imagem sem quebras', palavrasChave: ['monitor', '144hz'] },
             { id: 5, nome: 'Headset Gamer', preco: 250, icone: '🎧', descricao: 'Headset Gamer Surround 7.1, microfone com cancelamento de ruído e almofadas confortáveis', palavrasChave: ['headset', 'fone'] },
             { id: 6, nome: 'Cadeira Gamer', preco: 950, icone: '💺', descricao: 'Cadeira Gamer Ergonômica com inclinação de 180°, apoio de lombar e pescoço', palavrasChave: ['cadeira', 'gamer'] },
-            { id: 7, nome: 'SSD 1TB', preco: 380, icone: '💾', descricao: 'SSD NVMe 1TB com leitura de até 3500MB/s, velocidade extrema para seu PC', palavrasChave: ['ssd', '1tb'] },
-            { id: 8, nome: 'Caixa de Som', preco: 180, icone: '🔊', descricao: 'Caixa de Som Bluetooth RGB com 20W de potência e bateria de 8 horas', palavrasChave: ['caixa de som', 'speaker'] },
-            { id: 9, nome: 'Mousepad Gamer', preco: 65, icone: '🖨️', descricao: 'Mousepad Gamer XXL com superfície antiderrapante e bordas costuradas', palavrasChave: ['mousepad'] },
-            { id: 10, nome: 'Fonte 650W', preco: 420, icone: '🔌', descricao: 'Fonte 650W 80 Plus Bronze com proteções contra surtos e curto-circuito', palavrasChave: ['fonte', '650w'] },
-            { id: 11, nome: 'Placa de Vídeo RTX 5090', preco: 2000, icone: '⚡', descricao: 'Placa de Vídeo RTX 5090 com 24GB GDDR7, suporte a 8K e DLSS 4.0', palavrasChave: ['placa de video', 'rtx', '5090'] },
-            { id: 12, nome: 'Memória RAM HyperX 16GB', preco: 280, icone: '🧠', descricao: 'Memória RAM HyperX 16GB DDR3 de alta velocidade para multitarefa e jogos', palavrasChave: ['memoria ram', 'ram', 'hyperx'] }
+            { id: 7, nome: 'Processador Intel i9', preco: 3200, icone: '🧠', descricao: 'Processador Intel Core i9-13900K, 24 núcleos, até 5.8GHz, ideal para jogos pesados', palavrasChave: ['processador', 'intel', 'i9', 'cpu'] },
+            { id: 8, nome: 'Placa Mãe B760', preco: 850, icone: '💻', descricao: 'Placa Mãe B760 com suporte DDR5, PCIe 5.0, ideal para processadores Intel', palavrasChave: ['placa mae', 'b760', 'motherboard'] },
+            { id: 9, nome: 'Water Cooler 360mm', preco: 550, icone: '💧', descricao: 'Water Cooler 360mm RGB, resfriamento líquido para processadores de alta performance', palavrasChave: ['water cooler', 'resfriamento', 'cooler'] },
+            
+            // Página 2 - Produtos 10 a 18
+            { id: 10, nome: 'SSD 1TB', preco: 380, icone: '💾', descricao: 'SSD NVMe 1TB com leitura de até 3500MB/s, velocidade extrema para seu PC', palavrasChave: ['ssd', '1tb'] },
+            { id: 11, nome: 'Caixa de Som', preco: 180, icone: '🔊', descricao: 'Caixa de Som Bluetooth RGB com 20W de potência e bateria de 8 horas', palavrasChave: ['caixa de som', 'speaker'] },
+            { id: 12, nome: 'Mousepad Gamer', preco: 65, icone: '🖨️', descricao: 'Mousepad Gamer XXL com superfície antiderrapante e bordas costuradas', palavrasChave: ['mousepad'] },
+            { id: 13, nome: 'Fonte 850W', preco: 620, icone: '🔌', descricao: 'Fonte 850W 80 Plus Gold, modular, com proteções contra surtos', palavrasChave: ['fonte', '850w'] },
+            { id: 14, nome: 'Placa de Vídeo RTX 5090', preco: 2000, icone: '⚡', descricao: 'Placa de Vídeo RTX 5090 com 24GB GDDR7, suporte a 8K e DLSS 4.0', palavrasChave: ['placa de video', 'rtx', '5090'] },
+            { id: 15, nome: 'Memória RAM HyperX 16GB', preco: 280, icone: '🧠', descricao: 'Memória RAM HyperX 16GB DDR3 de alta velocidade para multitarefa e jogos', palavrasChave: ['memoria ram', 'ram', 'hyperx'] },
+            { id: 16, nome: 'Gabinete Gamer', preco: 450, icone: '🏠', descricao: 'Gabinete Gamer com lateral em vidro temperado, 4 fans RGB e suporte water cooler', palavrasChave: ['gabinete', 'case'] },
+            { id: 17, nome: 'Webcam HD 1080p', preco: 180, icone: '📷', descricao: 'Webcam Full HD 1080p com microfone embutido, ideal para lives e reuniões', palavrasChave: ['webcam', 'camera'] },
+            { id: 18, nome: 'Suporte Monitor Articulado', preco: 120, icone: '🖥️', descricao: 'Suporte articulado para monitor, braço duplo, regulagem de altura e inclinação', palavrasChave: ['suporte', 'braço', 'monitor'] }
         ];
 
         let paginaAtual = 1;
-        const produtosPorPagina = 6;
+        const produtosPorPagina = 9;
 
         // Função para renderizar produtos da página atual
         function renderizarPagina() {
@@ -930,7 +939,7 @@
             const grid = document.getElementById('produtosGrid');
             
             if (resultados.length === 0) {
-                grid.innerHTML = '<div class="no-results">🔍 Nenhum produto encontrado!<br>Tente: "placa de video", "memoria ram", "mouse"</div>';
+                grid.innerHTML = '<div class="no-results">🔍 Nenhum produto encontrado!<br>Tente: "placa de video", "memoria ram", "mouse", "processador"</div>';
                 document.getElementById('tituloPagina').innerHTML = `🔍 Resultados da busca`;
                 document.getElementById('pageInfo').innerHTML = `Nenhum produto encontrado para "${termo}"`;
             } else {
@@ -1168,19 +1177,25 @@
             if (msg.includes('monitor')) return '🖥️ Monitor Gamer 144Hz: R$ 1.200,00 - 27", 144Hz, FreeSync!';
             if (msg.includes('headset')) return '🎧 Headset Gamer: R$ 250,00 - Surround 7.1, microfone com cancelamento de ruído!';
             if (msg.includes('cadeira')) return '💺 Cadeira Gamer: R$ 950,00 - Ergonômica, inclinação de 180°!';
+            if (msg.includes('processador') || msg.includes('i9') || msg.includes('intel')) return '🧠 Processador Intel i9: R$ 3.200,00 - 24 núcleos, até 5.8GHz!';
+            if (msg.includes('placa mae') || msg.includes('b760')) return '💻 Placa Mãe B760: R$ 850,00 - Suporte DDR5, PCIe 5.0!';
+            if (msg.includes('water cooler')) return '💧 Water Cooler 360mm: R$ 550,00 - Resfriamento líquido RGB!';
             if (msg.includes('ssd')) return '💾 SSD 1TB: R$ 380,00 - NVMe, leitura até 3500MB/s!';
             if (msg.includes('caixa de som')) return '🔊 Caixa de Som: R$ 180,00 - Bluetooth, RGB, 20W!';
             if (msg.includes('mousepad')) return '🖨️ Mousepad Gamer: R$ 65,00 - XXL, superfície antiderrapante!';
-            if (msg.includes('fonte')) return '🔌 Fonte 650W: R$ 420,00 - 80 Plus Bronze, proteções contra surtos!';
+            if (msg.includes('fonte')) return '🔌 Fonte 850W: R$ 620,00 - 80 Plus Gold, modular!';
             if (msg.includes('rtx') || msg.includes('5090') || msg.includes('placa de video')) return '⚡ Placa de Vídeo RTX 5090: R$ 2.000,00 - 24GB GDDR7, 8K, DLSS 4.0!';
             if (msg.includes('memoria') || msg.includes('ram') || msg.includes('hyperx')) return '🧠 Memória RAM HyperX 16GB: R$ 280,00 - DDR3, alta velocidade!';
-            if (msg.includes('preço') || msg.includes('preco') || msg.includes('valores')) return '💰 Lista de preços completa: Mouse R$150 | Teclado R$210,99 | Controle R$300 | Monitor R$1200 | Headset R$250 | Cadeira R$950 | SSD R$380 | Caixa R$180 | Mousepad R$65 | Fonte R$420 | RTX 5090 R$2000 | RAM R$280';
+            if (msg.includes('gabinete')) return '🏠 Gabinete Gamer: R$ 450,00 - Vidro temperado, 4 fans RGB!';
+            if (msg.includes('webcam')) return '📷 Webcam HD 1080p: R$ 180,00 - Full HD, microfone embutido!';
+            if (msg.includes('suporte') || msg.includes('braço')) return '🖥️ Suporte Monitor Articulado: R$ 120,00 - Braço duplo, regulagem de altura!';
+            if (msg.includes('preço') || msg.includes('preco') || msg.includes('valores')) return '💰 Lista de preços: Mouse R$150 | Teclado R$210,99 | Controle R$300 | Monitor R$1200 | Headset R$250 | Cadeira R$950 | i9 R$3200 | Placa Mãe R$850 | Water Cooler R$550 | SSD R$380 | Caixa R$180 | Mousepad R$65 | Fonte R$620 | RTX 5090 R$2000 | RAM R$280 | Gabinete R$450 | Webcam R$180 | Suporte R$120';
             if (msg.includes('entrega') || msg.includes('frete')) return '🚚 Entregamos para todo o Brasil! Frete grátis para compras acima de R$200! Prazo: 3 a 10 dias úteis.';
             if (msg.includes('pagamento') || msg.includes('pix')) return '💳 Aceitamos PIX (10% off), Cartão de Crédito (até 12x), Boleto e PayPal!';
             if (msg.includes('contato') || msg.includes('whatsapp')) return '📞 WhatsApp: (11) 99999-9999 | E-mail: contato@lojaoficial.com';
             if (msg.includes('garantia')) return '🛡️ Garantia de 1 ano em todos os produtos! Troca grátis em até 30 dias.';
             
-            return `🤔 Posso ajudar com informações sobre produtos, preços, entregas, formas de pagamento e contato!<br><br>💬 Pergunte: "mouse", "teclado", "rtx 5090", "memoria ram", "preços", "entrega", "pagamento" ou "contato"!`;
+            return `🤔 Posso ajudar com informações sobre produtos, preços, entregas, formas de pagamento e contato!<br><br>💬 Pergunte: "mouse", "teclado", "rtx 5090", "memoria ram", "processador", "preços", "entrega", "pagamento" ou "contato"!`;
         }
 
         function sendMessage() {
