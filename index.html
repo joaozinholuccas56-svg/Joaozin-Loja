@@ -689,7 +689,7 @@
 </head>
 <body>
     <div class="header">
-        <h1> Loja Oficial Online</h1>
+        <h1>🛍️ Loja Oficial Online</h1>
         <div class="nav">
             <a onclick="resetSearch()">NOVO</a>
             <a onclick="resetSearch()">LOJA</a>
@@ -708,7 +708,7 @@
 
     <div class="footer">
         <p>📧 <a href="#">https://joaozinholuccas56-svg.github.io/Joaozin-Loja/</a></p>
-        <p>© Loja Oficial - Todos os Produtos Que Você Precisa</p>
+        <p>© 2024 Loja Oficial - Todos os Produtos Que Você Precisa</p>
     </div>
 
     <!-- Botões flutuantes topo -->
@@ -734,7 +734,11 @@
             <button class="close-cart" id="closeCart">✕</button>
         </div>
         <div class="cart-items" id="cartItems">
-            <p style="text-align: center; color: #999;">Seu carrinho está vazio</p>
+            <div style="text-align: center; padding: 20px;">
+                <div style="font-size: 4rem;">🛒</div>
+                <p style="color: #999; margin-top: 10px;">Seu carrinho está vazio</p>
+                <p style="color: #ccc; font-size: 0.8rem;">Adicione produtos clicando em "COMPRAR"</p>
+            </div>
         </div>
         <div class="cart-total" id="cartTotal">Total: R$ 0,00</div>
         <button class="btn-finalizar" onclick="finalizarCompra()">FINALIZAR COMPRA</button>
@@ -852,18 +856,18 @@
     <script>
         // ========== LISTA DE PRODUTOS ==========
         const produtosLista = [
-            { id: 1, nome: 'Mouse Gamer', preco: 150, icone: '🖱️', descricao: 'Tecnologia e conforto', palavrasChave: ['mouse', 'gamer', 'mouse gamer'] },
-            { id: 2, nome: 'Teclado Magnético', preco: 210.99, icone: '⌨️', descricao: 'Conforto e precisão', palavrasChave: ['teclado', 'teclado magnetico', 'keyboard'] },
-            { id: 3, nome: 'Controle Videogame', preco: 300, icone: '🎮', descricao: 'O melhor do momento', palavrasChave: ['controle', 'videogame', 'joystick'] },
-            { id: 4, nome: 'Monitor Gamer 144Hz', preco: 1200, icone: '🖥️', descricao: 'Imagem fluida e cores vibrantes', palavrasChave: ['monitor', '144hz', 'tela'] },
-            { id: 5, nome: 'Headset Gamer', preco: 250, icone: '🎧', descricao: 'Som surround 7.1', palavrasChave: ['headset', 'fone', 'microfone'] },
-            { id: 6, nome: 'Cadeira Gamer', preco: 950, icone: '💺', descricao: 'Ergonomia e conforto', palavrasChave: ['cadeira', 'gamer', 'cadeira gamer'] },
-            { id: 7, nome: 'SSD 1TB', preco: 380, icone: '💾', descricao: 'Velocidade extrema', palavrasChave: ['ssd', '1tb', 'armazenamento'] },
-            { id: 8, nome: 'Caixa de Som', preco: 180, icone: '🔊', descricao: 'Som potente RGB', palavrasChave: ['caixa de som', 'caixa som', 'speaker'] },
-            { id: 9, nome: 'Mousepad Gamer', preco: 65, icone: '🖨️', descricao: 'Grande e antiderrapante', palavrasChave: ['mousepad', 'tapete', 'mouse pad'] },
-            { id: 10, nome: 'Fonte 650W', preco: 420, icone: '🔌', descricao: '80 Plus Bronze', palavrasChave: ['fonte', '650w', 'fonte de energia'] },
-            { id: 11, nome: 'Placa de Vídeo RTX 5090', preco: 2000, icone: '⚡', descricao: 'Desempenho extremo para jogos 8K', palavrasChave: ['placa de video', 'placa vídeo', 'rtx', 'rtx 5090', '5090', 'gpu', 'video card'] },
-            { id: 12, nome: 'Memória RAM HyperX 16GB', preco: 280, icone: '🧠', descricao: 'DDR3 - Alta velocidade e desempenho', palavrasChave: ['memoria ram', 'memória ram', 'ram', 'hyperx', '16gb', 'ddr3'] }
+            { id: 1, nome: 'Mouse Gamer', preco: 150, icone: '🖱️', descricao: 'Mouse Gamer com sensor de alta precisão, 6 botões programáveis e iluminação RGB', palavrasChave: ['mouse', 'gamer', 'mouse gamer'] },
+            { id: 2, nome: 'Teclado Magnético', preco: 210.99, icone: '⌨️', descricao: 'Teclado Magnético Gamer com switches magnéticos, RGB por tecla e design compacto', palavrasChave: ['teclado', 'teclado magnetico', 'keyboard'] },
+            { id: 3, nome: 'Controle Videogame', preco: 300, icone: '🎮', descricao: 'Controle Sem Fio com Bluetooth, bateria de 20h, compatível com PC, PS4, PS5 e Xbox', palavrasChave: ['controle', 'videogame', 'joystick'] },
+            { id: 4, nome: 'Monitor Gamer 144Hz', preco: 1200, icone: '🖥️', descricao: 'Monitor Gamer 27" 144Hz, 1ms, FreeSync Premium para imagem sem quebras', palavrasChave: ['monitor', '144hz', 'tela'] },
+            { id: 5, nome: 'Headset Gamer', preco: 250, icone: '🎧', descricao: 'Headset Gamer Surround 7.1, microfone com cancelamento de ruído e almofadas confortáveis', palavrasChave: ['headset', 'fone', 'microfone'] },
+            { id: 6, nome: 'Cadeira Gamer', preco: 950, icone: '💺', descricao: 'Cadeira Gamer Ergonômica com inclinação de 180°, apoio de lombar e pescoço', palavrasChave: ['cadeira', 'gamer', 'cadeira gamer'] },
+            { id: 7, nome: 'SSD 1TB', preco: 380, icone: '💾', descricao: 'SSD NVMe 1TB com leitura de até 3500MB/s, velocidade extrema para seu PC', palavrasChave: ['ssd', '1tb', 'armazenamento'] },
+            { id: 8, nome: 'Caixa de Som', preco: 180, icone: '🔊', descricao: 'Caixa de Som Bluetooth RGB com 20W de potência e bateria de 8 horas', palavrasChave: ['caixa de som', 'caixa som', 'speaker'] },
+            { id: 9, nome: 'Mousepad Gamer', preco: 65, icone: '🖨️', descricao: 'Mousepad Gamer XXL com superfície antiderrapante e bordas costuradas', palavrasChave: ['mousepad', 'tapete', 'mouse pad'] },
+            { id: 10, nome: 'Fonte 650W', preco: 420, icone: '🔌', descricao: 'Fonte 650W 80 Plus Bronze com proteções contra surtos e curto-circuito', palavrasChave: ['fonte', '650w', 'fonte de energia'] },
+            { id: 11, nome: 'Placa de Vídeo RTX 5090', preco: 2000, icone: '⚡', descricao: 'Placa de Vídeo RTX 5090 com 24GB GDDR7, suporte a 8K e DLSS 4.0', palavrasChave: ['placa de video', 'placa vídeo', 'rtx', 'rtx 5090', '5090', 'gpu'] },
+            { id: 12, nome: 'Memória RAM HyperX 16GB', preco: 280, icone: '🧠', descricao: 'Memória RAM HyperX 16GB DDR3 de alta velocidade para multitarefa e jogos', palavrasChave: ['memoria ram', 'memória ram', 'ram', 'hyperx', '16gb'] }
         ];
 
         // Função de pesquisa
@@ -975,7 +979,13 @@
             let itemCount = 0;
             
             if (cart.length === 0) {
-                cartItemsDiv.innerHTML = '<p style="text-align: center; color: #999;">Seu carrinho está vazio</p>';
+                cartItemsDiv.innerHTML = `
+                    <div style="text-align: center; padding: 20px;">
+                        <div style="font-size: 4rem;">🛒</div>
+                        <p style="color: #999; margin-top: 10px;">Seu carrinho está vazio</p>
+                        <p style="color: #ccc; font-size: 0.8rem;">Adicione produtos clicando em "COMPRAR"</p>
+                    </div>
+                `;
                 cartTotalDiv.innerHTML = 'Total: R$ 0,00';
                 cartCountSpan.textContent = '0';
                 return;
@@ -1041,7 +1051,11 @@
 
         function finalizarCompra() {
             if (cart.length === 0) {
-                alert('Seu carrinho está vazio! Adicione produtos antes de finalizar.');
+                // Mensagem mais amigável quando o carrinho está vazio
+                mostrarNotificacao('🛒 Seu carrinho está vazio! Adicione produtos antes de finalizar a compra.');
+                
+                // Opcional: abrir o carrinho para o usuário ver
+                document.getElementById('cartWindow').style.display = 'flex';
                 return;
             }
             
