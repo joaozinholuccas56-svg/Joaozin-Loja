@@ -823,16 +823,7 @@
             <button class="close-chat" id="closeChat">✕</button>
         </div>
         <div class="chatbot-messages" id="chatMessages">
-            <div class="message bot-message">
-                Olá! 👋 Bem-vindo à Loja Oficial!<br><br>
-                💬 Eu posso te ajudar com:<br>
-                📦 Informações de PRODUTOS<br>
-                💰 PREÇOS e promoções<br>
-                🚚 PRAZOS de entrega<br>
-                💳 FORMAS de pagamento<br>
-                📞 CONTATO da loja<br><br>
-                ❓ Digite sua pergunta! Ex: "Qual o preço do mouse?" ou "Tem frete grátis?"
-            </div>
+            <div class="message bot-message">Olá! 👋 Bem-vindo à Loja Oficial!<br>Como posso ajudar?</div>
         </div>
         <div class="chatbot-input-area">
             <input type="text" class="chatbot-input" id="chatInput" placeholder="Digite sua pergunta...">
@@ -843,8 +834,9 @@
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 
     <script>
-        // ========== LISTA DE TODOS OS PRODUTOS ==========
+        // ========== LISTA DE TODOS OS PRODUTOS (AGORA COM 18 PRODUTOS) ==========
         const todosProdutos = [
+            // Página 1 - Produtos 1 a 9
             { id: 1, nome: 'Mouse Gamer', preco: 150, icone: '🖱️', descricao: 'Mouse Gamer com sensor de alta precisão, 6 botões programáveis e iluminação RGB', palavrasChave: ['mouse', 'gamer'] },
             { id: 2, nome: 'Teclado Magnético', preco: 210.99, icone: '⌨️', descricao: 'Teclado Magnético Gamer com switches magnéticos, RGB por tecla e design compacto', palavrasChave: ['teclado', 'keyboard'] },
             { id: 3, nome: 'Controle Videogame', preco: 300, icone: '🎮', descricao: 'Controle Sem Fio com Bluetooth, bateria de 20h, compatível com PC, PS4, PS5 e Xbox', palavrasChave: ['controle', 'joystick'] },
@@ -854,6 +846,8 @@
             { id: 7, nome: 'Processador Intel i9', preco: 3200, icone: '🧠', descricao: 'Processador Intel Core i9-13900K, 24 núcleos, até 5.8GHz, ideal para jogos pesados', palavrasChave: ['processador', 'intel', 'i9', 'cpu'] },
             { id: 8, nome: 'Placa Mãe B760', preco: 850, icone: '💻', descricao: 'Placa Mãe B760 com suporte DDR5, PCIe 5.0, ideal para processadores Intel', palavrasChave: ['placa mae', 'b760', 'motherboard'] },
             { id: 9, nome: 'Water Cooler 360mm', preco: 550, icone: '💧', descricao: 'Water Cooler 360mm RGB, resfriamento líquido para processadores de alta performance', palavrasChave: ['water cooler', 'resfriamento', 'cooler'] },
+            
+            // Página 2 - Produtos 10 a 18
             { id: 10, nome: 'SSD 1TB', preco: 380, icone: '💾', descricao: 'SSD NVMe 1TB com leitura de até 3500MB/s, velocidade extrema para seu PC', palavrasChave: ['ssd', '1tb'] },
             { id: 11, nome: 'Caixa de Som', preco: 180, icone: '🔊', descricao: 'Caixa de Som Bluetooth RGB com 20W de potência e bateria de 8 horas', palavrasChave: ['caixa de som', 'speaker'] },
             { id: 12, nome: 'Mousepad Gamer', preco: 65, icone: '🖨️', descricao: 'Mousepad Gamer XXL com superfície antiderrapante e bordas costuradas', palavrasChave: ['mousepad'] },
@@ -868,15 +862,24 @@
         let paginaAtual = 1;
         const produtosPorPagina = 9;
 
+        // Função para renderizar produtos da página atual
         function renderizarPagina() {
             const inicio = (paginaAtual - 1) * produtosPorPagina;
             const fim = inicio + produtosPorPagina;
             const produtosPagina = todosProdutos.slice(inicio, fim);
+            
             renderizarProdutos(produtosPagina);
+            
+            // Atualizar título
             document.getElementById('tituloPagina').innerHTML = `🔥 Produtos em Destaque - Página ${paginaAtual}`;
+            
+            // Atualizar info da página
             document.getElementById('pageInfo').innerHTML = `Mostrando produtos ${inicio + 1} a ${Math.min(fim, todosProdutos.length)} de ${todosProdutos.length}`;
+            
+            // Atualizar estilo dos botões
             const btn1 = document.getElementById('btnPagina1');
             const btn2 = document.getElementById('btnPagina2');
+            
             if (paginaAtual === 1) {
                 btn1.classList.add('active');
                 btn2.classList.remove('active');
@@ -888,6 +891,7 @@
 
         function renderizarProdutos(produtos) {
             const grid = document.getElementById('produtosGrid');
+            
             grid.innerHTML = produtos.map(produto => `
                 <div class="produto-card">
                     <div class="produto-icone">${produto.icone}</div>
@@ -899,8 +903,17 @@
             `).join('');
         }
 
-        function irPagina1() { paginaAtual = 1; renderizarPagina(); }
-        function irPagina2() { paginaAtual = 2; renderizarPagina(); }
+        // Função para ir para página 1
+        function irPagina1() {
+            paginaAtual = 1;
+            renderizarPagina();
+        }
+
+        // Função para ir para página 2
+        function irPagina2() {
+            paginaAtual = 2;
+            renderizarPagina();
+        }
 
         function resetSearch() {
             document.getElementById('searchInput').value = '';
@@ -910,13 +923,21 @@
 
         function searchProducts() {
             const termo = document.getElementById('searchInput').value.toLowerCase().trim();
-            if (termo === '') { renderizarPagina(); return; }
-            const resultados = todosProdutos.filter(produto => 
-                produto.nome.toLowerCase().includes(termo) || 
-                produto.descricao.toLowerCase().includes(termo) ||
-                produto.palavrasChave.some(palavra => palavra.toLowerCase().includes(termo))
-            );
+            
+            if (termo === '') {
+                renderizarPagina();
+                return;
+            }
+            
+            const resultados = todosProdutos.filter(produto => {
+                if (produto.nome.toLowerCase().includes(termo)) return true;
+                if (produto.descricao.toLowerCase().includes(termo)) return true;
+                if (produto.palavrasChave.some(palavra => palavra.toLowerCase().includes(termo))) return true;
+                return false;
+            });
+            
             const grid = document.getElementById('produtosGrid');
+            
             if (resultados.length === 0) {
                 grid.innerHTML = '<div class="no-results">🔍 Nenhum produto encontrado!<br>Tente: "placa de video", "memoria ram", "mouse", "processador"</div>';
                 document.getElementById('tituloPagina').innerHTML = `🔍 Resultados da busca`;
@@ -934,6 +955,7 @@
                 document.getElementById('tituloPagina').innerHTML = `🔍 Resultados da busca: "${termo}"`;
                 document.getElementById('pageInfo').innerHTML = `Encontrados ${resultados.length} produto(s)`;
             }
+            
             document.getElementById('searchBar').style.display = 'none';
             mostrarNotificacao(`🔍 ${resultados.length} produto(s) encontrado(s)`);
         }
@@ -958,85 +980,176 @@
         let cart = [];
         let currentQR = null;
 
-        function saveCart() { localStorage.setItem('cart', JSON.stringify(cart)); updateCartDisplay(); }
-        function loadCart() { const saved = localStorage.getItem('cart'); if (saved) cart = JSON.parse(saved); updateCartDisplay(); }
+        function saveCart() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartDisplay();
+        }
+
+        function loadCart() {
+            const savedCart = localStorage.getItem('cart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+            }
+            updateCartDisplay();
+        }
+
         function addToCart(name, price) {
-            const existing = cart.find(i => i.name === name);
-            existing ? existing.quantity++ : cart.push({ name, price, quantity: 1 });
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
             saveCart();
             mostrarNotificacao(`${name} adicionado ao carrinho! 🎉`);
         }
-        function removeFromCart(index) { cart.splice(index, 1); saveCart(); }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            saveCart();
+        }
+
         function updateCartDisplay() {
-            const itemsDiv = document.getElementById('cartItems');
-            const countSpan = document.getElementById('cartCount');
-            const totalDiv = document.getElementById('cartTotal');
-            let total = 0, count = 0;
+            const cartItemsDiv = document.getElementById('cartItems');
+            const cartCountSpan = document.getElementById('cartCount');
+            const cartTotalDiv = document.getElementById('cartTotal');
+            
+            let total = 0;
+            let itemCount = 0;
+            
             if (cart.length === 0) {
-                itemsDiv.innerHTML = `<div style="text-align:center;padding:20px;"><div style="font-size:4rem;">🛒</div><p style="color:#999;">Seu carrinho está vazio</p></div>`;
-                totalDiv.innerHTML = 'Total: R$ 0,00';
-                countSpan.textContent = '0';
+                cartItemsDiv.innerHTML = `
+                    <div style="text-align: center; padding: 20px;">
+                        <div style="font-size: 4rem;">🛒</div>
+                        <p style="color: #999; margin-top: 10px;">Seu carrinho está vazio</p>
+                        <p style="color: #ccc; font-size: 0.8rem;">Adicione produtos clicando em "COMPRAR"</p>
+                    </div>
+                `;
+                cartTotalDiv.innerHTML = 'Total: R$ 0,00';
+                cartCountSpan.textContent = '0';
                 return;
             }
-            itemsDiv.innerHTML = '';
-            cart.forEach((item, idx) => {
+            
+            cartItemsDiv.innerHTML = '';
+            cart.forEach((item, index) => {
                 const itemTotal = item.price * item.quantity;
                 total += itemTotal;
-                count += item.quantity;
-                itemsDiv.innerHTML += `<div class="cart-item"><div class="cart-item-info"><div class="cart-item-name">${item.name}</div><div class="cart-item-price">R$ ${item.price.toFixed(2)} x ${item.quantity} = R$ ${itemTotal.toFixed(2)}</div></div><button class="cart-item-remove" onclick="removeFromCart(${idx})">🗑️</button></div>`;
+                itemCount += item.quantity;
+                
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'cart-item';
+                itemDiv.innerHTML = `
+                    <div class="cart-item-info">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-price">R$ ${item.price.toFixed(2)} x ${item.quantity} = R$ ${itemTotal.toFixed(2)}</div>
+                    </div>
+                    <button class="cart-item-remove" onclick="removeFromCart(${index})">🗑️</button>
+                `;
+                cartItemsDiv.appendChild(itemDiv);
             });
-            totalDiv.innerHTML = `Total: R$ ${total.toFixed(2)}`;
-            countSpan.textContent = count;
+            
+            cartTotalDiv.innerHTML = `Total: R$ ${total.toFixed(2)}`;
+            cartCountSpan.textContent = itemCount;
         }
+
         function gerarQRCode(total) {
-            const textoQR = `Pagamento PIX - Loja Oficial\nValor: R$ ${total.toFixed(2)}\nChave PIX: loja@oficial.com`;
+            const dadosPIX = {
+                valor: total,
+                loja: "Loja Oficial",
+                data: new Date().toLocaleString(),
+                pedido: Math.floor(Math.random() * 1000000),
+                chave_pix: "loja@oficial.com"
+            };
+            
+            const textoQR = `Pagamento PIX - Loja Oficial\nValor: R$ ${total.toFixed(2)}\nChave PIX: loja@oficial.com\nPedido: ${dadosPIX.pedido}\nData: ${dadosPIX.data}`;
+            
             const qrcodeDiv = document.getElementById('qrcode');
             qrcodeDiv.innerHTML = '';
-            new QRCode(qrcodeDiv, { text: textoQR, width: 200, height: 200, colorDark: "#000000", colorLight: "#ffffff" });
+            
+            currentQR = new QRCode(qrcodeDiv, {
+                text: textoQR,
+                width: 200,
+                height: 200,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+            
             document.getElementById('qrTotal').innerText = total.toFixed(2);
         }
-        function abrirQRCode(total) { gerarQRCode(total); document.getElementById('qrcodeModal').style.display = 'flex'; document.getElementById('cartWindow').style.display = 'none'; }
-        function fecharQRCode() { document.getElementById('qrcodeModal').style.display = 'none'; }
+
+        function abrirQRCode(total) {
+            gerarQRCode(total);
+            document.getElementById('qrcodeModal').style.display = 'flex';
+            document.getElementById('cartWindow').style.display = 'none';
+        }
+
+        function fecharQRCode() {
+            document.getElementById('qrcodeModal').style.display = 'none';
+        }
+
         function finalizarCompra() {
             if (cart.length === 0) {
                 mostrarNotificacao('🛒 Seu carrinho está vazio! Adicione produtos antes de finalizar a compra.');
                 document.getElementById('cartWindow').style.display = 'flex';
                 return;
             }
-            const total = cart.reduce((s, i) => s + (i.price * i.quantity), 0);
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             abrirQRCode(total);
         }
 
-        // Eventos
+        // Eventos dos botões de página
         document.getElementById('btnPagina1').addEventListener('click', irPagina1);
         document.getElementById('btnPagina2').addEventListener('click', irPagina2);
+
+        // Abrir/fechar carrinho
         const cartBtn = document.getElementById('cartBtn');
         const cartWindow = document.getElementById('cartWindow');
         const closeCart = document.getElementById('closeCart');
-        cartBtn.addEventListener('click', () => cartWindow.style.display = 'flex');
-        closeCart.addEventListener('click', () => cartWindow.style.display = 'none');
+
+        cartBtn.addEventListener('click', () => { cartWindow.style.display = 'flex'; });
+        closeCart.addEventListener('click', () => { cartWindow.style.display = 'none'; });
+
+        // Abrir/fechar barra de pesquisa
         const searchBtn = document.getElementById('searchBtn');
         const searchBar = document.getElementById('searchBar');
         const closeSearch = document.getElementById('closeSearch');
         const searchInput = document.getElementById('searchInput');
         const buscarBtn = document.getElementById('buscarBtn');
-        searchBtn.addEventListener('click', () => { searchBar.style.display = 'flex'; searchInput.focus(); });
-        closeSearch.addEventListener('click', () => searchBar.style.display = 'none');
+
+        searchBtn.addEventListener('click', () => { 
+            searchBar.style.display = 'flex';
+            searchInput.focus();
+        });
+        closeSearch.addEventListener('click', () => { searchBar.style.display = 'none'; });
+        
         buscarBtn.addEventListener('click', searchProducts);
-        searchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') searchProducts(); });
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                searchProducts();
+            }
+        });
+
+        // Modal Sobre Nós
         const sobreBtn = document.getElementById('sobreBtn');
         const sobreModal = document.getElementById('sobreModal');
         const closeSobre = document.getElementById('closeSobre');
-        sobreBtn.addEventListener('click', () => sobreModal.style.display = 'flex');
-        closeSobre.addEventListener('click', () => sobreModal.style.display = 'none');
+
+        sobreBtn.addEventListener('click', () => { sobreModal.style.display = 'flex'; });
+        closeSobre.addEventListener('click', () => { sobreModal.style.display = 'none'; });
+        window.addEventListener('click', (e) => { if (e.target === sobreModal) sobreModal.style.display = 'none'; });
+
+        // Modal Contato
         const contatoBtn = document.getElementById('contatoBtn');
         const contatoModal = document.getElementById('contatoModal');
         const closeContato = document.getElementById('closeContato');
-        contatoBtn.addEventListener('click', () => contatoModal.style.display = 'flex');
-        closeContato.addEventListener('click', () => contatoModal.style.display = 'none');
-        window.addEventListener('click', (e) => { if (e.target === sobreModal) sobreModal.style.display = 'none'; if (e.target === contatoModal) contatoModal.style.display = 'none'; });
 
-        // ========== CHATBOT INTELIGENTE MELHORADO ==========
+        contatoBtn.addEventListener('click', () => { contatoModal.style.display = 'flex'; });
+        closeContato.addEventListener('click', () => { contatoModal.style.display = 'none'; });
+        window.addEventListener('click', (e) => { if (e.target === contatoModal) contatoModal.style.display = 'none'; });
+
+        // Chatbot
         const chatbotBtn = document.getElementById('chatbotBtn');
         const chatbotWindow = document.getElementById('chatbotWindow');
         const closeChat = document.getElementById('closeChat');
@@ -1044,8 +1157,8 @@
         const sendChat = document.getElementById('sendChat');
         const chatMessages = document.getElementById('chatMessages');
 
-        chatbotBtn.addEventListener('click', () => chatbotWindow.style.display = 'flex');
-        closeChat.addEventListener('click', () => chatbotWindow.style.display = 'none');
+        chatbotBtn.addEventListener('click', () => { chatbotWindow.style.display = 'flex'; });
+        closeChat.addEventListener('click', () => { chatbotWindow.style.display = 'none'; });
 
         function addMessage(text, isUser) {
             const messageDiv = document.createElement('div');
@@ -1055,181 +1168,34 @@
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
-        // Função principal do chatbot - responde QUALQUER pergunta
         function getBotResponse(userMessage) {
-            const msg = userMessage.toLowerCase().trim();
+            const msg = userMessage.toLowerCase();
             
-            // ========== SAUDAÇÕES ==========
-            if (msg.includes('olá') || msg.includes('ola') || msg.includes('oi') || msg.includes('opa') || msg.includes('eai') || msg.includes('e aí') || msg.includes('bom dia') || msg.includes('boa tarde') || msg.includes('boa noite')) {
-                return 'Olá! 😊 Seja bem-vindo à Loja Oficial! Como posso ajudá-lo hoje? Temos mouses, teclados, monitores, headsets, cadeiras, processadores, placas de vídeo e muito mais!';
-            }
+            if (msg.includes('mouse')) return '🖱️ Mouse Gamer: R$ 150,00 - Mouse com sensor de alta precisão e RGB!';
+            if (msg.includes('teclado')) return '⌨️ Teclado Magnético: R$ 210,99 - Switches magnéticos e RGB!';
+            if (msg.includes('controle')) return '🎮 Controle Videogame: R$ 300,00 - Sem fio, compatível com várias plataformas!';
+            if (msg.includes('monitor')) return '🖥️ Monitor Gamer 144Hz: R$ 1.200,00 - 27", 144Hz, FreeSync!';
+            if (msg.includes('headset')) return '🎧 Headset Gamer: R$ 250,00 - Surround 7.1, microfone com cancelamento de ruído!';
+            if (msg.includes('cadeira')) return '💺 Cadeira Gamer: R$ 950,00 - Ergonômica, inclinação de 180°!';
+            if (msg.includes('processador') || msg.includes('i9') || msg.includes('intel')) return '🧠 Processador Intel i9: R$ 3.200,00 - 24 núcleos, até 5.8GHz!';
+            if (msg.includes('placa mae') || msg.includes('b760')) return '💻 Placa Mãe B760: R$ 850,00 - Suporte DDR5, PCIe 5.0!';
+            if (msg.includes('water cooler')) return '💧 Water Cooler 360mm: R$ 550,00 - Resfriamento líquido RGB!';
+            if (msg.includes('ssd')) return '💾 SSD 1TB: R$ 380,00 - NVMe, leitura até 3500MB/s!';
+            if (msg.includes('caixa de som')) return '🔊 Caixa de Som: R$ 180,00 - Bluetooth, RGB, 20W!';
+            if (msg.includes('mousepad')) return '🖨️ Mousepad Gamer: R$ 65,00 - XXL, superfície antiderrapante!';
+            if (msg.includes('fonte')) return '🔌 Fonte 850W: R$ 620,00 - 80 Plus Gold, modular!';
+            if (msg.includes('rtx') || msg.includes('5090') || msg.includes('placa de video')) return '⚡ Placa de Vídeo RTX 5090: R$ 2.000,00 - 24GB GDDR7, 8K, DLSS 4.0!';
+            if (msg.includes('memoria') || msg.includes('ram') || msg.includes('hyperx')) return '🧠 Memória RAM HyperX 16GB: R$ 280,00 - DDR3, alta velocidade!';
+            if (msg.includes('gabinete')) return '🏠 Gabinete Gamer: R$ 450,00 - Vidro temperado, 4 fans RGB!';
+            if (msg.includes('webcam')) return '📷 Webcam HD 1080p: R$ 180,00 - Full HD, microfone embutido!';
+            if (msg.includes('suporte') || msg.includes('braço')) return '🖥️ Suporte Monitor Articulado: R$ 120,00 - Braço duplo, regulagem de altura!';
+            if (msg.includes('preço') || msg.includes('preco') || msg.includes('valores')) return '💰 Lista de preços: Mouse R$150 | Teclado R$210,99 | Controle R$300 | Monitor R$1200 | Headset R$250 | Cadeira R$950 | i9 R$3200 | Placa Mãe R$850 | Water Cooler R$550 | SSD R$380 | Caixa R$180 | Mousepad R$65 | Fonte R$620 | RTX 5090 R$2000 | RAM R$280 | Gabinete R$450 | Webcam R$180 | Suporte R$120';
+            if (msg.includes('entrega') || msg.includes('frete')) return '🚚 Entregamos para todo o Brasil! Frete grátis para compras acima de R$200! Prazo: 3 a 10 dias úteis.';
+            if (msg.includes('pagamento') || msg.includes('pix')) return '💳 Aceitamos PIX (10% off), Cartão de Crédito (até 12x), Boleto e PayPal!';
+            if (msg.includes('contato') || msg.includes('whatsapp')) return '📞 WhatsApp: (11) 99999-9999 | E-mail: contato@lojaoficial.com';
+            if (msg.includes('garantia')) return '🛡️ Garantia de 1 ano em todos os produtos! Troca grátis em até 30 dias.';
             
-            // ========== PRODUTOS ESPECÍFICOS ==========
-            // Mouse
-            if (msg.includes('mouse') || msg.includes('mause') || msg.includes('rato')) {
-                return '🖱️ <strong>Mouse Gamer</strong><br>💰 Preço: R$ 150,00<br>📝 Descrição: Mouse com sensor de alta precisão, 6 botões programáveis e iluminação RGB<br>✅ Disponível em estoque! Entrega para todo Brasil.';
-            }
-            
-            // Teclado
-            if (msg.includes('teclado') || msg.includes('keyboard')) {
-                return '⌨️ <strong>Teclado Magnético</strong><br>💰 Preço: R$ 210,99<br>📝 Descrição: Teclado com switches magnéticos, RGB por tecla e design compacto 60%<br>✅ Disponível em estoque! Ideal para gamers.';
-            }
-            
-            // Controle
-            if (msg.includes('controle') || msg.includes('joystick') || msg.includes('controle videogame') || msg.includes('videogame')) {
-                return '🎮 <strong>Controle Videogame</strong><br>💰 Preço: R$ 300,00<br>📝 Descrição: Controle sem fio com Bluetooth, bateria de 20h, compatível com PC, PS4, PS5, Xbox e Switch<br>✅ Disponível em estoque!';
-            }
-            
-            // Monitor
-            if (msg.includes('monitor') || msg.includes('tela') || msg.includes('144hz')) {
-                return '🖥️ <strong>Monitor Gamer 144Hz</strong><br>💰 Preço: R$ 1.200,00<br>📝 Descrição: Monitor 27" 144Hz, 1ms de resposta, FreeSync Premium, painel IPS<br>✅ Disponível em estoque!';
-            }
-            
-            // Headset
-            if (msg.includes('headset') || msg.includes('fone') || msg.includes('microfone') || msg.includes('auricular')) {
-                return '🎧 <strong>Headset Gamer</strong><br>💰 Preço: R$ 250,00<br>📝 Descrição: Headset com surround 7.1, microfone com cancelamento de ruído e almofadas confortáveis<br>✅ Disponível em estoque!';
-            }
-            
-            // Cadeira
-            if (msg.includes('cadeira') || msg.includes('cadeira gamer') || msg.includes('assento')) {
-                return '💺 <strong>Cadeira Gamer</strong><br>💰 Preço: R$ 950,00<br>📝 Descrição: Cadeira ergonômica com inclinação de 180°, apoio de lombar e pescoço<br>✅ Disponível em estoque! Suporta até 150kg.';
-            }
-            
-            // Processador
-            if (msg.includes('processador') || msg.includes('i9') || msg.includes('intel') || msg.includes('cpu')) {
-                return '🧠 <strong>Processador Intel i9-13900K</strong><br>💰 Preço: R$ 3.200,00<br>📝 Descrição: 24 núcleos, até 5.8GHz, ideal para jogos pesados e edição de vídeo<br>✅ Disponível em estoque!';
-            }
-            
-            // Placa Mãe
-            if (msg.includes('placa mae') || msg.includes('placa mãe') || msg.includes('b760') || msg.includes('motherboard')) {
-                return '💻 <strong>Placa Mãe B760</strong><br>💰 Preço: R$ 850,00<br>📝 Descrição: Suporte DDR5, PCIe 5.0, ideal para processadores Intel<br>✅ Disponível em estoque!';
-            }
-            
-            // Water Cooler
-            if (msg.includes('water cooler') || msg.includes('resfriamento') || msg.includes('cooler') || msg.includes('water')) {
-                return '💧 <strong>Water Cooler 360mm</strong><br>💰 Preço: R$ 550,00<br>📝 Descrição: Resfriamento líquido RGB para processadores de alta performance<br>✅ Disponível em estoque!';
-            }
-            
-            // SSD
-            if (msg.includes('ssd') || msg.includes('armazenamento') || msg.includes('1tb')) {
-                return '💾 <strong>SSD 1TB NVMe</strong><br>💰 Preço: R$ 380,00<br>📝 Descrição: Leitura de até 3500MB/s, velocidade extrema para seu PC<br>✅ Disponível em estoque!';
-            }
-            
-            // Caixa de Som
-            if (msg.includes('caixa de som') || msg.includes('caixa som') || msg.includes('speaker') || msg.includes('som')) {
-                return '🔊 <strong>Caixa de Som Bluetooth RGB</strong><br>💰 Preço: R$ 180,00<br>📝 Descrição: 20W de potência, bateria de 8 horas, conexão Bluetooth 5.0<br>✅ Disponível em estoque!';
-            }
-            
-            // Mousepad
-            if (msg.includes('mousepad') || msg.includes('tapete') || msg.includes('mouse pad')) {
-                return '🖨️ <strong>Mousepad Gamer XXL</strong><br>💰 Preço: R$ 65,00<br>📝 Descrição: Tamanho 900x400mm, superfície antiderrapante e bordas costuradas<br>✅ Disponível em estoque!';
-            }
-            
-            // Fonte
-            if (msg.includes('fonte') || msg.includes('850w') || msg.includes('energia')) {
-                return '🔌 <strong>Fonte 850W 80 Plus Gold</strong><br>💰 Preço: R$ 620,00<br>📝 Descrição: Modular, com proteções contra surtos e curto-circuito<br>✅ Disponível em estoque!';
-            }
-            
-            // RTX / Placa de Vídeo
-            if (msg.includes('placa de video') || msg.includes('placa vídeo') || msg.includes('rtx') || msg.includes('5090') || msg.includes('gpu')) {
-                return '⚡ <strong>Placa de Vídeo RTX 5090</strong><br>💰 Preço: R$ 2.000,00<br>📝 Descrição: 24GB GDDR7, suporte a 8K, Ray Tracing e DLSS 4.0<br>✅ A placa mais potente do mercado!';
-            }
-            
-            // Memória RAM
-            if (msg.includes('memoria') || msg.includes('ram') || msg.includes('hyperx') || msg.includes('16gb')) {
-                return '🧠 <strong>Memória RAM HyperX 16GB DDR3</strong><br>💰 Preço: R$ 280,00<br>📝 Descrição: Alta velocidade para multitarefa e jogos<br>✅ Disponível em estoque!';
-            }
-            
-            // Gabinete
-            if (msg.includes('gabinete') || msg.includes('case') || msg.includes('gabinete gamer')) {
-                return '🏠 <strong>Gabinete Gamer</strong><br>💰 Preço: R$ 450,00<br>📝 Descrição: Lateral em vidro temperado, 4 fans RGB, suporte water cooler<br>✅ Disponível em estoque!';
-            }
-            
-            // Webcam
-            if (msg.includes('webcam') || msg.includes('camera') || msg.includes('câmera') || msg.includes('1080p')) {
-                return '📷 <strong>Webcam HD 1080p</strong><br>💰 Preço: R$ 180,00<br>📝 Descrição: Full HD, microfone embutido, ideal para lives e reuniões<br>✅ Disponível em estoque!';
-            }
-            
-            // Suporte Monitor
-            if (msg.includes('suporte') || msg.includes('braço') || msg.includes('suporte monitor') || msg.includes('articulado')) {
-                return '🖥️ <strong>Suporte Monitor Articulado</strong><br>💰 Preço: R$ 120,00<br>📝 Descrição: Braço duplo, regulagem de altura e inclinação<br>✅ Disponível em estoque!';
-            }
-            
-            // ========== PREÇOS ==========
-            if (msg.includes('preço') || msg.includes('preco') || msg.includes('valores') || msg.includes('quanto custa') || msg.includes('tabela')) {
-                return '💰 <strong>Tabela de Preços Completa:</strong><br><br>
-                🖱️ Mouse Gamer: R$ 150,00<br>
-                ⌨️ Teclado Magnético: R$ 210,99<br>
-                🎮 Controle Videogame: R$ 300,00<br>
-                🖥️ Monitor Gamer 144Hz: R$ 1.200,00<br>
-                🎧 Headset Gamer: R$ 250,00<br>
-                💺 Cadeira Gamer: R$ 950,00<br>
-                🧠 Processador Intel i9: R$ 3.200,00<br>
-                💻 Placa Mãe B760: R$ 850,00<br>
-                💧 Water Cooler 360mm: R$ 550,00<br>
-                💾 SSD 1TB: R$ 380,00<br>
-                🔊 Caixa de Som: R$ 180,00<br>
-                🖨️ Mousepad Gamer: R$ 65,00<br>
-                🔌 Fonte 850W: R$ 620,00<br>
-                ⚡ Placa de Vídeo RTX 5090: R$ 2.000,00<br>
-                🧠 Memória RAM HyperX 16GB: R$ 280,00<br>
-                🏠 Gabinete Gamer: R$ 450,00<br>
-                📷 Webcam HD 1080p: R$ 180,00<br>
-                🖥️ Suporte Monitor: R$ 120,00';
-            }
-            
-            // ========== ENTREGA / FRETE ==========
-            if (msg.includes('entrega') || msg.includes('frete') || msg.includes('envio') || msg.includes('prazo') || msg.includes('chegar') || msg.includes('sedex') || msg.includes('correios')) {
-                return '🚚 <strong>Informações de Entrega:</strong><br><br>✅ Entregamos para todo o Brasil<br>✅ Frete grátis para compras acima de R$ 200<br>✅ Prazo de entrega: 3 a 10 dias úteis<br>✅ Código de rastreio enviado por e-mail<br>✅ Entregamos em até 7 dias úteis para capitais<br>✅ Consulta de frete disponível no carrinho de compras!';
-            }
-            
-            // ========== PAGAMENTO ==========
-            if (msg.includes('pagamento') || msg.includes('pagar') || msg.includes('cartão') || msg.includes('pix') || msg.includes('boleto') || msg.includes('credito') || msg.includes('débito') || msg.includes('forma')) {
-                return '💳 <strong>Formas de Pagamento:</strong><br><br>✅ PIX (10% de desconto à vista)<br>✅ Cartão de Crédito (até 12x sem juros)<br>✅ Cartão de Débito<br>✅ Boleto Bancário (3% de desconto)<br>✅ PayPal<br>✅ Mercado Pago<br><br>📱 Pagamento via QR Code disponível no final da compra!';
-            }
-            
-            // ========== GARANTIA ==========
-            if (msg.includes('garantia') || msg.includes('troca') || msg.includes('defeito') || msg.includes('problema') || msg.includes('devolução')) {
-                return '🛡️ <strong>Garantia e Troca:</strong><br><br>✅ Todos os produtos têm 1 ano de garantia contra defeitos de fabricação<br>✅ Troca grátis em até 30 dias após a compra<br>✅ Suporte técnico incluso<br>✅ Devolução gratuita em caso de arrependimento<br>✅ Assistência técnica especializada';
-            }
-            
-            // ========== CONTATO ==========
-            if (msg.includes('contato') || msg.includes('falar') || msg.includes('atendente') || msg.includes('suporte') || msg.includes('whatsapp') || msg.includes('telefone') || msg.includes('email')) {
-                return '📞 <strong>Contato da Loja:</strong><br><br>📱 WhatsApp: (11) 99999-9999 (clique no botão verde ao lado)<br>📧 E-mail: contato@lojaoficial.com<br>📧 Suporte: suporte@lojaoficial.com<br>📷 Instagram: @lojaoficial<br>📘 Facebook: /lojaoficial<br>⏰ Horário de atendimento: Seg-Sex 9h às 18h, Sáb 9h às 13h<br><br>💬 Estamos prontos para atender você!';
-            }
-            
-            // ========== SOBRE A LOJA ==========
-            if (msg.includes('sobre') || msg.includes('quem somos') || msg.includes('história') || msg.includes('fundada') || msg.includes('loja')) {
-                return '🏪 <strong>Sobre a Loja Oficial:</strong><br><br>Somos uma loja especializada em equipamentos gamers e de PC. Trabalhamos com os melhores fornecedores para oferecer qualidade e preço justo para você!<br><br>✅ Fundada em 2022<br>✅ +15.000 clientes satisfeitos<br>✅ Nota 4.9/5 no Reclame Aqui<br>✅ Produtos 100% originais com nota fiscal<br>✅ +18 produtos em estoque<br><br>🎯 Nossa missão: Proporcionar a melhor experiência de compra para gamers!';
-            }
-            
-            // ========== AJUDA / DÚVIDA ==========
-            if (msg.includes('ajuda') || msg.includes('como funciona') || msg.includes('dúvida') || msg.includes('duvida') || msg.includes('não sei') || msg.includes('pode ajudar')) {
-                return '💡 <strong>Como posso ajudar?</strong><br><br>Você pode me perguntar sobre:<br>📦 Nome de produtos (ex: "mouse", "teclado", "rtx 5090", "memoria ram", "processador")<br>💰 "Preços" ou "quanto custa"<br>🚚 "Entrega" ou "frete"<br>💳 "Pagamento" ou "pix"<br>🛡️ "Garantia" ou "troca"<br>📞 "Contato" ou "whatsapp"<br>🏪 "Sobre a loja"<br><br>❓ Digite sua pergunta e eu responderei!';
-            }
-            
-            // ========== AGRADECIMENTOS ==========
-            if (msg.includes('obrigado') || msg.includes('valeu') || msg.includes('gratidão') || msg.includes('obg') || msg.includes('vlw')) {
-                return 'Por nada! 😊 Fico feliz em ajudar! Volte sempre à Loja Oficial. Temos os melhores preços e produtos gamers para você! 🎮🖱️⌨️🖥️<br><br>Qualquer outra dúvida, estou aqui!';
-            }
-            
-            // ========== RESPOSTA PADRÃO (quando não entende) ==========
-            return `🤔 <strong>Desculpe, não entendi completamente sua pergunta.</strong><br><br>
-💬 <strong>Você pode me perguntar sobre:</strong><br>
-• 📦 Nome de um produto (ex: "mouse", "teclado", "monitor", "rtx 5090", "memoria ram", "processador")<br>
-• 💰 "Preços" ou "quanto custa"<br>
-• 🚚 "Entrega" ou "frete"<br>
-• 💳 "Pagamento" ou "pix"<br>
-• 🛡️ "Garantia" ou "troca"<br>
-• 📞 "Contato" ou "whatsapp"<br>
-• 🏪 "Sobre a loja"<br>
-• 💡 "Ajuda" para ver as opções<br><br>
-📝 <strong>Tente reformular sua pergunta</strong> para que eu possa ajudar melhor!<br><br>
-Exemplos:<br>
-• "Qual o preço do mouse?"<br>
-• "Tem frete grátis?"<br>
-• "Como faço para comprar?"<br>
-• "Quero saber sobre a placa de vídeo"`;
+            return `🤔 Posso ajudar com informações sobre produtos, preços, entregas, formas de pagamento e contato!<br><br>💬 Pergunte: "mouse", "teclado", "rtx 5090", "memoria ram", "processador", "preços", "entrega", "pagamento" ou "contato"!`;
         }
 
         function sendMessage() {
@@ -1237,15 +1203,16 @@ Exemplos:<br>
             if (!userText) return;
             addMessage(userText, true);
             chatInput.value = '';
-            setTimeout(() => {
+            setTimeout(() => { 
                 const response = getBotResponse(userText);
-                addMessage(response, false);
+                addMessage(response, false); 
             }, 400);
         }
 
         sendChat.addEventListener('click', sendMessage);
         chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendMessage(); });
 
+        // Inicializar
         renderizarPagina();
         loadCart();
     </script>
