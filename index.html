@@ -152,6 +152,48 @@
             text-decoration: underline;
         }
 
+        /* Paginação */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0 20px 0;
+        }
+
+        .pagination button {
+            background-color: #ff0000;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pagination button:hover {
+            background-color: #cc0000;
+            transform: scale(1.05);
+        }
+
+        .pagination button.active {
+            background-color: #000000;
+            cursor: default;
+        }
+
+        .pagination button.active:hover {
+            transform: none;
+            background-color: #000000;
+        }
+
+        .page-info {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
         /* Botões flutuantes topo */
         .top-buttons {
             position: fixed;
@@ -162,7 +204,6 @@
             z-index: 1001;
         }
 
-        /* Botão de Pesquisa */
         .search-btn {
             background-color: #ff0000;
             color: white;
@@ -184,7 +225,6 @@
             background-color: #cc0000;
         }
 
-        /* Barra de Pesquisa */
         .search-bar {
             position: fixed;
             top: 100px;
@@ -247,16 +287,6 @@
             color: #ff0000;
         }
 
-        /* Mensagem de nenhum resultado */
-        .no-results {
-            text-align: center;
-            padding: 40px;
-            background: white;
-            border-radius: 15px;
-            color: #666;
-        }
-
-        /* CARRINHO FLUTUANTE */
         .cart-btn {
             background-color: #ff0000;
             color: white;
@@ -386,7 +416,6 @@
             background-color: #333;
         }
 
-        /* Chatbot */
         .chatbot-btn {
             position: fixed;
             bottom: 20px;
@@ -498,7 +527,6 @@
             cursor: pointer;
         }
 
-        /* Botão de Telefone/WhatsApp */
         .whatsapp-btn {
             position: fixed;
             bottom: 20px;
@@ -524,15 +552,9 @@
         }
 
         @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
-            }
-            70% {
-                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-            }
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
 
         .whatsapp-btn svg {
@@ -541,7 +563,6 @@
             fill: white;
         }
 
-        /* Modal do QR Code */
         .qrcode-modal {
             position: fixed;
             top: 0;
@@ -567,14 +588,8 @@
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         .qrcode-content h3 {
@@ -608,7 +623,6 @@
             background-color: #cc0000;
         }
 
-        /* Modal Sobre Nós */
         .sobre-modal {
             position: fixed;
             top: 0;
@@ -684,12 +698,13 @@
             .cart-window { width: 90%; right: 5%; left: 5%; top: 80px; }
             .search-bar { width: 90%; right: 5%; left: 5%; }
             .sobre-content { padding: 20px; }
+            .pagination button { padding: 8px 20px; font-size: 0.9rem; }
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1> Loja Oficial Online</h1>
+        <h1>🛍️ Loja Oficial Online</h1>
         <div class="nav">
             <a onclick="resetSearch()">NOVO</a>
             <a onclick="resetSearch()">LOJA</a>
@@ -699,16 +714,23 @@
     </div>
 
     <div class="container">
-        <h2 class="titulo-secao">🔥 Produtos em Destaque</h2>
+        <h2 class="titulo-secao" id="tituloPagina">🔥 Produtos em Destaque - Página 1</h2>
         
         <div class="produtos-grid" id="produtosGrid">
             <!-- Produtos serão carregados via JavaScript -->
         </div>
+
+        <!-- Paginação -->
+        <div class="page-info" id="pageInfo">Mostrando produtos 1 a 6 de 12</div>
+        <div class="pagination">
+            <button id="btnPagina1" class="active">📄 Página 1</button>
+            <button id="btnPagina2">📄 Página 2</button>
+        </div>
     </div>
 
     <div class="footer">
-        <p>📧 <a href="#">https://joaozinholuccas56-svg.github.io/Joaozin-Loja/</a></p>
-        <p>© Loja Oficial - Todos os Produtos Que Você Precisa</p>
+        <p>📧 <a href="#">https://lojaoficial.com.br</a></p>
+        <p>© 2024 Loja Oficial - Todos os Produtos Que Você Precisa</p>
     </div>
 
     <!-- Botões flutuantes topo -->
@@ -760,40 +782,16 @@
     <div class="sobre-modal" id="sobreModal">
         <div class="sobre-content">
             <h2>🏪 Sobre a Loja Oficial</h2>
-            
             <h3>📖 Nossa História</h3>
-            <p>Fundada em 2022, a Loja Oficial nasceu com o propósito de oferecer equipamentos gamers e de informática de alta qualidade para jogadores e profissionais de todo o Brasil. Começamos como uma pequena loja online e hoje somos referência no mercado, atendendo milhares de clientes satisfeitos.</p>
-            
+            <p>Fundada em 2022, a Loja Oficial nasceu com o propósito de oferecer equipamentos gamers e de informática de alta qualidade para jogadores e profissionais de todo o Brasil.</p>
             <h3>🎯 Nossa Missão</h3>
-            <p>Proporcionar a melhor experiência de compra para gamers e entusiastas de tecnologia, oferecendo produtos de qualidade, preços justos e atendimento excepcional.</p>
-            
-            <h3>👁️ Nossa Visão</h3>
-            <p>Ser reconhecida como a melhor loja de equipamentos gamers do Brasil, inovando constantemente e superando as expectativas dos clientes.</p>
-            
+            <p>Proporcionar a melhor experiência de compra para gamers e entusiastas de tecnologia.</p>
             <h3>💎 Nossos Valores</h3>
             <ul>
                 <li>✅ Qualidade em todos os produtos</li>
                 <li>✅ Atendimento ao cliente de excelência</li>
                 <li>✅ Honestidade e transparência</li>
-                <li>✅ Inovação constante</li>
-                <li>✅ Compromisso com a satisfação do cliente</li>
             </ul>
-            
-            <h3>📊 Números da Loja</h3>
-            <ul>
-                <li>📅 +3 anos de experiência</li>
-                <li>👥 +10.000 clientes atendidos</li>
-                <li>⭐ Nota 4.9/5 no Reclame Aqui</li>
-                <li>🚚 Entregamos para todo o Brasil</li>
-                <li>🛡️ Garantia de 1 ano em todos os produtos</li>
-            </ul>
-            
-            <h3>🔒 Segurança e Confiança</h3>
-            <p>Trabalhamos apenas com produtos originais e com nota fiscal. Nossa plataforma é 100% segura e seus dados estão protegidos. Oferecemos garantia estendida e suporte técnico incluso em todos os produtos.</p>
-            
-            <h3>📞 Atendimento</h3>
-            <p>Nosso time de atendimento está disponível de segunda a sexta, das 9h às 18h, para tirar todas as suas dúvidas. Você pode nos contatar via WhatsApp, e-mail ou redes sociais.</p>
-            
             <button class="close-sobre" id="closeSobre">FECHAR</button>
         </div>
     </div>
@@ -802,19 +800,10 @@
     <div class="sobre-modal" id="contatoModal">
         <div class="sobre-content">
             <h2>📞 Contato</h2>
-            
             <h3>📱 WhatsApp</h3>
             <p>(11) 99999-9999<br>Clique no botão verde no canto inferior esquerdo para falar conosco!</p>
-            
             <h3>📧 E-mail</h3>
             <p>contato@lojaoficial.com.br<br>suporte@lojaoficial.com.br</p>
-            
-            <h3>📷 Redes Sociais</h3>
-            <p>Instagram: @lojaoficial<br>Facebook: /lojaoficial<br>Twitter: @lojaoficial</p>
-            
-            <h3>⏰ Horário de Atendimento</h3>
-            <p>Segunda a Sexta: 9h às 18h<br>Sábado: 9h às 13h<br>Domingo: Fechado</p>
-            
             <button class="close-sobre" id="closeContato">FECHAR</button>
         </div>
     </div>
@@ -834,16 +823,7 @@
             <button class="close-chat" id="closeChat">✕</button>
         </div>
         <div class="chatbot-messages" id="chatMessages">
-            <div class="message bot-message">
-                Olá! 👋 Bem-vindo à Loja Oficial!<br><br>
-                💬 Posso ajudar você com:<br>
-                📦 Informações sobre produtos<br>
-                💰 Preços e promoções<br>
-                🚚 Prazos de entrega<br>
-                💳 Formas de pagamento<br>
-                📞 Contato da loja<br><br>
-                ❓ O que você gostaria de saber?
-            </div>
+            <div class="message bot-message">Olá! 👋 Bem-vindo à Loja Oficial!<br>Como posso ajudar?</div>
         </div>
         <div class="chatbot-input-area">
             <input type="text" class="chatbot-input" id="chatInput" placeholder="Digite sua pergunta...">
@@ -854,55 +834,54 @@
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 
     <script>
-        // ========== LISTA DE PRODUTOS ==========
-        const produtosLista = [
-            { id: 1, nome: 'Mouse Gamer', preco: 150, icone: '🖱️', descricao: 'Mouse Gamer com sensor de alta precisão, 6 botões programáveis e iluminação RGB', palavrasChave: ['mouse', 'gamer', 'mouse gamer'] },
-            { id: 2, nome: 'Teclado Magnético', preco: 210.99, icone: '⌨️', descricao: 'Teclado Magnético Gamer com switches magnéticos, RGB por tecla e design compacto', palavrasChave: ['teclado', 'teclado magnetico', 'keyboard'] },
-            { id: 3, nome: 'Controle Videogame', preco: 300, icone: '🎮', descricao: 'Controle Sem Fio com Bluetooth, bateria de 20h, compatível com PC, PS4, PS5 e Xbox', palavrasChave: ['controle', 'videogame', 'joystick'] },
-            { id: 4, nome: 'Monitor Gamer 144Hz', preco: 1200, icone: '🖥️', descricao: 'Monitor Gamer 27" 144Hz, 1ms, FreeSync Premium para imagem sem quebras', palavrasChave: ['monitor', '144hz', 'tela'] },
-            { id: 5, nome: 'Headset Gamer', preco: 250, icone: '🎧', descricao: 'Headset Gamer Surround 7.1, microfone com cancelamento de ruído e almofadas confortáveis', palavrasChave: ['headset', 'fone', 'microfone'] },
-            { id: 6, nome: 'Cadeira Gamer', preco: 950, icone: '💺', descricao: 'Cadeira Gamer Ergonômica com inclinação de 180°, apoio de lombar e pescoço', palavrasChave: ['cadeira', 'gamer', 'cadeira gamer'] },
-            { id: 7, nome: 'SSD 1TB', preco: 380, icone: '💾', descricao: 'SSD NVMe 1TB com leitura de até 3500MB/s, velocidade extrema para seu PC', palavrasChave: ['ssd', '1tb', 'armazenamento'] },
-            { id: 8, nome: 'Caixa de Som', preco: 180, icone: '🔊', descricao: 'Caixa de Som Bluetooth RGB com 20W de potência e bateria de 8 horas', palavrasChave: ['caixa de som', 'caixa som', 'speaker'] },
-            { id: 9, nome: 'Mousepad Gamer', preco: 65, icone: '🖨️', descricao: 'Mousepad Gamer XXL com superfície antiderrapante e bordas costuradas', palavrasChave: ['mousepad', 'tapete', 'mouse pad'] },
-            { id: 10, nome: 'Fonte 650W', preco: 420, icone: '🔌', descricao: 'Fonte 650W 80 Plus Bronze com proteções contra surtos e curto-circuito', palavrasChave: ['fonte', '650w', 'fonte de energia'] },
-            { id: 11, nome: 'Placa de Vídeo RTX 5090', preco: 2000, icone: '⚡', descricao: 'Placa de Vídeo RTX 5090 com 24GB GDDR7, suporte a 8K e DLSS 4.0', palavrasChave: ['placa de video', 'placa vídeo', 'rtx', 'rtx 5090', '5090', 'gpu'] },
-            { id: 12, nome: 'Memória RAM HyperX 16GB', preco: 280, icone: '🧠', descricao: 'Memória RAM HyperX 16GB DDR3 de alta velocidade para multitarefa e jogos', palavrasChave: ['memoria ram', 'memória ram', 'ram', 'hyperx', '16gb'] }
+        // ========== LISTA DE TODOS OS PRODUTOS ==========
+        const todosProdutos = [
+            { id: 1, nome: 'Mouse Gamer', preco: 150, icone: '🖱️', descricao: 'Mouse Gamer com sensor de alta precisão, 6 botões programáveis e iluminação RGB', palavrasChave: ['mouse', 'gamer'] },
+            { id: 2, nome: 'Teclado Magnético', preco: 210.99, icone: '⌨️', descricao: 'Teclado Magnético Gamer com switches magnéticos, RGB por tecla e design compacto', palavrasChave: ['teclado', 'keyboard'] },
+            { id: 3, nome: 'Controle Videogame', preco: 300, icone: '🎮', descricao: 'Controle Sem Fio com Bluetooth, bateria de 20h, compatível com PC, PS4, PS5 e Xbox', palavrasChave: ['controle', 'joystick'] },
+            { id: 4, nome: 'Monitor Gamer 144Hz', preco: 1200, icone: '🖥️', descricao: 'Monitor Gamer 27" 144Hz, 1ms, FreeSync Premium para imagem sem quebras', palavrasChave: ['monitor', '144hz'] },
+            { id: 5, nome: 'Headset Gamer', preco: 250, icone: '🎧', descricao: 'Headset Gamer Surround 7.1, microfone com cancelamento de ruído e almofadas confortáveis', palavrasChave: ['headset', 'fone'] },
+            { id: 6, nome: 'Cadeira Gamer', preco: 950, icone: '💺', descricao: 'Cadeira Gamer Ergonômica com inclinação de 180°, apoio de lombar e pescoço', palavrasChave: ['cadeira', 'gamer'] },
+            { id: 7, nome: 'SSD 1TB', preco: 380, icone: '💾', descricao: 'SSD NVMe 1TB com leitura de até 3500MB/s, velocidade extrema para seu PC', palavrasChave: ['ssd', '1tb'] },
+            { id: 8, nome: 'Caixa de Som', preco: 180, icone: '🔊', descricao: 'Caixa de Som Bluetooth RGB com 20W de potência e bateria de 8 horas', palavrasChave: ['caixa de som', 'speaker'] },
+            { id: 9, nome: 'Mousepad Gamer', preco: 65, icone: '🖨️', descricao: 'Mousepad Gamer XXL com superfície antiderrapante e bordas costuradas', palavrasChave: ['mousepad'] },
+            { id: 10, nome: 'Fonte 650W', preco: 420, icone: '🔌', descricao: 'Fonte 650W 80 Plus Bronze com proteções contra surtos e curto-circuito', palavrasChave: ['fonte', '650w'] },
+            { id: 11, nome: 'Placa de Vídeo RTX 5090', preco: 2000, icone: '⚡', descricao: 'Placa de Vídeo RTX 5090 com 24GB GDDR7, suporte a 8K e DLSS 4.0', palavrasChave: ['placa de video', 'rtx', '5090'] },
+            { id: 12, nome: 'Memória RAM HyperX 16GB', preco: 280, icone: '🧠', descricao: 'Memória RAM HyperX 16GB DDR3 de alta velocidade para multitarefa e jogos', palavrasChave: ['memoria ram', 'ram', 'hyperx'] }
         ];
 
-        // Função de pesquisa
-        function searchProducts() {
-            const termo = document.getElementById('searchInput').value.toLowerCase().trim();
+        let paginaAtual = 1;
+        const produtosPorPagina = 6;
+
+        // Função para renderizar produtos da página atual
+        function renderizarPagina() {
+            const inicio = (paginaAtual - 1) * produtosPorPagina;
+            const fim = inicio + produtosPorPagina;
+            const produtosPagina = todosProdutos.slice(inicio, fim);
             
-            if (termo === '') {
-                renderizarProdutos(produtosLista);
-                return;
-            }
+            renderizarProdutos(produtosPagina);
             
-            const resultados = produtosLista.filter(produto => {
-                if (produto.nome.toLowerCase().includes(termo)) return true;
-                if (produto.descricao.toLowerCase().includes(termo)) return true;
-                if (produto.palavrasChave.some(palavra => palavra.toLowerCase().includes(termo))) return true;
-                return false;
-            });
+            // Atualizar título
+            document.getElementById('tituloPagina').innerHTML = `🔥 Produtos em Destaque - Página ${paginaAtual}`;
             
-            renderizarProdutos(resultados);
-            document.getElementById('searchBar').style.display = 'none';
+            // Atualizar info da página
+            document.getElementById('pageInfo').innerHTML = `Mostrando produtos ${inicio + 1} a ${Math.min(fim, todosProdutos.length)} de ${todosProdutos.length}`;
             
-            if (resultados.length > 0) {
-                mostrarNotificacao(`🔍 Encontrados ${resultados.length} produto(s) para "${termo}"`);
+            // Atualizar estilo dos botões
+            const btn1 = document.getElementById('btnPagina1');
+            const btn2 = document.getElementById('btnPagina2');
+            
+            if (paginaAtual === 1) {
+                btn1.classList.add('active');
+                btn2.classList.remove('active');
             } else {
-                mostrarNotificacao(`🔍 Nenhum produto encontrado para "${termo}"`);
+                btn2.classList.add('active');
+                btn1.classList.remove('active');
             }
         }
 
         function renderizarProdutos(produtos) {
             const grid = document.getElementById('produtosGrid');
-            
-            if (produtos.length === 0) {
-                grid.innerHTML = '<div class="no-results">🔍 Nenhum produto encontrado!<br>Tente: "placa de video", "memoria ram", "mouse"</div>';
-                return;
-            }
             
             grid.innerHTML = produtos.map(produto => `
                 <div class="produto-card">
@@ -915,10 +894,61 @@
             `).join('');
         }
 
+        // Função para ir para página 1
+        function irPagina1() {
+            paginaAtual = 1;
+            renderizarPagina();
+        }
+
+        // Função para ir para página 2
+        function irPagina2() {
+            paginaAtual = 2;
+            renderizarPagina();
+        }
+
         function resetSearch() {
             document.getElementById('searchInput').value = '';
-            renderizarProdutos(produtosLista);
+            renderizarPagina();
             mostrarNotificacao('🔄 Lista completa de produtos restaurada!');
+        }
+
+        function searchProducts() {
+            const termo = document.getElementById('searchInput').value.toLowerCase().trim();
+            
+            if (termo === '') {
+                renderizarPagina();
+                return;
+            }
+            
+            const resultados = todosProdutos.filter(produto => {
+                if (produto.nome.toLowerCase().includes(termo)) return true;
+                if (produto.descricao.toLowerCase().includes(termo)) return true;
+                if (produto.palavrasChave.some(palavra => palavra.toLowerCase().includes(termo))) return true;
+                return false;
+            });
+            
+            const grid = document.getElementById('produtosGrid');
+            
+            if (resultados.length === 0) {
+                grid.innerHTML = '<div class="no-results">🔍 Nenhum produto encontrado!<br>Tente: "placa de video", "memoria ram", "mouse"</div>';
+                document.getElementById('tituloPagina').innerHTML = `🔍 Resultados da busca`;
+                document.getElementById('pageInfo').innerHTML = `Nenhum produto encontrado para "${termo}"`;
+            } else {
+                grid.innerHTML = resultados.map(produto => `
+                    <div class="produto-card">
+                        <div class="produto-icone">${produto.icone}</div>
+                        <h3>${produto.nome}</h3>
+                        <p class="produto-descricao">${produto.descricao}</p>
+                        <div class="produto-preco">R$ ${produto.preco.toFixed(2)}</div>
+                        <button class="btn-comprar" onclick="addToCart('${produto.nome}', ${produto.preco})">COMPRAR</button>
+                    </div>
+                `).join('');
+                document.getElementById('tituloPagina').innerHTML = `🔍 Resultados da busca: "${termo}"`;
+                document.getElementById('pageInfo').innerHTML = `Encontrados ${resultados.length} produto(s)`;
+            }
+            
+            document.getElementById('searchBar').style.display = 'none';
+            mostrarNotificacao(`🔍 ${resultados.length} produto(s) encontrado(s)`);
         }
 
         function mostrarNotificacao(message) {
@@ -1051,10 +1081,7 @@
 
         function finalizarCompra() {
             if (cart.length === 0) {
-                // Mensagem mais amigável quando o carrinho está vazio
                 mostrarNotificacao('🛒 Seu carrinho está vazio! Adicione produtos antes de finalizar a compra.');
-                
-                // Opcional: abrir o carrinho para o usuário ver
                 document.getElementById('cartWindow').style.display = 'flex';
                 return;
             }
@@ -1062,6 +1089,10 @@
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             abrirQRCode(total);
         }
+
+        // Eventos dos botões de página
+        document.getElementById('btnPagina1').addEventListener('click', irPagina1);
+        document.getElementById('btnPagina2').addEventListener('click', irPagina2);
 
         // Abrir/fechar carrinho
         const cartBtn = document.getElementById('cartBtn');
@@ -1128,94 +1159,28 @@
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
-        const produtos = {
-            'mouse': { nome: 'Mouse Gamer', preco: 150, icone: '🖱️', descricao: 'Mouse com sensor de alta precisão, 6 botões programáveis e RGB' },
-            'teclado': { nome: 'Teclado Magnético', preco: 210.99, icone: '⌨️', descricao: 'Teclado com switches magnéticos, RGB por tecla e design compacto' },
-            'controle': { nome: 'Controle Videogame', preco: 300, icone: '🎮', descricao: 'Controle sem fio com Bluetooth, compatível com PC, PS4, PS5, Xbox' },
-            'monitor': { nome: 'Monitor Gamer 144Hz', preco: 1200, icone: '🖥️', descricao: 'Monitor 27" 144Hz, 1ms, FreeSync Premium' },
-            'headset': { nome: 'Headset Gamer', preco: 250, icone: '🎧', descricao: 'Headset com surround 7.1, microfone com cancelamento de ruído' },
-            'cadeira': { nome: 'Cadeira Gamer', preco: 950, icone: '💺', descricao: 'Cadeira ergonômica com inclinação de 180° e apoio de lombar' },
-            'ssd': { nome: 'SSD 1TB', preco: 380, icone: '💾', descricao: 'SSD NVMe com leitura de até 3500MB/s' },
-            'caixa': { nome: 'Caixa de Som', preco: 180, icone: '🔊', descricao: 'Caixa de som Bluetooth com RGB e 20W de potência' },
-            'mousepad': { nome: 'Mousepad Gamer', preco: 65, icone: '🖨️', descricao: 'Mousepad XXL com superfície antiderrapante' },
-            'fonte': { nome: 'Fonte 650W', preco: 420, icone: '🔌', descricao: 'Fonte 80 Plus Bronze com proteções contra surtos' },
-            'rtx': { nome: 'Placa de Vídeo RTX 5090', preco: 2000, icone: '⚡', descricao: 'Placa de vídeo com 24GB GDDR7, suporte a 8K e DLSS 4.0' },
-            'memoria': { nome: 'Memória RAM HyperX 16GB', preco: 280, icone: '🧠', descricao: 'Memória RAM DDR3 de alta velocidade para melhor desempenho' }
-        };
-
         function getBotResponse(userMessage) {
             const msg = userMessage.toLowerCase();
             
-            if (msg.includes('olá') || msg.includes('ola') || msg.includes('oi') || msg.includes('bom dia') || msg.includes('boa tarde') || msg.includes('boa noite')) {
-                return 'Olá! 😊 Seja bem-vindo à Loja Oficial! Como posso ajudá-lo hoje? Temos mouses, teclados, monitores, headsets e muito mais!';
-            }
+            if (msg.includes('mouse')) return '🖱️ Mouse Gamer: R$ 150,00 - Mouse com sensor de alta precisão e RGB!';
+            if (msg.includes('teclado')) return '⌨️ Teclado Magnético: R$ 210,99 - Switches magnéticos e RGB!';
+            if (msg.includes('controle')) return '🎮 Controle Videogame: R$ 300,00 - Sem fio, compatível com várias plataformas!';
+            if (msg.includes('monitor')) return '🖥️ Monitor Gamer 144Hz: R$ 1.200,00 - 27", 144Hz, FreeSync!';
+            if (msg.includes('headset')) return '🎧 Headset Gamer: R$ 250,00 - Surround 7.1, microfone com cancelamento de ruído!';
+            if (msg.includes('cadeira')) return '💺 Cadeira Gamer: R$ 950,00 - Ergonômica, inclinação de 180°!';
+            if (msg.includes('ssd')) return '💾 SSD 1TB: R$ 380,00 - NVMe, leitura até 3500MB/s!';
+            if (msg.includes('caixa de som')) return '🔊 Caixa de Som: R$ 180,00 - Bluetooth, RGB, 20W!';
+            if (msg.includes('mousepad')) return '🖨️ Mousepad Gamer: R$ 65,00 - XXL, superfície antiderrapante!';
+            if (msg.includes('fonte')) return '🔌 Fonte 650W: R$ 420,00 - 80 Plus Bronze, proteções contra surtos!';
+            if (msg.includes('rtx') || msg.includes('5090') || msg.includes('placa de video')) return '⚡ Placa de Vídeo RTX 5090: R$ 2.000,00 - 24GB GDDR7, 8K, DLSS 4.0!';
+            if (msg.includes('memoria') || msg.includes('ram') || msg.includes('hyperx')) return '🧠 Memória RAM HyperX 16GB: R$ 280,00 - DDR3, alta velocidade!';
+            if (msg.includes('preço') || msg.includes('preco') || msg.includes('valores')) return '💰 Lista de preços completa: Mouse R$150 | Teclado R$210,99 | Controle R$300 | Monitor R$1200 | Headset R$250 | Cadeira R$950 | SSD R$380 | Caixa R$180 | Mousepad R$65 | Fonte R$420 | RTX 5090 R$2000 | RAM R$280';
+            if (msg.includes('entrega') || msg.includes('frete')) return '🚚 Entregamos para todo o Brasil! Frete grátis para compras acima de R$200! Prazo: 3 a 10 dias úteis.';
+            if (msg.includes('pagamento') || msg.includes('pix')) return '💳 Aceitamos PIX (10% off), Cartão de Crédito (até 12x), Boleto e PayPal!';
+            if (msg.includes('contato') || msg.includes('whatsapp')) return '📞 WhatsApp: (11) 99999-9999 | E-mail: contato@lojaoficial.com';
+            if (msg.includes('garantia')) return '🛡️ Garantia de 1 ano em todos os produtos! Troca grátis em até 30 dias.';
             
-            if (msg.includes('mouse')) return `${produtos.mouse.icone} <strong>${produtos.mouse.nome}</strong><br>💰 Preço: R$ ${produtos.mouse.preco.toFixed(2)}<br>📝 Descrição: ${produtos.mouse.descricao}<br>✅ Disponível em estoque!`;
-            if (msg.includes('teclado')) return `${produtos.teclado.icone} <strong>${produtos.teclado.nome}</strong><br>💰 Preço: R$ ${produtos.teclado.preco.toFixed(2)}<br>📝 Descrição: ${produtos.teclado.descricao}<br>✅ Disponível em estoque!`;
-            if (msg.includes('controle') || msg.includes('videogame')) return `${produtos.controle.icone} <strong>${produtos.controle.nome}</strong><br>💰 Preço: R$ ${produtos.controle.preco.toFixed(2)}<br>📝 Descrição: ${produtos.controle.descricao}<br>✅ Disponível em estoque!`;
-            if (msg.includes('monitor')) return `${produtos.monitor.icone} <strong>${produtos.monitor.nome}</strong><br>💰 Preço: R$ ${produtos.monitor.preco.toFixed(2)}<br>📝 Descrição: ${produtos.monitor.descricao}<br>✅ Disponível em estoque!`;
-            if (msg.includes('headset') || msg.includes('fone')) return `${produtos.headset.icone} <strong>${produtos.headset.nome}</strong><br>💰 Preço: R$ ${produtos.headset.preco.toFixed(2)}<br>📝 Descrição: ${produtos.headset.descricao}<br>✅ Disponível em estoque!`;
-            if (msg.includes('cadeira')) return `${produtos.cadeira.icone} <strong>${produtos.cadeira.nome}</strong><br>💰 Preço: R$ ${produtos.cadeira.preco.toFixed(2)}<br>📝 Descrição: ${produtos.cadeira.descricao}<br>✅ Disponível em estoque!`;
-            if (msg.includes('ssd')) return `${produtos.ssd.icone} <strong>${produtos.ssd.nome}</strong><br>💰 Preço: R$ ${produtos.ssd.preco.toFixed(2)}<br>📝 Descrição: ${produtos.ssd.descricao}<br>✅ Disponível em estoque!`;
-            if (msg.includes('caixa de som') || msg.includes('caixa som')) return `${produtos.caixa.icone} <strong>${produtos.caixa.nome}</strong><br>💰 Preço: R$ ${produtos.caixa.preco.toFixed(2)}<br>📝 Descrição: ${produtos.caixa.descricao}<br>✅ Disponível em estoque!`;
-            if (msg.includes('mousepad')) return `${produtos.mousepad.icone} <strong>${produtos.mousepad.nome}</strong><br>💰 Preço: R$ ${produtos.mousepad.preco.toFixed(2)}<br>📝 Descrição: ${produtos.mousepad.descricao}<br>✅ Disponível em estoque!`;
-            if (msg.includes('fonte')) return `${produtos.fonte.icone} <strong>${produtos.fonte.nome}</strong><br>💰 Preço: R$ ${produtos.fonte.preco.toFixed(2)}<br>📝 Descrição: ${produtos.fonte.descricao}<br>✅ Disponível em estoque!`;
-            if (msg.includes('rtx') || msg.includes('5090') || msg.includes('placa de video') || msg.includes('placa vídeo')) return `${produtos.rtx.icone} <strong>${produtos.rtx.nome}</strong><br>💰 Preço: R$ ${produtos.rtx.preco.toFixed(2)}<br>📝 Descrição: ${produtos.rtx.descricao}<br>⚡ A placa mais potente do mercado!`;
-            if (msg.includes('memoria') || msg.includes('ram') || msg.includes('hyperx')) return `${produtos.memoria.icone} <strong>${produtos.memoria.nome}</strong><br>💰 Preço: R$ ${produtos.memoria.preco.toFixed(2)}<br>📝 Descrição: ${produtos.memoria.descricao}<br>✅ Ideal para gamers e multitarefa!`;
-            
-            if (msg.includes('preço') || msg.includes('preco') || msg.includes('valores') || msg.includes('quanto custa')) {
-                return `💰 <strong>Tabela de Preços:</strong><br><br>
-                🖱️ Mouse Gamer: R$ 150,00<br>
-                ⌨️ Teclado Magnético: R$ 210,99<br>
-                🎮 Controle Videogame: R$ 300,00<br>
-                🖥️ Monitor Gamer 144Hz: R$ 1.200,00<br>
-                🎧 Headset Gamer: R$ 250,00<br>
-                💺 Cadeira Gamer: R$ 950,00<br>
-                💾 SSD 1TB: R$ 380,00<br>
-                🔊 Caixa de Som: R$ 180,00<br>
-                🖨️ Mousepad Gamer: R$ 65,00<br>
-                🔌 Fonte 650W: R$ 420,00<br>
-                ⚡ RTX 5090: R$ 2.000,00<br>
-                🧠 Memória RAM HyperX 16GB: R$ 280,00`;
-            }
-            
-            if (msg.includes('entrega') || msg.includes('frete') || msg.includes('envio') || msg.includes('prazo')) {
-                return '🚚 <strong>Informações de Entrega:</strong><br><br>✅ Entregamos para todo o Brasil<br>✅ Frete grátis para compras acima de R$200<br>✅ Prazo de entrega: 3 a 10 dias úteis<br>✅ Código de rastreio enviado por e-mail';
-            }
-            
-            if (msg.includes('pagamento') || msg.includes('pagar') || msg.includes('cartão') || msg.includes('pix') || msg.includes('boleto')) {
-                return '💳 <strong>Formas de Pagamento:</strong><br><br>✅ PIX (10% de desconto à vista)<br>✅ Cartão de Crédito (até 12x sem juros)<br>✅ Cartão de Débito<br>✅ Boleto Bancário<br>✅ PayPal';
-            }
-            
-            if (msg.includes('garantia') || msg.includes('troca')) {
-                return '🛡️ <strong>Garantia e Troca:</strong><br><br>✅ Todos os produtos têm 1 ano de garantia contra defeitos<br>✅ Troca grátis em até 30 dias após a compra<br>✅ Suporte técnico incluso';
-            }
-            
-            if (msg.includes('contato') || msg.includes('falar') || msg.includes('atendente') || msg.includes('suporte') || msg.includes('whatsapp') || msg.includes('telefone')) {
-                return '📞 <strong>Contato da Loja:</strong><br><br>📱 WhatsApp: (11) 99999-9999<br>📧 E-mail: contato@lojaoficial.com<br>📷 Instagram: @lojaoficial<br>⏰ Horário de atendimento: Seg-Sex 9h às 18h';
-            }
-            
-            if (msg.includes('sobre') || msg.includes('quem somos') || msg.includes('história')) {
-                return '🏪 <strong>Sobre a Loja Oficial:</strong><br><br>Somos uma loja especializada em equipamentos gamers e de PC. Trabalhamos com os melhores fornecedores para oferecer qualidade e preço justo para você!';
-            }
-            
-            if (msg.includes('ajuda') || msg.includes('como funciona') || msg.includes('dúvida')) {
-                return '💡 <strong>Como posso ajudar?</strong><br><br>Você pode me perguntar sobre:<br>• Preços e produtos<br>• Formas de pagamento<br>• Prazos de entrega<br>• Garantia e troca<br>• Contato da loja';
-            }
-            
-            if (msg.includes('obrigado') || msg.includes('valeu') || msg.includes('gratidão')) {
-                return 'Por nada! 😊 Fico feliz em ajudar! Volte sempre à Loja Oficial. Temos os melhores preços e produtos para você! 🎮🖱️';
-            }
-            
-            return `🤔 Ainda não entendi completamente sua pergunta.<br><br>
-💬 <strong>Você pode me perguntar sobre:</strong><br>
-• Nome de um produto (ex: "mouse", "teclado", "placa de video", "memoria ram")<br>
-• "Preços" ou "quanto custa"<br>
-• "Entrega" ou "frete"<br>
-• "Pagamento" ou "pix"<br>
-• "Garantia" ou "troca"<br>
-• "Contato" ou "whatsapp"<br>
-• "Sobre a loja"`;
+            return `🤔 Posso ajudar com informações sobre produtos, preços, entregas, formas de pagamento e contato!<br><br>💬 Pergunte: "mouse", "teclado", "rtx 5090", "memoria ram", "preços", "entrega", "pagamento" ou "contato"!`;
         }
 
         function sendMessage() {
@@ -1232,799 +1197,8 @@
         sendChat.addEventListener('click', sendMessage);
         chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendMessage(); });
 
-        // Carregar produtos ao iniciar
-        renderizarProdutos(produtosLista);
-        loadCart();
-    </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loja Oficial - Página 2</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
-            color: #333;
-        }
-
-        .header {
-            background-color: #000000;
-            color: white;
-            padding: 25px 0;
-            text-align: center;
-            border-bottom: 3px solid #ff0000;
-        }
-
-        .header h1 {
-            font-size: 2rem;
-            margin-bottom: 15px;
-            color: #ff0000;
-        }
-
-        .nav {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            margin-top: 10px;
-        }
-
-        .nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 8px 15px;
-            transition: all 0.3s;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .nav a:hover {
-            background-color: #ff0000;
-            color: white;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        .titulo-secao {
-            text-align: center;
-            font-size: 2rem;
-            color: #000000;
-            margin-bottom: 40px;
-        }
-
-        .produtos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-
-        .produto-card {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            border: 1px solid #eee;
-        }
-
-        .produto-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-            border-color: #ff0000;
-        }
-
-        .produto-icone {
-            font-size: 4rem;
-            margin-bottom: 15px;
-        }
-
-        .produto-card h3 {
-            font-size: 1.5rem;
-            color: #000000;
-            margin-bottom: 10px;
-        }
-
-        .produto-descricao {
-            color: #666;
-            margin-bottom: 15px;
-            font-style: italic;
-        }
-
-        .produto-preco {
-            font-size: 1.8rem;
-            color: #ff0000;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        .btn-comprar {
-            background-color: #ff0000;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            font-size: 1rem;
-            font-weight: bold;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-comprar:hover {
-            background-color: #cc0000;
-            transform: scale(1.02);
-        }
-
-        .footer {
-            background-color: #000000;
-            color: white;
-            text-align: center;
-            padding: 30px 20px;
-            margin-top: 40px;
-            border-top: 3px solid #ff0000;
-        }
-
-        .footer a {
-            color: #ff0000;
-            text-decoration: none;
-        }
-
-        .pagination {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 30px 0;
-        }
-
-        .pagination a {
-            background-color: #ff0000;
-            color: white;
-            padding: 12px 24px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: all 0.3s;
-            display: inline-block;
-        }
-
-        .pagination a:hover {
-            background-color: #cc0000;
-            transform: scale(1.05);
-        }
-
-        .pagination .active {
-            background-color: #000000;
-            cursor: default;
-        }
-
-        /* Botões flutuantes */
-        .top-buttons {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            gap: 15px;
-            z-index: 1001;
-        }
-
-        .search-btn {
-            background-color: #ff0000;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            transition: all 0.3s ease;
-            border: none;
-        }
-
-        .search-btn:hover {
-            transform: scale(1.1);
-            background-color: #cc0000;
-        }
-
-        .search-bar {
-            position: fixed;
-            top: 100px;
-            right: 20px;
-            width: 350px;
-            background: white;
-            border-radius: 50px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            display: none;
-            align-items: center;
-            padding: 5px 15px;
-            z-index: 1001;
-            animation: slideDown 0.3s ease;
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .search-bar input {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            outline: none;
-            font-size: 1rem;
-            border-radius: 50px;
-        }
-
-        .search-bar button {
-            background-color: #ff0000;
-            color: white;
-            border: none;
-            padding: 8px 20px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .close-search {
-            background: none;
-            border: none;
-            font-size: 1.3rem;
-            cursor: pointer;
-            color: #999;
-            margin-left: 10px;
-        }
-
-        .cart-btn {
-            background-color: #ff0000;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            transition: all 0.3s ease;
-            border: none;
-            position: relative;
-        }
-
-        .cart-count {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background-color: #000000;
-            color: white;
-            border-radius: 50%;
-            width: 22px;
-            height: 22px;
-            font-size: 0.7rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-
-        .cart-window {
-            position: fixed;
-            top: 100px;
-            right: 20px;
-            width: 350px;
-            max-height: 500px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-            z-index: 1001;
-        }
-
-        .cart-header {
-            background-color: #ff0000;
-            color: white;
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .close-cart {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.3rem;
-            cursor: pointer;
-        }
-
-        .cart-items {
-            flex: 1;
-            padding: 15px;
-            overflow-y: auto;
-            max-height: 350px;
-        }
-
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .cart-item-info {
-            flex: 1;
-        }
-
-        .cart-item-name {
-            font-weight: bold;
-            color: #333;
-        }
-
-        .cart-item-price {
-            color: #ff0000;
-            font-size: 0.9rem;
-        }
-
-        .cart-item-remove {
-            background: none;
-            border: none;
-            color: #ff4444;
-            cursor: pointer;
-            font-size: 1.2rem;
-        }
-
-        .cart-total {
-            padding: 15px;
-            text-align: right;
-            font-weight: bold;
-            border-top: 2px solid #eee;
-        }
-
-        .btn-finalizar {
-            background-color: #000000;
-            color: white;
-            border: none;
-            padding: 12px;
-            margin: 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .chatbot-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #ff0000;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            transition: all 0.3s ease;
-            z-index: 1000;
-            border: none;
-        }
-
-        .chatbot-window {
-            position: fixed;
-            bottom: 100px;
-            right: 20px;
-            width: 350px;
-            height: 500px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-            z-index: 1000;
-        }
-
-        .chatbot-header {
-            background-color: #ff0000;
-            color: white;
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .close-chat {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.3rem;
-            cursor: pointer;
-        }
-
-        .chatbot-messages {
-            flex: 1;
-            padding: 15px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            background-color: #f5f5f5;
-        }
-
-        .message {
-            max-width: 85%;
-            padding: 10px 15px;
-            border-radius: 15px;
-            font-size: 0.9rem;
-        }
-
-        .bot-message {
-            background-color: #000000;
-            color: white;
-            align-self: flex-start;
-        }
-
-        .user-message {
-            background-color: #ff0000;
-            color: white;
-            align-self: flex-end;
-        }
-
-        .chatbot-input-area {
-            display: flex;
-            padding: 10px;
-            border-top: 1px solid #ddd;
-            background: white;
-        }
-
-        .chatbot-input {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 25px;
-            outline: none;
-        }
-
-        .chatbot-send {
-            background-color: #ff0000;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 25px;
-            margin-left: 10px;
-            cursor: pointer;
-        }
-
-        .whatsapp-btn {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background-color: #25D366;
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            transition: all 0.3s ease;
-            z-index: 1000;
-            text-decoration: none;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
-
-        .whatsapp-btn svg {
-            width: 32px;
-            height: 32px;
-            fill: white;
-        }
-
-        .qrcode-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.8);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-        }
-
-        .qrcode-content {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            max-width: 400px;
-            width: 90%;
-            animation: fadeIn 0.3s ease;
-            border: 2px solid #ff0000;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .qrcode-content h3 { color: #ff0000; margin-bottom: 20px; }
-        .qrcode-content canvas { margin: 20px auto; border: 10px solid white; }
-        .close-qrcode {
-            background-color: #ff0000;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 50px;
-            cursor: pointer;
-            margin-top: 15px;
-            font-weight: bold;
-        }
-
-        .sobre-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.8);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-        }
-
-        .sobre-content {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            max-width: 600px;
-            width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
-            animation: fadeIn 0.3s ease;
-            border: 2px solid #ff0000;
-        }
-
-        .sobre-content h2 { color: #ff0000; margin-bottom: 20px; text-align: center; }
-        .close-sobre {
-            background-color: #ff0000;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 50px;
-            cursor: pointer;
-            margin-top: 20px;
-            width: 100%;
-            font-weight: bold;
-        }
-
-        @media (max-width: 768px) {
-            .nav { gap: 15px; }
-            .produtos-grid { grid-template-columns: 1fr; }
-            .chatbot-window { width: 90%; right: 5%; left: 5%; bottom: 80px; }
-            .cart-window { width: 90%; right: 5%; left: 5%; top: 80px; }
-            .search-bar { width: 90%; right: 5%; left: 5%; }
-            .pagination a { padding: 8px 16px; }
-        }
-    </style>
-</head>
-<body>
-    <div class="header">
-        <h1>🛍️ Loja Oficial Online</h1>
-        <div class="nav">
-            <a href="index.html">NOVO</a>
-            <a href="index.html">LOJA</a>
-            <a id="sobreBtn">SOBRE NÓS</a>
-            <a id="contatoBtn">CONTATO</a>
-        </div>
-    </div>
-
-    <div class="container">
-        <h2 class="titulo-secao">🔥 Produtos em Destaque - Página 2</h2>
-        
-        <div class="produtos-grid" id="produtosGrid">
-            <!-- Produtos serão carregados via JavaScript -->
-        </div>
-
-        <div class="pagination">
-            <a href="index.html">Página 1</a>
-            <a class="active">Página 2</a>
-        </div>
-    </div>
-
-    <div class="footer">
-        <p>📧 <a href="#">https://lojaoficial.com.br</a></p>
-        <p>© 2024 Loja Oficial - Todos os Produtos Que Você Precisa</p>
-    </div>
-
-    <div class="top-buttons">
-        <button class="search-btn" id="searchBtn">🔍</button>
-        <button class="cart-btn" id="cartBtn">🛒<span class="cart-count" id="cartCount">0</span></button>
-    </div>
-
-    <div class="search-bar" id="searchBar">
-        <input type="text" id="searchInput" placeholder="🔍 Pesquisar...">
-        <button id="buscarBtn">Buscar</button>
-        <button class="close-search" id="closeSearch">✕</button>
-    </div>
-
-    <div class="cart-window" id="cartWindow">
-        <div class="cart-header"><h3>🛒 Meu Carrinho</h3><button class="close-cart" id="closeCart">✕</button></div>
-        <div class="cart-items" id="cartItems"><div style="text-align:center;padding:20px;"><div style="font-size:4rem;">🛒</div><p>Seu carrinho está vazio</p></div></div>
-        <div class="cart-total" id="cartTotal">Total: R$ 0,00</div>
-        <button class="btn-finalizar" onclick="finalizarCompra()">FINALIZAR COMPRA</button>
-    </div>
-
-    <div class="qrcode-modal" id="qrcodeModal">
-        <div class="qrcode-content"><h3>📱 Pague com QR Code</h3><div id="qrcode"></div><p><strong>Total: R$ <span id="qrTotal">0,00</span></strong></p><button class="close-qrcode" onclick="fecharQRCode()">FECHAR</button></div>
-    </div>
-
-    <div class="sobre-modal" id="sobreModal">
-        <div class="sobre-content"><h2>🏪 Sobre a Loja</h2><p>Loja especializada em equipamentos gamers desde 2022.</p><button class="close-sobre" id="closeSobre">FECHAR</button></div>
-    </div>
-
-    <div class="sobre-modal" id="contatoModal">
-        <div class="sobre-content"><h2>📞 Contato</h2><p>WhatsApp: (11) 99999-9999<br>E-mail: contato@lojaoficial.com</p><button class="close-sobre" id="closeContato">FECHAR</button></div>
-    </div>
-
-    <a href="https://wa.me/5511999999999" target="_blank" class="whatsapp-btn"><svg viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.514 1.058 3.584l-1.092 3.999 4.104-1.056c1.005.535 2.131.818 3.291.817 3.18 0 5.766-2.587 5.766-5.768 0-3.18-2.586-5.766-5.766-5.766z"/></svg></a>
-
-    <button class="chatbot-btn" id="chatbotBtn">💬</button>
-    <div class="chatbot-window" id="chatbotWindow">
-        <div class="chatbot-header"><h3>🤖 Atendente</h3><button class="close-chat" id="closeChat">✕</button></div>
-        <div class="chatbot-messages" id="chatMessages"><div class="message bot-message">Olá! Como posso ajudar?</div></div>
-        <div class="chatbot-input-area"><input type="text" class="chatbot-input" id="chatInput"><button class="chatbot-send" id="sendChat">Enviar</button></div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
-    <script>
-        const produtosLista = [
-            { id: 7, nome: 'SSD 1TB', preco: 380, icone: '💾', descricao: 'SSD NVMe 1TB com leitura de até 3500MB/s', palavrasChave: ['ssd', '1tb'] },
-            { id: 8, nome: 'Caixa de Som', preco: 180, icone: '🔊', descricao: 'Caixa de Som Bluetooth RGB com 20W de potência', palavrasChave: ['caixa de som', 'speaker'] },
-            { id: 9, nome: 'Mousepad Gamer', preco: 65, icone: '🖨️', descricao: 'Mousepad Gamer XXL com superfície antiderrapante', palavrasChave: ['mousepad'] },
-            { id: 10, nome: 'Fonte 650W', preco: 420, icone: '🔌', descricao: 'Fonte 650W 80 Plus Bronze com proteções', palavrasChave: ['fonte', '650w'] },
-            { id: 11, nome: 'Placa de Vídeo RTX 5090', preco: 2000, icone: '⚡', descricao: 'Placa de Vídeo RTX 5090 com 24GB GDDR7, 8K', palavrasChave: ['placa de video', 'rtx', '5090'] },
-            { id: 12, nome: 'Memória RAM HyperX 16GB', preco: 280, icone: '🧠', descricao: 'Memória RAM HyperX 16GB DDR3', palavrasChave: ['memoria ram', 'ram', 'hyperx'] }
-        ];
-
-        function renderizarProdutos(produtos) {
-            const grid = document.getElementById('produtosGrid');
-            grid.innerHTML = produtos.map(p => `
-                <div class="produto-card">
-                    <div class="produto-icone">${p.icone}</div>
-                    <h3>${p.nome}</h3>
-                    <p class="produto-descricao">${p.descricao}</p>
-                    <div class="produto-preco">R$ ${p.preco.toFixed(2)}</div>
-                    <button class="btn-comprar" onclick="addToCart('${p.nome}', ${p.preco})">COMPRAR</button>
-                </div>
-            `).join('');
-        }
-
-        function searchProducts() {
-            const termo = document.getElementById('searchInput').value.toLowerCase();
-            const resultados = termo === '' ? produtosLista : produtosLista.filter(p => p.nome.toLowerCase().includes(termo) || p.descricao.toLowerCase().includes(termo));
-            renderizarProdutos(resultados);
-            document.getElementById('searchBar').style.display = 'none';
-        }
-
-        let cart = [];
-        function saveCart() { localStorage.setItem('cart', JSON.stringify(cart)); updateCartDisplay(); }
-        function loadCart() { const saved = localStorage.getItem('cart'); if (saved) cart = JSON.parse(saved); updateCartDisplay(); }
-        function addToCart(name, price) {
-            const existing = cart.find(i => i.name === name);
-            existing ? existing.quantity++ : cart.push({ name, price, quantity: 1 });
-            saveCart();
-        }
-        function removeFromCart(index) { cart.splice(index, 1); saveCart(); }
-        function updateCartDisplay() {
-            const itemsDiv = document.getElementById('cartItems');
-            const countSpan = document.getElementById('cartCount');
-            const totalDiv = document.getElementById('cartTotal');
-            let total = 0, count = 0;
-            if (cart.length === 0) {
-                itemsDiv.innerHTML = '<div style="text-align:center;padding:20px;"><div style="font-size:4rem;">🛒</div><p>Seu carrinho está vazio</p></div>';
-                totalDiv.innerHTML = 'Total: R$ 0,00';
-                countSpan.textContent = '0';
-                return;
-            }
-            itemsDiv.innerHTML = '';
-            cart.forEach((item, idx) => {
-                const itemTotal = item.price * item.quantity;
-                total += itemTotal;
-                count += item.quantity;
-                itemsDiv.innerHTML += `<div class="cart-item"><div class="cart-item-info"><div class="cart-item-name">${item.name}</div><div class="cart-item-price">R$ ${item.price.toFixed(2)} x ${item.quantity} = R$ ${itemTotal.toFixed(2)}</div></div><button class="cart-item-remove" onclick="removeFromCart(${idx})">🗑️</button></div>`;
-            });
-            totalDiv.innerHTML = `Total: R$ ${total.toFixed(2)}`;
-            countSpan.textContent = count;
-        }
-        function gerarQRCode(total) { new QRCode(document.getElementById('qrcode'), { text: `Pagamento PIX - Valor: R$ ${total.toFixed(2)}`, width: 200, height: 200 }); document.getElementById('qrTotal').innerText = total.toFixed(2); }
-        function finalizarCompra() {
-            if (cart.length === 0) { alert('Carrinho vazio!'); return; }
-            const total = cart.reduce((s, i) => s + (i.price * i.quantity), 0);
-            gerarQRCode(total);
-            document.getElementById('qrcodeModal').style.display = 'flex';
-            document.getElementById('cartWindow').style.display = 'none';
-        }
-        function fecharQRCode() { document.getElementById('qrcodeModal').style.display = 'none'; }
-
-        document.getElementById('cartBtn').addEventListener('click', () => document.getElementById('cartWindow').style.display = 'flex');
-        document.getElementById('closeCart').addEventListener('click', () => document.getElementById('cartWindow').style.display = 'none');
-        document.getElementById('searchBtn').addEventListener('click', () => { document.getElementById('searchBar').style.display = 'flex'; document.getElementById('searchInput').focus(); });
-        document.getElementById('closeSearch').addEventListener('click', () => document.getElementById('searchBar').style.display = 'none');
-        document.getElementById('buscarBtn').addEventListener('click', searchProducts);
-        document.getElementById('searchInput').addEventListener('keypress', e => { if (e.key === 'Enter') searchProducts(); });
-
-        document.getElementById('sobreBtn').addEventListener('click', () => document.getElementById('sobreModal').style.display = 'flex');
-        document.getElementById('closeSobre').addEventListener('click', () => document.getElementById('sobreModal').style.display = 'none');
-        document.getElementById('contatoBtn').addEventListener('click', () => document.getElementById('contatoModal').style.display = 'flex');
-        document.getElementById('closeContato').addEventListener('click', () => document.getElementById('contatoModal').style.display = 'none');
-
-        const chatbotBtn = document.getElementById('chatbotBtn'), chatbotWindow = document.getElementById('chatbotWindow'), closeChat = document.getElementById('closeChat');
-        chatbotBtn.addEventListener('click', () => chatbotWindow.style.display = 'flex');
-        closeChat.addEventListener('click', () => chatbotWindow.style.display = 'none');
-
-        function addMessage(t, u) { const d = document.createElement('div'); d.className = `message ${u ? 'user-message' : 'bot-message'}`; d.innerHTML = t; document.getElementById('chatMessages').appendChild(d); d.scrollIntoView(); }
-        function getBotResponse(m) {
-            if (m.includes('ssd')) return '💾 SSD 1TB: R$ 380,00';
-            if (m.includes('caixa')) return '🔊 Caixa de Som: R$ 180,00';
-            if (m.includes('mousepad')) return '🖨️ Mousepad: R$ 65,00';
-            if (m.includes('fonte')) return '🔌 Fonte 650W: R$ 420,00';
-            if (m.includes('rtx') || m.includes('5090')) return '⚡ RTX 5090: R$ 2.000,00';
-            if (m.includes('ram') || m.includes('memoria')) return '🧠 Memória RAM HyperX 16GB: R$ 280,00';
-            if (m.includes('preço')) return '💰 SSD: R$380 | Caixa: R$180 | Mousepad: R$65 | Fonte: R$420 | RTX 5090: R$2000 | RAM: R$280';
-            return 'Pergunte sobre SSD, Caixa de Som, Mousepad, Fonte, RTX 5090 ou Memória RAM!';
-        }
-        function sendMessage() {
-            const t = document.getElementById('chatInput').value.trim();
-            if (!t) return;
-            addMessage(t, true);
-            document.getElementById('chatInput').value = '';
-            setTimeout(() => addMessage(getBotResponse(t.toLowerCase()), false), 300);
-        }
-        document.getElementById('sendChat').addEventListener('click', sendMessage);
-        document.getElementById('chatInput').addEventListener('keypress', e => { if (e.key === 'Enter') sendMessage(); });
-
-        renderizarProdutos(produtosLista);
+        // Inicializar
+        renderizarPagina();
         loadCart();
     </script>
 </body>
