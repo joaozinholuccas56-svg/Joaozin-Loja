@@ -516,7 +516,7 @@
 </head>
 <body>
     <div class="header">
-        <h1>Loja Oficial Online</h1>
+        <h1>🛍️ Loja Oficial Online</h1>
         <div class="nav">
             <a href="index.html">NOVO</a>
             <a href="index.html">LOJA</a>
@@ -544,7 +544,7 @@
                 <h3>Teclado Magnético</h3>
                 <p class="produto-descricao">Conforto e precisão</p>
                 <div class="produto-preco">R$ 210,99</div>
-                <button class="btn-comprar" onclick="addToCart('Teclado Magnético', 200.90)">COMPRAR</button>
+                <button class="btn-comprar" onclick="addToCart('Teclado Magnético', 210.99)">COMPRAR</button>
             </div>
 
             <!-- Produto 3 - Controle Videogame -->
@@ -627,12 +627,21 @@
                 <div class="produto-preco">R$ 2.000,00</div>
                 <button class="btn-comprar" onclick="addToCart('Placa de Vídeo RTX 5090', 2000)">COMPRAR</button>
             </div>
+
+            <!-- PRODUTO 12 - Memória RAM HyperX 16GB DDR3 (NOVO!) -->
+            <div class="produto-card">
+                <div class="produto-icone">🧠</div>
+                <h3>Memória RAM HyperX 16GB</h3>
+                <p class="produto-descricao">DDR3 - Alta velocidade e desempenho</p>
+                <div class="produto-preco">R$ 280,00</div>
+                <button class="btn-comprar" onclick="addToCart('Memória RAM HyperX 16GB', 280)">COMPRAR</button>
+            </div>
         </div>
     </div>
 
     <div class="footer">
         <p>📧 <a href="#">https://joaozinholuccas56-svg.github.io/Joaozin-Loja/</a></p>
-        <p>© 2024 Joaozin Loja - Todos os Produtos Que Você Precisa</p>
+        <p>© 2024 Loja Oficial - Todos os Produtos Que Você Precisa</p>
     </div>
 
     <!-- Botão do Carrinho -->
@@ -667,7 +676,7 @@
     </div>
 
     <!-- Botão do WhatsApp/Telefone -->
-    <a href="https://wa.me/5511999999999?text=Olá!%20Vim%20pela%20Joaozin%20Loja%20e%20gostaria%20de%20mais%20informações!" target="_blank" class="whatsapp-btn">
+    <a href="https://wa.me/5511999999999?text=Olá!%20Vim%20pela%20Loja%20Oficial%20e%20gostaria%20de%20mais%20informações!" target="_blank" class="whatsapp-btn">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.514 1.058 3.584l-1.092 3.999 4.104-1.056c1.005.535 2.131.818 3.291.817 3.18 0 5.766-2.587 5.766-5.768 0-3.18-2.586-5.766-5.766-5.766zm0 9.334c-.912 0-1.797-.243-2.564-.7l-1.138.293.314-1.106c-.508-.79-.78-1.706-.78-2.645 0-2.682 2.18-4.862 4.862-4.862 2.682 0 4.862 2.18 4.862 4.862s-2.18 4.862-4.862 4.862z"/>
         </svg>
@@ -677,11 +686,11 @@
 
     <div class="chatbot-window" id="chatbotWindow">
         <div class="chatbot-header">
-            <h3>🤖 Atendente Joaozin</h3>
+            <h3>🤖 Atendente</h3>
             <button class="close-chat" id="closeChat">✕</button>
         </div>
         <div class="chatbot-messages" id="chatMessages">
-            <div class="message bot-message">Olá! 👋 Bem-vindo à Joaozin Loja!<br>Como posso te ajudar hoje?</div>
+            <div class="message bot-message">Olá! 👋 Bem-vindo à Loja Oficial!<br>Como posso te ajudar hoje?</div>
         </div>
         <div class="chatbot-input-area">
             <input type="text" class="chatbot-input" id="chatInput" placeholder="Digite sua pergunta...">
@@ -765,13 +774,13 @@
         function gerarQRCode(total) {
             const dadosPIX = {
                 valor: total,
-                loja: "Joaozin Loja",
+                loja: "Loja Oficial",
                 data: new Date().toLocaleString(),
                 pedido: Math.floor(Math.random() * 1000000),
-                chave_pix: "joaozin@loja.com"
+                chave_pix: "loja@oficial.com"
             };
             
-            const textoQR = `Pagamento PIX - Joaozin Loja\nValor: R$ ${total.toFixed(2)}\nChave PIX: joaozin@loja.com\nPedido: ${dadosPIX.pedido}\nData: ${dadosPIX.data}`;
+            const textoQR = `Pagamento PIX - Loja Oficial\nValor: R$ ${total.toFixed(2)}\nChave PIX: loja@oficial.com\nPedido: ${dadosPIX.pedido}\nData: ${dadosPIX.data}`;
             
             const qrcodeDiv = document.getElementById('qrcode');
             qrcodeDiv.innerHTML = '';
@@ -853,9 +862,10 @@
 
         function getBotResponse(msg) {
             if (msg.includes('mouse')) return '🖱️ Mouse Gamer: R$ 150,00 - Tecnologia e conforto!';
-            if (msg.includes('teclado')) return '⌨️ Teclado Magnético: R$ 200,90 - Conforto e precisão!';
-            if (msg.includes('rtx') || msg.includes('5090')) return '🎮 RTX 5090: R$ 2.000,00 - Desempenho extremo em 8K!';
-            if (msg.includes('preço') || msg.includes('precos')) return '💰 Mouse: R$150 | Teclado: R$200,90 | Controle: R$300 | Monitor: R$1200 | Headset: R$250 | Cadeira: R$950 | SSD: R$380 | RTX 5090: R$2000';
+            if (msg.includes('teclado')) return '⌨️ Teclado Magnético: R$ 210,99 - Conforto e precisão!';
+            if (msg.includes('rtx') || msg.includes('5090')) return '⚡ RTX 5090: R$ 2.000,00 - Desempenho extremo em 8K!';
+            if (msg.includes('memoria') || msg.includes('ram') || msg.includes('hyperx')) return '🧠 Memória RAM HyperX 16GB DDR3: R$ 280,00 - Alta velocidade e desempenho!';
+            if (msg.includes('preço') || msg.includes('precos')) return '💰 Mouse: R$150 | Teclado: R$210,99 | Controle: R$300 | Monitor: R$1200 | Headset: R$250 | Cadeira: R$950 | SSD: R$380 | RTX 5090: R$2000 | Memória RAM: R$280';
             if (msg.includes('contato')) return '📞 Contato: WhatsApp (11) 99999-9999';
             return 'Olá! Pergunte sobre produtos, preços ou contato.';
         }
