@@ -628,7 +628,7 @@
                 <button class="btn-comprar" onclick="addToCart('Placa de Vídeo RTX 5090', 2000)">COMPRAR</button>
             </div>
 
-            <!-- PRODUTO 12 - Memória RAM HyperX 16GB DDR3 (NOVO!) -->
+            <!-- Produto 12 - Memória RAM HyperX -->
             <div class="produto-card">
                 <div class="produto-icone">🧠</div>
                 <h3>Memória RAM HyperX 16GB</h3>
@@ -640,7 +640,7 @@
     </div>
 
     <div class="footer">
-        <p>📧 <a href="#">https://joaozinholuccas56-svg.github.io/Joaozin-Loja/</a></p>
+        <p>📧 <a href="#">https://lojaoficial.com.br</a></p>
         <p>© 2024 Loja Oficial - Todos os Produtos Que Você Precisa</p>
     </div>
 
@@ -675,7 +675,7 @@
         </div>
     </div>
 
-    <!-- Botão do WhatsApp/Telefone -->
+    <!-- Botão do WhatsApp -->
     <a href="https://wa.me/5511999999999?text=Olá!%20Vim%20pela%20Loja%20Oficial%20e%20gostaria%20de%20mais%20informações!" target="_blank" class="whatsapp-btn">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.514 1.058 3.584l-1.092 3.999 4.104-1.056c1.005.535 2.131.818 3.291.817 3.18 0 5.766-2.587 5.766-5.768 0-3.18-2.586-5.766-5.766-5.766zm0 9.334c-.912 0-1.797-.243-2.564-.7l-1.138.293.314-1.106c-.508-.79-.78-1.706-.78-2.645 0-2.682 2.18-4.862 4.862-4.862 2.682 0 4.862 2.18 4.862 4.862s-2.18 4.862-4.862 4.862z"/>
@@ -686,11 +686,20 @@
 
     <div class="chatbot-window" id="chatbotWindow">
         <div class="chatbot-header">
-            <h3>🤖 Atendente</h3>
+            <h3>🤖 Atendente Inteligente</h3>
             <button class="close-chat" id="closeChat">✕</button>
         </div>
         <div class="chatbot-messages" id="chatMessages">
-            <div class="message bot-message">Olá! 👋 Bem-vindo à Loja Oficial!<br>Como posso te ajudar hoje?</div>
+            <div class="message bot-message">
+                Olá! 👋 Bem-vindo à Loja Oficial!<br><br>
+                💬 Posso ajudar você com:<br>
+                📦 Informações sobre produtos<br>
+                💰 Preços e promoções<br>
+                🚚 Prazos de entrega<br>
+                💳 Formas de pagamento<br>
+                📞 Contato da loja<br><br>
+                ❓ O que você gostaria de saber?
+            </div>
         </div>
         <div class="chatbot-input-area">
             <input type="text" class="chatbot-input" id="chatInput" placeholder="Digite sua pergunta...">
@@ -841,7 +850,7 @@
         cartBtn.addEventListener('click', () => { cartWindow.style.display = 'flex'; });
         closeCart.addEventListener('click', () => { cartWindow.style.display = 'none'; });
 
-        // Chatbot
+        // ========== CHATBOT INTELIGENTE ==========
         const chatbotBtn = document.getElementById('chatbotBtn');
         const chatbotWindow = document.getElementById('chatbotWindow');
         const closeChat = document.getElementById('closeChat');
@@ -860,14 +869,141 @@
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
-        function getBotResponse(msg) {
-            if (msg.includes('mouse')) return '🖱️ Mouse Gamer: R$ 150,00 - Tecnologia e conforto!';
-            if (msg.includes('teclado')) return '⌨️ Teclado Magnético: R$ 210,99 - Conforto e precisão!';
-            if (msg.includes('rtx') || msg.includes('5090')) return '⚡ RTX 5090: R$ 2.000,00 - Desempenho extremo em 8K!';
-            if (msg.includes('memoria') || msg.includes('ram') || msg.includes('hyperx')) return '🧠 Memória RAM HyperX 16GB DDR3: R$ 280,00 - Alta velocidade e desempenho!';
-            if (msg.includes('preço') || msg.includes('precos')) return '💰 Mouse: R$150 | Teclado: R$210,99 | Controle: R$300 | Monitor: R$1200 | Headset: R$250 | Cadeira: R$950 | SSD: R$380 | RTX 5090: R$2000 | Memória RAM: R$280';
-            if (msg.includes('contato')) return '📞 Contato: WhatsApp (11) 99999-9999';
-            return 'Olá! Pergunte sobre produtos, preços ou contato.';
+        // Lista de produtos da loja
+        const produtos = {
+            'mouse': { nome: 'Mouse Gamer', preco: 150, icone: '🖱️', descricao: 'Mouse com sensor de alta precisão, 6 botões programáveis e RGB' },
+            'teclado': { nome: 'Teclado Magnético', preco: 210.99, icone: '⌨️', descricao: 'Teclado com switches magnéticos, RGB por tecla e design compacto' },
+            'controle': { nome: 'Controle Videogame', preco: 300, icone: '🎮', descricao: 'Controle sem fio com Bluetooth, compatível com PC, PS4, PS5, Xbox' },
+            'monitor': { nome: 'Monitor Gamer 144Hz', preco: 1200, icone: '🖥️', descricao: 'Monitor 27" 144Hz, 1ms, FreeSync Premium' },
+            'headset': { nome: 'Headset Gamer', preco: 250, icone: '🎧', descricao: 'Headset com surround 7.1, microfone com cancelamento de ruído' },
+            'cadeira': { nome: 'Cadeira Gamer', preco: 950, icone: '💺', descricao: 'Cadeira ergonômica com inclinação de 180° e apoio de lombar' },
+            'ssd': { nome: 'SSD 1TB', preco: 380, icone: '💾', descricao: 'SSD NVMe com leitura de até 3500MB/s' },
+            'caixa': { nome: 'Caixa de Som', preco: 180, icone: '🔊', descricao: 'Caixa de som Bluetooth com RGB e 20W de potência' },
+            'mousepad': { nome: 'Mousepad Gamer', preco: 65, icone: '🖨️', descricao: 'Mousepad XXL com superfície antiderrapante' },
+            'fonte': { nome: 'Fonte 650W', preco: 420, icone: '🔌', descricao: 'Fonte 80 Plus Bronze com proteções contra surtos' },
+            'rtx': { nome: 'Placa de Vídeo RTX 5090', preco: 2000, icone: '⚡', descricao: 'Placa de vídeo com 24GB GDDR7, suporte a 8K e DLSS 4.0' },
+            'memoria': { nome: 'Memória RAM HyperX 16GB', preco: 280, icone: '🧠', descricao: 'Memória RAM DDR3 de alta velocidade para melhor desempenho' }
+        };
+
+        function getBotResponse(userMessage) {
+            const msg = userMessage.toLowerCase();
+            
+            // ========== SAUDAÇÕES ==========
+            if (msg.includes('olá') || msg.includes('ola') || msg.includes('oi') || msg.includes('bom dia') || msg.includes('boa tarde') || msg.includes('boa noite')) {
+                return 'Olá! 😊 Seja bem-vindo à Loja Oficial! Como posso ajudá-lo hoje? Temos mouses, teclados, monitores, headsets e muito mais!';
+            }
+            
+            // ========== PRODUTOS ESPECÍFICOS ==========
+            if (msg.includes('mouse')) {
+                return `${produtos.mouse.icone} <strong>${produtos.mouse.nome}</strong><br>💰 Preço: R$ ${produtos.mouse.preco.toFixed(2)}<br>📝 Descrição: ${produtos.mouse.descricao}<br>✅ Disponível em estoque!`;
+            }
+            
+            if (msg.includes('teclado')) {
+                return `${produtos.teclado.icone} <strong>${produtos.teclado.nome}</strong><br>💰 Preço: R$ ${produtos.teclado.preco.toFixed(2)}<br>📝 Descrição: ${produtos.teclado.descricao}<br>✅ Disponível em estoque!`;
+            }
+            
+            if (msg.includes('controle') || msg.includes('videogame')) {
+                return `${produtos.controle.icone} <strong>${produtos.controle.nome}</strong><br>💰 Preço: R$ ${produtos.controle.preco.toFixed(2)}<br>📝 Descrição: ${produtos.controle.descricao}<br>✅ Disponível em estoque!`;
+            }
+            
+            if (msg.includes('monitor')) {
+                return `${produtos.monitor.icone} <strong>${produtos.monitor.nome}</strong><br>💰 Preço: R$ ${produtos.monitor.preco.toFixed(2)}<br>📝 Descrição: ${produtos.monitor.descricao}<br>✅ Disponível em estoque!`;
+            }
+            
+            if (msg.includes('headset') || msg.includes('fone')) {
+                return `${produtos.headset.icone} <strong>${produtos.headset.nome}</strong><br>💰 Preço: R$ ${produtos.headset.preco.toFixed(2)}<br>📝 Descrição: ${produtos.headset.descricao}<br>✅ Disponível em estoque!`;
+            }
+            
+            if (msg.includes('cadeira')) {
+                return `${produtos.cadeira.icone} <strong>${produtos.cadeira.nome}</strong><br>💰 Preço: R$ ${produtos.cadeira.preco.toFixed(2)}<br>📝 Descrição: ${produtos.cadeira.descricao}<br>✅ Disponível em estoque!`;
+            }
+            
+            if (msg.includes('ssd')) {
+                return `${produtos.ssd.icone} <strong>${produtos.ssd.nome}</strong><br>💰 Preço: R$ ${produtos.ssd.preco.toFixed(2)}<br>📝 Descrição: ${produtos.ssd.descricao}<br>✅ Disponível em estoque!`;
+            }
+            
+            if (msg.includes('caixa de som') || msg.includes('caixa som')) {
+                return `${produtos.caixa.icone} <strong>${produtos.caixa.nome}</strong><br>💰 Preço: R$ ${produtos.caixa.preco.toFixed(2)}<br>📝 Descrição: ${produtos.caixa.descricao}<br>✅ Disponível em estoque!`;
+            }
+            
+            if (msg.includes('mousepad')) {
+                return `${produtos.mousepad.icone} <strong>${produtos.mousepad.nome}</strong><br>💰 Preço: R$ ${produtos.mousepad.preco.toFixed(2)}<br>📝 Descrição: ${produtos.mousepad.descricao}<br>✅ Disponível em estoque!`;
+            }
+            
+            if (msg.includes('fonte')) {
+                return `${produtos.fonte.icone} <strong>${produtos.fonte.nome}</strong><br>💰 Preço: R$ ${produtos.fonte.preco.toFixed(2)}<br>📝 Descrição: ${produtos.fonte.descricao}<br>✅ Disponível em estoque!`;
+            }
+            
+            if (msg.includes('rtx') || msg.includes('5090') || msg.includes('placa de video') || msg.includes('placa vídeo')) {
+                return `${produtos.rtx.icone} <strong>${produtos.rtx.nome}</strong><br>💰 Preço: R$ ${produtos.rtx.preco.toFixed(2)}<br>📝 Descrição: ${produtos.rtx.descricao}<br>⚡ A placa mais potente do mercado!`;
+            }
+            
+            if (msg.includes('memoria') || msg.includes('ram') || msg.includes('hyperx')) {
+                return `${produtos.memoria.icone} <strong>${produtos.memoria.nome}</strong><br>💰 Preço: R$ ${produtos.memoria.preco.toFixed(2)}<br>📝 Descrição: ${produtos.memoria.descricao}<br>✅ Ideal para gamers e multitarefa!`;
+            }
+            
+            // ========== PREÇOS ==========
+            if (msg.includes('preço') || msg.includes('preco') || msg.includes('valores') || msg.includes('quanto custa')) {
+                return `💰 <strong>Tabela de Preços:</strong><br><br>
+                🖱️ Mouse Gamer: R$ 150,00<br>
+                ⌨️ Teclado Magnético: R$ 210,99<br>
+                🎮 Controle Videogame: R$ 300,00<br>
+                🖥️ Monitor Gamer 144Hz: R$ 1.200,00<br>
+                🎧 Headset Gamer: R$ 250,00<br>
+                💺 Cadeira Gamer: R$ 950,00<br>
+                💾 SSD 1TB: R$ 380,00<br>
+                🔊 Caixa de Som: R$ 180,00<br>
+                🖨️ Mousepad Gamer: R$ 65,00<br>
+                🔌 Fonte 650W: R$ 420,00<br>
+                ⚡ RTX 5090: R$ 2.000,00<br>
+                🧠 Memória RAM HyperX 16GB: R$ 280,00`;
+            }
+            
+            // ========== ENTREGA / FRETE ==========
+            if (msg.includes('entrega') || msg.includes('frete') || msg.includes('envio') || msg.includes('prazo')) {
+                return '🚚 <strong>Informações de Entrega:</strong><br><br>✅ Entregamos para todo o Brasil<br>✅ Frete grátis para compras acima de R$200<br>✅ Prazo de entrega: 3 a 10 dias úteis<br>✅ Código de rastreio enviado por e-mail<br>✅ Entregamos em até 7 dias úteis para capitais';
+            }
+            
+            // ========== PAGAMENTO ==========
+            if (msg.includes('pagamento') || msg.includes('pagar') || msg.includes('cartão') || msg.includes('pix') || msg.includes('boleto')) {
+                return '💳 <strong>Formas de Pagamento:</strong><br><br>✅ PIX (10% de desconto à vista)<br>✅ Cartão de Crédito (até 12x sem juros)<br>✅ Cartão de Débito<br>✅ Boleto Bancário<br>✅ PayPal<br>✅ Mercado Pago<br><br>📱 Pagamento via QR Code disponível no final da compra!';
+            }
+            
+            // ========== GARANTIA ==========
+            if (msg.includes('garantia') || msg.includes('troca')) {
+                return '🛡️ <strong>Garantia e Troca:</strong><br><br>✅ Todos os produtos têm 1 ano de garantia contra defeitos<br>✅ Troca grátis em até 30 dias após a compra<br>✅ Suporte técnico incluso<br>✅ Devolução gratuita';
+            }
+            
+            // ========== CONTATO ==========
+            if (msg.includes('contato') || msg.includes('falar') || msg.includes('atendente') || msg.includes('suporte') || msg.includes('whatsapp') || msg.includes('telefone')) {
+                return '📞 <strong>Contato da Loja:</strong><br><br>📱 WhatsApp: (11) 99999-9999<br>📧 E-mail: contato@lojaoficial.com<br>📷 Instagram: @lojaoficial<br>⏰ Horário de atendimento: Seg-Sex 9h às 18h<br><br>💬 Clique no botão verde do WhatsApp para falar conosco agora!';
+            }
+            
+            // ========== SOBRE A LOJA ==========
+            if (msg.includes('sobre') || msg.includes('quem somos') || msg.includes('história')) {
+                return '🏪 <strong>Sobre a Loja Oficial:</strong><br><br>Somos uma loja especializada em equipamentos gamers e de PC. Trabalhamos com os melhores fornecedores para oferecer qualidade e preço justo para você!<br><br>✅ Fundada em 2020<br>✅ +10.000 clientes satisfeitos<br>✅ Nota 4.9/5 no Reclame Aqui<br>✅ Produtos originais com nota fiscal';
+            }
+            
+            // ========== PERGUNTAS GENÉRICAS ==========
+            if (msg.includes('ajuda') || msg.includes('como funciona') || msg.includes('dúvida')) {
+                return '💡 <strong>Como posso ajudar?</strong><br><br>Você pode me perguntar sobre:<br>• Preços e produtos<br>• Formas de pagamento<br>• Prazos de entrega<br>• Garantia e troca<br>• Contato da loja<br><br>❓ Digite o nome do produto ou assunto que deseja saber!';
+            }
+            
+            if (msg.includes('obrigado') || msg.includes('valeu') || msg.includes('gratidão')) {
+                return 'Por nada! 😊 Fico feliz em ajudar! Volte sempre à Loja Oficial. Temos os melhores preços e produtos para você! 🎮🖱️';
+            }
+            
+            // ========== RESPOSTA PADRÃO ==========
+            return `🤔 Ainda não entendi completamente sua pergunta.<br><br>
+💬 <strong>Você pode me perguntar sobre:</strong><br>
+• Nome de um produto (ex: "mouse", "teclado", "monitor", "rtx", "memoria ram")<br>
+• "Preços" ou "quanto custa"<br>
+• "Entrega" ou "frete"<br>
+• "Pagamento" ou "pix"<br>
+• "Garantia" ou "troca"<br>
+• "Contato" ou "whatsapp"<br>
+• "Sobre a loja"<br><br>
+📝 Tente reformular sua pergunta para que eu possa ajudar melhor!`;
         }
 
         function sendMessage() {
@@ -875,7 +1011,10 @@
             if (!userText) return;
             addMessage(userText, true);
             chatInput.value = '';
-            setTimeout(() => { addMessage(getBotResponse(userText.toLowerCase()), false); }, 300);
+            setTimeout(() => { 
+                const response = getBotResponse(userText);
+                addMessage(response, false); 
+            }, 400);
         }
 
         sendChat.addEventListener('click', sendMessage);
