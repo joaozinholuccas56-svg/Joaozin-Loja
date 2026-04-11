@@ -151,6 +151,240 @@
             text-decoration: underline;
         }
 
+        /* Botões flutuantes topo */
+        .top-buttons {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 15px;
+            z-index: 1001;
+        }
+
+        /* Botão de Pesquisa */
+        .search-btn {
+            background-color: #ff0000;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .search-btn:hover {
+            transform: scale(1.1);
+            background-color: #cc0000;
+        }
+
+        /* Barra de Pesquisa */
+        .search-bar {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            width: 350px;
+            background: white;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: none;
+            align-items: center;
+            padding: 5px 15px;
+            z-index: 1001;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            border-radius: 50px;
+        }
+
+        .search-bar button {
+            background-color: #ff0000;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .search-bar button:hover {
+            background-color: #cc0000;
+        }
+
+        .close-search {
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+            color: #999;
+            margin-left: 10px;
+        }
+
+        .close-search:hover {
+            color: #ff0000;
+        }
+
+        /* Mensagem de nenhum resultado */
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            color: #666;
+        }
+
+        /* CARRINHO FLUTUANTE */
+        .cart-btn {
+            background-color: #ff0000;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            border: none;
+            position: relative;
+        }
+
+        .cart-btn:hover {
+            transform: scale(1.1);
+            background-color: #cc0000;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: #000000;
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .cart-window {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            width: 350px;
+            max-height: 500px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1001;
+        }
+
+        .cart-header {
+            background-color: #ff0000;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.3rem;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            max-height: 350px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .cart-item-price {
+            color: #ff0000;
+            font-size: 0.9rem;
+        }
+
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: #ff4444;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .cart-total {
+            padding: 15px;
+            text-align: right;
+            font-weight: bold;
+            border-top: 2px solid #eee;
+        }
+
+        .btn-finalizar {
+            background-color: #000000;
+            color: white;
+            border: none;
+            padding: 12px;
+            margin: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-finalizar:hover {
+            background-color: #333;
+        }
+
         /* Chatbot */
         .chatbot-btn {
             position: fixed;
@@ -306,139 +540,6 @@
             fill: white;
         }
 
-        /* CARRINHO FLUTUANTE */
-        .cart-btn {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: #ff0000;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            transition: all 0.3s ease;
-            z-index: 1001;
-            border: none;
-        }
-
-        .cart-btn:hover {
-            transform: scale(1.1);
-            background-color: #cc0000;
-        }
-
-        .cart-count {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background-color: #000000;
-            color: white;
-            border-radius: 50%;
-            width: 22px;
-            height: 22px;
-            font-size: 0.7rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-
-        .cart-window {
-            position: fixed;
-            top: 100px;
-            right: 20px;
-            width: 350px;
-            max-height: 500px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-            z-index: 1001;
-        }
-
-        .cart-header {
-            background-color: #ff0000;
-            color: white;
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .close-cart {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.3rem;
-            cursor: pointer;
-        }
-
-        .cart-items {
-            flex: 1;
-            padding: 15px;
-            overflow-y: auto;
-            max-height: 350px;
-        }
-
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .cart-item-info {
-            flex: 1;
-        }
-
-        .cart-item-name {
-            font-weight: bold;
-            color: #333;
-        }
-
-        .cart-item-price {
-            color: #ff0000;
-            font-size: 0.9rem;
-        }
-
-        .cart-item-remove {
-            background: none;
-            border: none;
-            color: #ff4444;
-            cursor: pointer;
-            font-size: 1.2rem;
-        }
-
-        .cart-total {
-            padding: 15px;
-            text-align: right;
-            font-weight: bold;
-            border-top: 2px solid #eee;
-        }
-
-        .btn-finalizar {
-            background-color: #000000;
-            color: white;
-            border: none;
-            padding: 12px;
-            margin: 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .btn-finalizar:hover {
-            background-color: #333;
-        }
-
         /* Modal do QR Code */
         .qrcode-modal {
             position: fixed;
@@ -511,6 +612,7 @@
             .produtos-grid { grid-template-columns: 1fr; }
             .chatbot-window { width: 90%; right: 5%; left: 5%; bottom: 80px; }
             .cart-window { width: 90%; right: 5%; left: 5%; top: 80px; }
+            .search-bar { width: 90%; right: 5%; left: 5%; }
         }
     </style>
 </head>
@@ -518,8 +620,8 @@
     <div class="header">
         <h1>🛍️ Loja Oficial Online</h1>
         <div class="nav">
-            <a href="index.html">NOVO</a>
-            <a href="index.html">LOJA</a>
+            <a href="#" onclick="resetSearch()">NOVO</a>
+            <a href="#" onclick="resetSearch()">LOJA</a>
             <a href="#">SOBRE NÓS</a>
             <a href="#">CONTATO</a>
         </div>
@@ -528,114 +630,8 @@
     <div class="container">
         <h2 class="titulo-secao">🔥 Produtos em Destaque</h2>
         
-        <div class="produtos-grid">
-            <!-- Produto 1 - Mouse Gamer -->
-            <div class="produto-card">
-                <div class="produto-icone">🖱️</div>
-                <h3>Mouse Gamer</h3>
-                <p class="produto-descricao">Tecnologia e conforto</p>
-                <div class="produto-preco">R$ 150,00</div>
-                <button class="btn-comprar" onclick="addToCart('Mouse Gamer', 150)">COMPRAR</button>
-            </div>
-
-            <!-- Produto 2 - Teclado Magnético -->
-            <div class="produto-card">
-                <div class="produto-icone">⌨️</div>
-                <h3>Teclado Magnético</h3>
-                <p class="produto-descricao">Conforto e precisão</p>
-                <div class="produto-preco">R$ 210,99</div>
-                <button class="btn-comprar" onclick="addToCart('Teclado Magnético', 210.99)">COMPRAR</button>
-            </div>
-
-            <!-- Produto 3 - Controle Videogame -->
-            <div class="produto-card">
-                <div class="produto-icone">🎮</div>
-                <h3>Controle Videogame</h3>
-                <p class="produto-descricao">O melhor do momento</p>
-                <div class="produto-preco">R$ 300,00</div>
-                <button class="btn-comprar" onclick="addToCart('Controle Videogame', 300)">COMPRAR</button>
-            </div>
-
-            <!-- Produto 4 - Monitor -->
-            <div class="produto-card">
-                <div class="produto-icone">🖥️</div>
-                <h3>Monitor Gamer 144Hz</h3>
-                <p class="produto-descricao">Imagem fluida e cores vibrantes</p>
-                <div class="produto-preco">R$ 1.200,00</div>
-                <button class="btn-comprar" onclick="addToCart('Monitor Gamer 144Hz', 1200)">COMPRAR</button>
-            </div>
-
-            <!-- Produto 5 - Headset -->
-            <div class="produto-card">
-                <div class="produto-icone">🎧</div>
-                <h3>Headset Gamer</h3>
-                <p class="produto-descricao">Som surround 7.1</p>
-                <div class="produto-preco">R$ 250,00</div>
-                <button class="btn-comprar" onclick="addToCart('Headset Gamer', 250)">COMPRAR</button>
-            </div>
-
-            <!-- Produto 6 - Cadeira -->
-            <div class="produto-card">
-                <div class="produto-icone">💺</div>
-                <h3>Cadeira Gamer</h3>
-                <p class="produto-descricao">Ergonomia e conforto</p>
-                <div class="produto-preco">R$ 950,00</div>
-                <button class="btn-comprar" onclick="addToCart('Cadeira Gamer', 950)">COMPRAR</button>
-            </div>
-
-            <!-- Produto 7 - SSD -->
-            <div class="produto-card">
-                <div class="produto-icone">💾</div>
-                <h3>SSD 1TB</h3>
-                <p class="produto-descricao">Velocidade extrema</p>
-                <div class="produto-preco">R$ 380,00</div>
-                <button class="btn-comprar" onclick="addToCart('SSD 1TB', 380)">COMPRAR</button>
-            </div>
-
-            <!-- Produto 8 - Caixa de Som -->
-            <div class="produto-card">
-                <div class="produto-icone">🔊</div>
-                <h3>Caixa de Som</h3>
-                <p class="produto-descricao">Som potente RGB</p>
-                <div class="produto-preco">R$ 180,00</div>
-                <button class="btn-comprar" onclick="addToCart('Caixa de Som', 180)">COMPRAR</button>
-            </div>
-
-            <!-- Produto 9 - Mousepad -->
-            <div class="produto-card">
-                <div class="produto-icone">🖨️</div>
-                <h3>Mousepad Gamer</h3>
-                <p class="produto-descricao">Grande e antiderrapante</p>
-                <div class="produto-preco">R$ 65,00</div>
-                <button class="btn-comprar" onclick="addToCart('Mousepad Gamer', 65)">COMPRAR</button>
-            </div>
-
-            <!-- Produto 10 - Fonte -->
-            <div class="produto-card">
-                <div class="produto-icone">🔌</div>
-                <h3>Fonte 650W</h3>
-                <p class="produto-descricao">80 Plus Bronze</p>
-                <div class="produto-preco">R$ 420,00</div>
-                <button class="btn-comprar" onclick="addToCart('Fonte 650W', 420)">COMPRAR</button>
-            </div>
-
-            <!-- Produto 11 - RTX 5090 -->
-            <div class="produto-card">
-                <div class="produto-icone">⚡</div>
-                <h3>Placa de Vídeo RTX 5090</h3>
-                <p class="produto-descricao">Desempenho extremo para jogos 8K</p>
-                <div class="produto-preco">R$ 2.000,00</div>
-                <button class="btn-comprar" onclick="addToCart('Placa de Vídeo RTX 5090', 2000)">COMPRAR</button>
-            </div>
-
-            <!-- Produto 12 - Memória RAM HyperX -->
-            <div class="produto-card">
-                <div class="produto-icone">🧠</div>
-                <h3>Memória RAM HyperX 16GB</h3>
-                <p class="produto-descricao">DDR3 - Alta velocidade e desempenho</p>
-                <div class="produto-preco">R$ 280,00</div>
-                <button class="btn-comprar" onclick="addToCart('Memória RAM HyperX 16GB', 280)">COMPRAR</button>
-            </div>
+        <div class="produtos-grid" id="produtosGrid">
+            <!-- Produtos serão carregados via JavaScript -->
         </div>
     </div>
 
@@ -644,11 +640,26 @@
         <p>© 2024 Loja Oficial - Todos os Produtos Que Você Precisa</p>
     </div>
 
-    <!-- Botão do Carrinho -->
-    <button class="cart-btn" id="cartBtn">
-        🛒
-        <span class="cart-count" id="cartCount">0</span>
-    </button>
+    <!-- Botões flutuantes topo -->
+    <div class="top-buttons">
+        <!-- Botão de Pesquisa -->
+        <button class="search-btn" id="searchBtn">
+            🔍
+        </button>
+
+        <!-- Botão do Carrinho -->
+        <button class="cart-btn" id="cartBtn">
+            🛒
+            <span class="cart-count" id="cartCount">0</span>
+        </button>
+    </div>
+
+    <!-- Barra de Pesquisa -->
+    <div class="search-bar" id="searchBar">
+        <input type="text" id="searchInput" placeholder="🔍 Pesquisar produtos... (ex: mouse, teclado, rtx)">
+        <button onclick="searchProducts()">Buscar</button>
+        <button class="close-search" id="closeSearch">✕</button>
+    </div>
 
     <!-- Janela do Carrinho -->
     <div class="cart-window" id="cartWindow">
@@ -710,6 +721,75 @@
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 
     <script>
+        // ========== LISTA DE PRODUTOS ==========
+        const produtosLista = [
+            { id: 1, nome: 'Mouse Gamer', preco: 150, icone: '🖱️', descricao: 'Tecnologia e conforto', categoria: 'mouse' },
+            { id: 2, nome: 'Teclado Magnético', preco: 210.99, icone: '⌨️', descricao: 'Conforto e precisão', categoria: 'teclado' },
+            { id: 3, nome: 'Controle Videogame', preco: 300, icone: '🎮', descricao: 'O melhor do momento', categoria: 'controle' },
+            { id: 4, nome: 'Monitor Gamer 144Hz', preco: 1200, icone: '🖥️', descricao: 'Imagem fluida e cores vibrantes', categoria: 'monitor' },
+            { id: 5, nome: 'Headset Gamer', preco: 250, icone: '🎧', descricao: 'Som surround 7.1', categoria: 'headset' },
+            { id: 6, nome: 'Cadeira Gamer', preco: 950, icone: '💺', descricao: 'Ergonomia e conforto', categoria: 'cadeira' },
+            { id: 7, nome: 'SSD 1TB', preco: 380, icone: '💾', descricao: 'Velocidade extrema', categoria: 'ssd' },
+            { id: 8, nome: 'Caixa de Som', preco: 180, icone: '🔊', descricao: 'Som potente RGB', categoria: 'caixa' },
+            { id: 9, nome: 'Mousepad Gamer', preco: 65, icone: '🖨️', descricao: 'Grande e antiderrapante', categoria: 'mousepad' },
+            { id: 10, nome: 'Fonte 650W', preco: 420, icone: '🔌', descricao: '80 Plus Bronze', categoria: 'fonte' },
+            { id: 11, nome: 'Placa de Vídeo RTX 5090', preco: 2000, icone: '⚡', descricao: 'Desempenho extremo para jogos 8K', categoria: 'rtx' },
+            { id: 12, nome: 'Memória RAM HyperX 16GB ddr3', preco: 280, icone: '🧠', descricao: 'DDR3 - Alta velocidade', categoria: 'memoria' }
+        ];
+
+        // Função para renderizar produtos
+        function renderizarProdutos(produtos) {
+            const grid = document.getElementById('produtosGrid');
+            
+            if (produtos.length === 0) {
+                grid.innerHTML = '<div class="no-results">🔍 Nenhum produto encontrado!<br>Tente outra palavra-chave.</div>';
+                return;
+            }
+            
+            grid.innerHTML = produtos.map(produto => `
+                <div class="produto-card" data-nome="${produto.nome.toLowerCase()}">
+                    <div class="produto-icone">${produto.icone}</div>
+                    <h3>${produto.nome}</h3>
+                    <p class="produto-descricao">${produto.descricao}</p>
+                    <div class="produto-preco">R$ ${produto.preco.toFixed(2)}</div>
+                    <button class="btn-comprar" onclick="addToCart('${produto.nome}', ${produto.preco})">COMPRAR</button>
+                </div>
+            `).join('');
+        }
+
+        // Função de pesquisa
+        function searchProducts() {
+            const termo = document.getElementById('searchInput').value.toLowerCase().trim();
+            
+            if (termo === '') {
+                renderizarProdutos(produtosLista);
+                return;
+            }
+            
+            const resultados = produtosLista.filter(produto => 
+                produto.nome.toLowerCase().includes(termo) || 
+                produto.descricao.toLowerCase().includes(termo) ||
+                produto.categoria.includes(termo)
+            );
+            
+            renderizarProdutos(resultados);
+            
+            // Fechar barra de pesquisa após buscar
+            document.getElementById('searchBar').style.display = 'none';
+            
+            // Mostrar notificação com quantidade de resultados
+            if (resultados.length > 0) {
+                showNotification(`🔍 Encontrados ${resultados.length} produto(s) para "${termo}"`);
+            } else {
+                showNotification(`🔍 Nenhum produto encontrado para "${termo}"`);
+            }
+        }
+
+        function resetSearch() {
+            document.getElementById('searchInput').value = '';
+            renderizarProdutos(produtosLista);
+        }
+
         // Carrinho
         let cart = [];
         let currentQR = null;
@@ -850,7 +930,26 @@
         cartBtn.addEventListener('click', () => { cartWindow.style.display = 'flex'; });
         closeCart.addEventListener('click', () => { cartWindow.style.display = 'none'; });
 
-        // ========== CHATBOT INTELIGENTE ==========
+        // Abrir/fechar barra de pesquisa
+        const searchBtn = document.getElementById('searchBtn');
+        const searchBar = document.getElementById('searchBar');
+        const closeSearch = document.getElementById('closeSearch');
+        const searchInput = document.getElementById('searchInput');
+
+        searchBtn.addEventListener('click', () => { 
+            searchBar.style.display = 'flex';
+            searchInput.focus();
+        });
+        closeSearch.addEventListener('click', () => { searchBar.style.display = 'none'; });
+        
+        // Pesquisar ao pressionar Enter
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                searchProducts();
+            }
+        });
+
+        // Chatbot
         const chatbotBtn = document.getElementById('chatbotBtn');
         const chatbotWindow = document.getElementById('chatbotWindow');
         const closeChat = document.getElementById('closeChat');
@@ -869,7 +968,6 @@
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
-        // Lista de produtos da loja
         const produtos = {
             'mouse': { nome: 'Mouse Gamer', preco: 150, icone: '🖱️', descricao: 'Mouse com sensor de alta precisão, 6 botões programáveis e RGB' },
             'teclado': { nome: 'Teclado Magnético', preco: 210.99, icone: '⌨️', descricao: 'Teclado com switches magnéticos, RGB por tecla e design compacto' },
@@ -882,67 +980,53 @@
             'mousepad': { nome: 'Mousepad Gamer', preco: 65, icone: '🖨️', descricao: 'Mousepad XXL com superfície antiderrapante' },
             'fonte': { nome: 'Fonte 650W', preco: 420, icone: '🔌', descricao: 'Fonte 80 Plus Bronze com proteções contra surtos' },
             'rtx': { nome: 'Placa de Vídeo RTX 5090', preco: 2000, icone: '⚡', descricao: 'Placa de vídeo com 24GB GDDR7, suporte a 8K e DLSS 4.0' },
-            'memoria': { nome: 'Memória RAM HyperX 16GB', preco: 280, icone: '🧠', descricao: 'Memória RAM DDR3 de alta velocidade para melhor desempenho' }
+            'memoria': { nome: 'Memória RAM HyperX 16GB ddr3', preco: 280, icone: '🧠', descricao: 'Memória RAM DDR3 de alta velocidade para melhor desempenho' }
         };
 
         function getBotResponse(userMessage) {
             const msg = userMessage.toLowerCase();
             
-            // ========== SAUDAÇÕES ==========
             if (msg.includes('olá') || msg.includes('ola') || msg.includes('oi') || msg.includes('bom dia') || msg.includes('boa tarde') || msg.includes('boa noite')) {
                 return 'Olá! 😊 Seja bem-vindo à Loja Oficial! Como posso ajudá-lo hoje? Temos mouses, teclados, monitores, headsets e muito mais!';
             }
             
-            // ========== PRODUTOS ESPECÍFICOS ==========
             if (msg.includes('mouse')) {
                 return `${produtos.mouse.icone} <strong>${produtos.mouse.nome}</strong><br>💰 Preço: R$ ${produtos.mouse.preco.toFixed(2)}<br>📝 Descrição: ${produtos.mouse.descricao}<br>✅ Disponível em estoque!`;
             }
-            
             if (msg.includes('teclado')) {
                 return `${produtos.teclado.icone} <strong>${produtos.teclado.nome}</strong><br>💰 Preço: R$ ${produtos.teclado.preco.toFixed(2)}<br>📝 Descrição: ${produtos.teclado.descricao}<br>✅ Disponível em estoque!`;
             }
-            
             if (msg.includes('controle') || msg.includes('videogame')) {
                 return `${produtos.controle.icone} <strong>${produtos.controle.nome}</strong><br>💰 Preço: R$ ${produtos.controle.preco.toFixed(2)}<br>📝 Descrição: ${produtos.controle.descricao}<br>✅ Disponível em estoque!`;
             }
-            
             if (msg.includes('monitor')) {
                 return `${produtos.monitor.icone} <strong>${produtos.monitor.nome}</strong><br>💰 Preço: R$ ${produtos.monitor.preco.toFixed(2)}<br>📝 Descrição: ${produtos.monitor.descricao}<br>✅ Disponível em estoque!`;
             }
-            
             if (msg.includes('headset') || msg.includes('fone')) {
                 return `${produtos.headset.icone} <strong>${produtos.headset.nome}</strong><br>💰 Preço: R$ ${produtos.headset.preco.toFixed(2)}<br>📝 Descrição: ${produtos.headset.descricao}<br>✅ Disponível em estoque!`;
             }
-            
             if (msg.includes('cadeira')) {
                 return `${produtos.cadeira.icone} <strong>${produtos.cadeira.nome}</strong><br>💰 Preço: R$ ${produtos.cadeira.preco.toFixed(2)}<br>📝 Descrição: ${produtos.cadeira.descricao}<br>✅ Disponível em estoque!`;
             }
-            
             if (msg.includes('ssd')) {
                 return `${produtos.ssd.icone} <strong>${produtos.ssd.nome}</strong><br>💰 Preço: R$ ${produtos.ssd.preco.toFixed(2)}<br>📝 Descrição: ${produtos.ssd.descricao}<br>✅ Disponível em estoque!`;
             }
-            
             if (msg.includes('caixa de som') || msg.includes('caixa som')) {
                 return `${produtos.caixa.icone} <strong>${produtos.caixa.nome}</strong><br>💰 Preço: R$ ${produtos.caixa.preco.toFixed(2)}<br>📝 Descrição: ${produtos.caixa.descricao}<br>✅ Disponível em estoque!`;
             }
-            
             if (msg.includes('mousepad')) {
                 return `${produtos.mousepad.icone} <strong>${produtos.mousepad.nome}</strong><br>💰 Preço: R$ ${produtos.mousepad.preco.toFixed(2)}<br>📝 Descrição: ${produtos.mousepad.descricao}<br>✅ Disponível em estoque!`;
             }
-            
             if (msg.includes('fonte')) {
                 return `${produtos.fonte.icone} <strong>${produtos.fonte.nome}</strong><br>💰 Preço: R$ ${produtos.fonte.preco.toFixed(2)}<br>📝 Descrição: ${produtos.fonte.descricao}<br>✅ Disponível em estoque!`;
             }
-            
             if (msg.includes('rtx') || msg.includes('5090') || msg.includes('placa de video') || msg.includes('placa vídeo')) {
                 return `${produtos.rtx.icone} <strong>${produtos.rtx.nome}</strong><br>💰 Preço: R$ ${produtos.rtx.preco.toFixed(2)}<br>📝 Descrição: ${produtos.rtx.descricao}<br>⚡ A placa mais potente do mercado!`;
             }
-            
             if (msg.includes('memoria') || msg.includes('ram') || msg.includes('hyperx')) {
                 return `${produtos.memoria.icone} <strong>${produtos.memoria.nome}</strong><br>💰 Preço: R$ ${produtos.memoria.preco.toFixed(2)}<br>📝 Descrição: ${produtos.memoria.descricao}<br>✅ Ideal para gamers e multitarefa!`;
             }
             
-            // ========== PREÇOS ==========
             if (msg.includes('preço') || msg.includes('preco') || msg.includes('valores') || msg.includes('quanto custa')) {
                 return `💰 <strong>Tabela de Preços:</strong><br><br>
                 🖱️ Mouse Gamer: R$ 150,00<br>
@@ -956,44 +1040,37 @@
                 🖨️ Mousepad Gamer: R$ 65,00<br>
                 🔌 Fonte 650W: R$ 420,00<br>
                 ⚡ RTX 5090: R$ 2.000,00<br>
-                🧠 Memória RAM HyperX 16GB: R$ 280,00`;
+                🧠 Memória RAM HyperX 16GB ddr3: R$ 280,00`;
             }
             
-            // ========== ENTREGA / FRETE ==========
             if (msg.includes('entrega') || msg.includes('frete') || msg.includes('envio') || msg.includes('prazo')) {
-                return '🚚 <strong>Informações de Entrega:</strong><br><br>✅ Entregamos para todo o Brasil<br>✅ Frete grátis para compras acima de R$200<br>✅ Prazo de entrega: 3 a 10 dias úteis<br>✅ Código de rastreio enviado por e-mail<br>✅ Entregamos em até 7 dias úteis para capitais';
+                return '🚚 <strong>Informações de Entrega:</strong><br><br>✅ Entregamos para todo o Brasil<br>✅ Frete grátis para compras acima de R$200<br>✅ Prazo de entrega: 3 a 10 dias úteis<br>✅ Código de rastreio enviado por e-mail';
             }
             
-            // ========== PAGAMENTO ==========
             if (msg.includes('pagamento') || msg.includes('pagar') || msg.includes('cartão') || msg.includes('pix') || msg.includes('boleto')) {
-                return '💳 <strong>Formas de Pagamento:</strong><br><br>✅ PIX (10% de desconto à vista)<br>✅ Cartão de Crédito (até 12x sem juros)<br>✅ Cartão de Débito<br>✅ Boleto Bancário<br>✅ PayPal<br>✅ Mercado Pago<br><br>📱 Pagamento via QR Code disponível no final da compra!';
+                return '💳 <strong>Formas de Pagamento:</strong><br><br>✅ PIX (10% de desconto à vista)<br>✅ Cartão de Crédito (até 12x sem juros)<br>✅ Cartão de Débito<br>✅ Boleto Bancário<br>✅ PayPal<br><br>📱 Pagamento via QR Code disponível no final da compra!';
             }
             
-            // ========== GARANTIA ==========
             if (msg.includes('garantia') || msg.includes('troca')) {
-                return '🛡️ <strong>Garantia e Troca:</strong><br><br>✅ Todos os produtos têm 1 ano de garantia contra defeitos<br>✅ Troca grátis em até 30 dias após a compra<br>✅ Suporte técnico incluso<br>✅ Devolução gratuita';
+                return '🛡️ <strong>Garantia e Troca:</strong><br><br>✅ Todos os produtos têm 1 ano de garantia contra defeitos<br>✅ Troca grátis em até 30 dias após a compra<br>✅ Suporte técnico incluso';
             }
             
-            // ========== CONTATO ==========
             if (msg.includes('contato') || msg.includes('falar') || msg.includes('atendente') || msg.includes('suporte') || msg.includes('whatsapp') || msg.includes('telefone')) {
-                return '📞 <strong>Contato da Loja:</strong><br><br>📱 WhatsApp: (11) 99999-9999<br>📧 E-mail: contato@lojaoficial.com<br>📷 Instagram: @lojaoficial<br>⏰ Horário de atendimento: Seg-Sex 9h às 18h<br><br>💬 Clique no botão verde do WhatsApp para falar conosco agora!';
+                return '📞 <strong>Contato da Loja:</strong><br><br>📱 WhatsApp: (11) 99999-9999<br>📧 E-mail: contato@lojaoficial.com<br>📷 Instagram: @lojaoficial<br>⏰ Horário de atendimento: Seg-Sex 9h às 18h';
             }
             
-            // ========== SOBRE A LOJA ==========
             if (msg.includes('sobre') || msg.includes('quem somos') || msg.includes('história')) {
-                return '🏪 <strong>Sobre a Loja Oficial:</strong><br><br>Somos uma loja especializada em equipamentos gamers e de PC. Trabalhamos com os melhores fornecedores para oferecer qualidade e preço justo para você!<br><br>✅ Fundada em 2020<br>✅ +10.000 clientes satisfeitos<br>✅ Nota 4.9/5 no Reclame Aqui<br>✅ Produtos originais com nota fiscal';
+                return '🏪 <strong>Sobre a Loja Oficial:</strong><br><br>Somos uma loja especializada em equipamentos gamers e de PC. Trabalhamos com os melhores fornecedores para oferecer qualidade e preço justo para você!<br><br>✅ Fundada em 2020<br>✅ +10.000 clientes satisfeitos';
             }
             
-            // ========== PERGUNTAS GENÉRICAS ==========
             if (msg.includes('ajuda') || msg.includes('como funciona') || msg.includes('dúvida')) {
-                return '💡 <strong>Como posso ajudar?</strong><br><br>Você pode me perguntar sobre:<br>• Preços e produtos<br>• Formas de pagamento<br>• Prazos de entrega<br>• Garantia e troca<br>• Contato da loja<br><br>❓ Digite o nome do produto ou assunto que deseja saber!';
+                return '💡 <strong>Como posso ajudar?</strong><br><br>Você pode me perguntar sobre:<br>• Preços e produtos<br>• Formas de pagamento<br>• Prazos de entrega<br>• Garantia e troca<br>• Contato da loja';
             }
             
             if (msg.includes('obrigado') || msg.includes('valeu') || msg.includes('gratidão')) {
                 return 'Por nada! 😊 Fico feliz em ajudar! Volte sempre à Loja Oficial. Temos os melhores preços e produtos para você! 🎮🖱️';
             }
             
-            // ========== RESPOSTA PADRÃO ==========
             return `🤔 Ainda não entendi completamente sua pergunta.<br><br>
 💬 <strong>Você pode me perguntar sobre:</strong><br>
 • Nome de um produto (ex: "mouse", "teclado", "monitor", "rtx", "memoria ram")<br>
@@ -1020,7 +1097,8 @@
         sendChat.addEventListener('click', sendMessage);
         chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendMessage(); });
 
-        // Carregar carrinho ao iniciar
+        // Carregar produtos ao iniciar
+        renderizarProdutos(produtosLista);
         loadCart();
     </script>
 </body>
