@@ -642,12 +642,7 @@
 
     <!-- Botões flutuantes topo -->
     <div class="top-buttons">
-        <!-- Botão de Pesquisa -->
-        <button class="search-btn" id="searchBtn">
-            🔍
-        </button>
-
-        <!-- Botão do Carrinho -->
+        <button class="search-btn" id="searchBtn">🔍</button>
         <button class="cart-btn" id="cartBtn">
             🛒
             <span class="cart-count" id="cartCount">0</span>
@@ -656,7 +651,7 @@
 
     <!-- Barra de Pesquisa -->
     <div class="search-bar" id="searchBar">
-        <input type="text" id="searchInput" placeholder="🔍 Pesquisar produtos... (ex: mouse, teclado, placa de video,memoria ram)">
+        <input type="text" id="searchInput" placeholder="🔍 Pesquisar... (ex: placa de video, memoria ram, mouse)">
         <button onclick="searchProducts()">Buscar</button>
         <button class="close-search" id="closeSearch">✕</button>
     </div>
@@ -723,41 +718,21 @@
     <script>
         // ========== LISTA DE PRODUTOS ==========
         const produtosLista = [
-            { id: 1, nome: 'Mouse Gamer', preco: 150, icone: '🖱️', descricao: 'Tecnologia e conforto', categoria: 'mouse' },
-            { id: 2, nome: 'Teclado Magnético', preco: 210.99, icone: '⌨️', descricao: 'Conforto e precisão', categoria: 'teclado' },
-            { id: 3, nome: 'Controle Videogame', preco: 300, icone: '🎮', descricao: 'O melhor do momento', categoria: 'controle' },
-            { id: 4, nome: 'Monitor Gamer 144Hz', preco: 1200, icone: '🖥️', descricao: 'Imagem fluida e cores vibrantes', categoria: 'monitor' },
-            { id: 5, nome: 'Headset Gamer', preco: 250, icone: '🎧', descricao: 'Som surround 7.1', categoria: 'headset' },
-            { id: 6, nome: 'Cadeira Gamer', preco: 950, icone: '💺', descricao: 'Ergonomia e conforto', categoria: 'cadeira' },
-            { id: 7, nome: 'SSD 1TB', preco: 380, icone: '💾', descricao: 'Velocidade extrema', categoria: 'ssd' },
-            { id: 8, nome: 'Caixa de Som', preco: 180, icone: '🔊', descricao: 'Som potente RGB', categoria: 'caixa' },
-            { id: 9, nome: 'Mousepad Gamer', preco: 65, icone: '🖨️', descricao: 'Grande e antiderrapante', categoria: 'mousepad' },
-            { id: 10, nome: 'Fonte 650W', preco: 420, icone: '🔌', descricao: '80 Plus Bronze', categoria: 'fonte' },
-            { id: 11, nome: 'Placa de Vídeo RTX 5090', preco: 2000, icone: '⚡', descricao: 'Desempenho extremo para jogos 8K', categoria: 'rtx' },
-            { id: 12, nome: 'Memória RAM HyperX 16GB ddr3', preco: 280, icone: '🧠', descricao: 'DDR3 - Alta velocidade', categoria: 'memoria' }
+            { id: 1, nome: 'Mouse Gamer', preco: 150, icone: '🖱️', descricao: 'Tecnologia e conforto', palavrasChave: ['mouse', 'gamer', 'mouse gamer'] },
+            { id: 2, nome: 'Teclado Magnético', preco: 210.99, icone: '⌨️', descricao: 'Conforto e precisão', palavrasChave: ['teclado', 'teclado magnetico', 'keyboard'] },
+            { id: 3, nome: 'Controle Videogame', preco: 300, icone: '🎮', descricao: 'O melhor do momento', palavrasChave: ['controle', 'videogame', 'joystick'] },
+            { id: 4, nome: 'Monitor Gamer 144Hz', preco: 1200, icone: '🖥️', descricao: 'Imagem fluida e cores vibrantes', palavrasChave: ['monitor', '144hz', 'tela'] },
+            { id: 5, nome: 'Headset Gamer', preco: 250, icone: '🎧', descricao: 'Som surround 7.1', palavrasChave: ['headset', 'fone', 'microfone'] },
+            { id: 6, nome: 'Cadeira Gamer', preco: 950, icone: '💺', descricao: 'Ergonomia e conforto', palavrasChave: ['cadeira', 'gamer', 'cadeira gamer'] },
+            { id: 7, nome: 'SSD 1TB', preco: 380, icone: '💾', descricao: 'Velocidade extrema', palavrasChave: ['ssd', '1tb', 'armazenamento'] },
+            { id: 8, nome: 'Caixa de Som', preco: 180, icone: '🔊', descricao: 'Som potente RGB', palavrasChave: ['caixa de som', 'caixa som', 'speaker'] },
+            { id: 9, nome: 'Mousepad Gamer', preco: 65, icone: '🖨️', descricao: 'Grande e antiderrapante', palavrasChave: ['mousepad', 'tapete', 'mouse pad'] },
+            { id: 10, nome: 'Fonte 650W', preco: 420, icone: '🔌', descricao: '80 Plus Bronze', palavrasChave: ['fonte', '650w', 'fonte de energia'] },
+            { id: 11, nome: 'Placa de Vídeo RTX 5090', preco: 2000, icone: '⚡', descricao: 'Desempenho extremo para jogos 8K', palavrasChave: ['placa de video', 'placa vídeo', 'rtx', 'rtx 5090', '5090', 'gpu', 'video card'] },
+            { id: 12, nome: 'Memória RAM HyperX 16GB', preco: 280, icone: '🧠', descricao: 'DDR3 - Alta velocidade e desempenho', palavrasChave: ['memoria ram', 'memória ram', 'ram', 'hyperx', '16gb', 'ddr3'] }
         ];
 
-        // Função para renderizar produtos
-        function renderizarProdutos(produtos) {
-            const grid = document.getElementById('produtosGrid');
-            
-            if (produtos.length === 0) {
-                grid.innerHTML = '<div class="no-results">🔍 Nenhum produto encontrado!<br>Tente outra palavra-chave.</div>';
-                return;
-            }
-            
-            grid.innerHTML = produtos.map(produto => `
-                <div class="produto-card" data-nome="${produto.nome.toLowerCase()}">
-                    <div class="produto-icone">${produto.icone}</div>
-                    <h3>${produto.nome}</h3>
-                    <p class="produto-descricao">${produto.descricao}</p>
-                    <div class="produto-preco">R$ ${produto.preco.toFixed(2)}</div>
-                    <button class="btn-comprar" onclick="addToCart('${produto.nome}', ${produto.preco})">COMPRAR</button>
-                </div>
-            `).join('');
-        }
-
-        // Função de pesquisa
+        // Função de pesquisa melhorada
         function searchProducts() {
             const termo = document.getElementById('searchInput').value.toLowerCase().trim();
             
@@ -766,11 +741,16 @@
                 return;
             }
             
-            const resultados = produtosLista.filter(produto => 
-                produto.nome.toLowerCase().includes(termo) || 
-                produto.descricao.toLowerCase().includes(termo) ||
-                produto.categoria.includes(termo)
-            );
+            // Filtrar produtos baseado nas palavras-chave
+            const resultados = produtosLista.filter(produto => {
+                // Verificar no nome
+                if (produto.nome.toLowerCase().includes(termo)) return true;
+                // Verificar na descrição
+                if (produto.descricao.toLowerCase().includes(termo)) return true;
+                // Verificar nas palavras-chave
+                if (produto.palavrasChave.some(palavra => palavra.toLowerCase().includes(termo))) return true;
+                return false;
+            });
             
             renderizarProdutos(resultados);
             
@@ -783,6 +763,25 @@
             } else {
                 showNotification(`🔍 Nenhum produto encontrado para "${termo}"`);
             }
+        }
+
+        function renderizarProdutos(produtos) {
+            const grid = document.getElementById('produtosGrid');
+            
+            if (produtos.length === 0) {
+                grid.innerHTML = '<div class="no-results">🔍 Nenhum produto encontrado!<br>Tente: "placa de video", "memoria ram", "mouse"</div>';
+                return;
+            }
+            
+            grid.innerHTML = produtos.map(produto => `
+                <div class="produto-card">
+                    <div class="produto-icone">${produto.icone}</div>
+                    <h3>${produto.nome}</h3>
+                    <p class="produto-descricao">${produto.descricao}</p>
+                    <div class="produto-preco">R$ ${produto.preco.toFixed(2)}</div>
+                    <button class="btn-comprar" onclick="addToCart('${produto.nome}', ${produto.preco})">COMPRAR</button>
+                </div>
+            `).join('');
         }
 
         function resetSearch() {
@@ -942,7 +941,6 @@
         });
         closeSearch.addEventListener('click', () => { searchBar.style.display = 'none'; });
         
-        // Pesquisar ao pressionar Enter
         searchInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
                 searchProducts();
@@ -980,7 +978,7 @@
             'mousepad': { nome: 'Mousepad Gamer', preco: 65, icone: '🖨️', descricao: 'Mousepad XXL com superfície antiderrapante' },
             'fonte': { nome: 'Fonte 650W', preco: 420, icone: '🔌', descricao: 'Fonte 80 Plus Bronze com proteções contra surtos' },
             'rtx': { nome: 'Placa de Vídeo RTX 5090', preco: 2000, icone: '⚡', descricao: 'Placa de vídeo com 24GB GDDR7, suporte a 8K e DLSS 4.0' },
-            'memoria': { nome: 'Memória RAM HyperX 16GB ddr3', preco: 280, icone: '🧠', descricao: 'Memória RAM DDR3 de alta velocidade para melhor desempenho' }
+            'memoria': { nome: 'Memória RAM HyperX 16GB', preco: 280, icone: '🧠', descricao: 'Memória RAM DDR3 de alta velocidade para melhor desempenho' }
         };
 
         function getBotResponse(userMessage) {
@@ -990,42 +988,18 @@
                 return 'Olá! 😊 Seja bem-vindo à Loja Oficial! Como posso ajudá-lo hoje? Temos mouses, teclados, monitores, headsets e muito mais!';
             }
             
-            if (msg.includes('mouse')) {
-                return `${produtos.mouse.icone} <strong>${produtos.mouse.nome}</strong><br>💰 Preço: R$ ${produtos.mouse.preco.toFixed(2)}<br>📝 Descrição: ${produtos.mouse.descricao}<br>✅ Disponível em estoque!`;
-            }
-            if (msg.includes('teclado')) {
-                return `${produtos.teclado.icone} <strong>${produtos.teclado.nome}</strong><br>💰 Preço: R$ ${produtos.teclado.preco.toFixed(2)}<br>📝 Descrição: ${produtos.teclado.descricao}<br>✅ Disponível em estoque!`;
-            }
-            if (msg.includes('controle') || msg.includes('videogame')) {
-                return `${produtos.controle.icone} <strong>${produtos.controle.nome}</strong><br>💰 Preço: R$ ${produtos.controle.preco.toFixed(2)}<br>📝 Descrição: ${produtos.controle.descricao}<br>✅ Disponível em estoque!`;
-            }
-            if (msg.includes('monitor')) {
-                return `${produtos.monitor.icone} <strong>${produtos.monitor.nome}</strong><br>💰 Preço: R$ ${produtos.monitor.preco.toFixed(2)}<br>📝 Descrição: ${produtos.monitor.descricao}<br>✅ Disponível em estoque!`;
-            }
-            if (msg.includes('headset') || msg.includes('fone')) {
-                return `${produtos.headset.icone} <strong>${produtos.headset.nome}</strong><br>💰 Preço: R$ ${produtos.headset.preco.toFixed(2)}<br>📝 Descrição: ${produtos.headset.descricao}<br>✅ Disponível em estoque!`;
-            }
-            if (msg.includes('cadeira')) {
-                return `${produtos.cadeira.icone} <strong>${produtos.cadeira.nome}</strong><br>💰 Preço: R$ ${produtos.cadeira.preco.toFixed(2)}<br>📝 Descrição: ${produtos.cadeira.descricao}<br>✅ Disponível em estoque!`;
-            }
-            if (msg.includes('ssd')) {
-                return `${produtos.ssd.icone} <strong>${produtos.ssd.nome}</strong><br>💰 Preço: R$ ${produtos.ssd.preco.toFixed(2)}<br>📝 Descrição: ${produtos.ssd.descricao}<br>✅ Disponível em estoque!`;
-            }
-            if (msg.includes('caixa de som') || msg.includes('caixa som')) {
-                return `${produtos.caixa.icone} <strong>${produtos.caixa.nome}</strong><br>💰 Preço: R$ ${produtos.caixa.preco.toFixed(2)}<br>📝 Descrição: ${produtos.caixa.descricao}<br>✅ Disponível em estoque!`;
-            }
-            if (msg.includes('mousepad')) {
-                return `${produtos.mousepad.icone} <strong>${produtos.mousepad.nome}</strong><br>💰 Preço: R$ ${produtos.mousepad.preco.toFixed(2)}<br>📝 Descrição: ${produtos.mousepad.descricao}<br>✅ Disponível em estoque!`;
-            }
-            if (msg.includes('fonte')) {
-                return `${produtos.fonte.icone} <strong>${produtos.fonte.nome}</strong><br>💰 Preço: R$ ${produtos.fonte.preco.toFixed(2)}<br>📝 Descrição: ${produtos.fonte.descricao}<br>✅ Disponível em estoque!`;
-            }
-            if (msg.includes('rtx') || msg.includes('5090') || msg.includes('placa de video') || msg.includes('placa vídeo')) {
-                return `${produtos.rtx.icone} <strong>${produtos.rtx.nome}</strong><br>💰 Preço: R$ ${produtos.rtx.preco.toFixed(2)}<br>📝 Descrição: ${produtos.rtx.descricao}<br>⚡ A placa mais potente do mercado!`;
-            }
-            if (msg.includes('memoria') || msg.includes('ram') || msg.includes('hyperx')) {
-                return `${produtos.memoria.icone} <strong>${produtos.memoria.nome}</strong><br>💰 Preço: R$ ${produtos.memoria.preco.toFixed(2)}<br>📝 Descrição: ${produtos.memoria.descricao}<br>✅ Ideal para gamers e multitarefa!`;
-            }
+            if (msg.includes('mouse')) return `${produtos.mouse.icone} <strong>${produtos.mouse.nome}</strong><br>💰 Preço: R$ ${produtos.mouse.preco.toFixed(2)}<br>📝 Descrição: ${produtos.mouse.descricao}<br>✅ Disponível em estoque!`;
+            if (msg.includes('teclado')) return `${produtos.teclado.icone} <strong>${produtos.teclado.nome}</strong><br>💰 Preço: R$ ${produtos.teclado.preco.toFixed(2)}<br>📝 Descrição: ${produtos.teclado.descricao}<br>✅ Disponível em estoque!`;
+            if (msg.includes('controle') || msg.includes('videogame')) return `${produtos.controle.icone} <strong>${produtos.controle.nome}</strong><br>💰 Preço: R$ ${produtos.controle.preco.toFixed(2)}<br>📝 Descrição: ${produtos.controle.descricao}<br>✅ Disponível em estoque!`;
+            if (msg.includes('monitor')) return `${produtos.monitor.icone} <strong>${produtos.monitor.nome}</strong><br>💰 Preço: R$ ${produtos.monitor.preco.toFixed(2)}<br>📝 Descrição: ${produtos.monitor.descricao}<br>✅ Disponível em estoque!`;
+            if (msg.includes('headset') || msg.includes('fone')) return `${produtos.headset.icone} <strong>${produtos.headset.nome}</strong><br>💰 Preço: R$ ${produtos.headset.preco.toFixed(2)}<br>📝 Descrição: ${produtos.headset.descricao}<br>✅ Disponível em estoque!`;
+            if (msg.includes('cadeira')) return `${produtos.cadeira.icone} <strong>${produtos.cadeira.nome}</strong><br>💰 Preço: R$ ${produtos.cadeira.preco.toFixed(2)}<br>📝 Descrição: ${produtos.cadeira.descricao}<br>✅ Disponível em estoque!`;
+            if (msg.includes('ssd')) return `${produtos.ssd.icone} <strong>${produtos.ssd.nome}</strong><br>💰 Preço: R$ ${produtos.ssd.preco.toFixed(2)}<br>📝 Descrição: ${produtos.ssd.descricao}<br>✅ Disponível em estoque!`;
+            if (msg.includes('caixa de som') || msg.includes('caixa som')) return `${produtos.caixa.icone} <strong>${produtos.caixa.nome}</strong><br>💰 Preço: R$ ${produtos.caixa.preco.toFixed(2)}<br>📝 Descrição: ${produtos.caixa.descricao}<br>✅ Disponível em estoque!`;
+            if (msg.includes('mousepad')) return `${produtos.mousepad.icone} <strong>${produtos.mousepad.nome}</strong><br>💰 Preço: R$ ${produtos.mousepad.preco.toFixed(2)}<br>📝 Descrição: ${produtos.mousepad.descricao}<br>✅ Disponível em estoque!`;
+            if (msg.includes('fonte')) return `${produtos.fonte.icone} <strong>${produtos.fonte.nome}</strong><br>💰 Preço: R$ ${produtos.fonte.preco.toFixed(2)}<br>📝 Descrição: ${produtos.fonte.descricao}<br>✅ Disponível em estoque!`;
+            if (msg.includes('rtx') || msg.includes('5090') || msg.includes('placa de video') || msg.includes('placa vídeo')) return `${produtos.rtx.icone} <strong>${produtos.rtx.nome}</strong><br>💰 Preço: R$ ${produtos.rtx.preco.toFixed(2)}<br>📝 Descrição: ${produtos.rtx.descricao}<br>⚡ A placa mais potente do mercado!`;
+            if (msg.includes('memoria') || msg.includes('ram') || msg.includes('hyperx')) return `${produtos.memoria.icone} <strong>${produtos.memoria.nome}</strong><br>💰 Preço: R$ ${produtos.memoria.preco.toFixed(2)}<br>📝 Descrição: ${produtos.memoria.descricao}<br>✅ Ideal para gamers e multitarefa!`;
             
             if (msg.includes('preço') || msg.includes('preco') || msg.includes('valores') || msg.includes('quanto custa')) {
                 return `💰 <strong>Tabela de Preços:</strong><br><br>
@@ -1040,7 +1014,7 @@
                 🖨️ Mousepad Gamer: R$ 65,00<br>
                 🔌 Fonte 650W: R$ 420,00<br>
                 ⚡ RTX 5090: R$ 2.000,00<br>
-                🧠 Memória RAM HyperX 16GB ddr3: R$ 280,00`;
+                🧠 Memória RAM HyperX 16GB: R$ 280,00`;
             }
             
             if (msg.includes('entrega') || msg.includes('frete') || msg.includes('envio') || msg.includes('prazo')) {
@@ -1048,7 +1022,7 @@
             }
             
             if (msg.includes('pagamento') || msg.includes('pagar') || msg.includes('cartão') || msg.includes('pix') || msg.includes('boleto')) {
-                return '💳 <strong>Formas de Pagamento:</strong><br><br>✅ PIX (10% de desconto à vista)<br>✅ Cartão de Crédito (até 12x sem juros)<br>✅ Cartão de Débito<br>✅ Boleto Bancário<br>✅ PayPal<br><br>📱 Pagamento via QR Code disponível no final da compra!';
+                return '💳 <strong>Formas de Pagamento:</strong><br><br>✅ PIX (10% de desconto à vista)<br>✅ Cartão de Crédito (até 12x sem juros)<br>✅ Cartão de Débito<br>✅ Boleto Bancário<br>✅ PayPal';
             }
             
             if (msg.includes('garantia') || msg.includes('troca')) {
@@ -1060,7 +1034,7 @@
             }
             
             if (msg.includes('sobre') || msg.includes('quem somos') || msg.includes('história')) {
-                return '🏪 <strong>Sobre a Loja Oficial:</strong><br><br>Somos uma loja especializada em equipamentos gamers e de PC. Trabalhamos com os melhores fornecedores para oferecer qualidade e preço justo para você!<br><br>✅ Fundada em 2020<br>✅ +10.000 clientes satisfeitos';
+                return '🏪 <strong>Sobre a Loja Oficial:</strong><br><br>Somos uma loja especializada em equipamentos gamers e de PC. Trabalhamos com os melhores fornecedores para oferecer qualidade e preço justo para você!';
             }
             
             if (msg.includes('ajuda') || msg.includes('como funciona') || msg.includes('dúvida')) {
@@ -1073,14 +1047,13 @@
             
             return `🤔 Ainda não entendi completamente sua pergunta.<br><br>
 💬 <strong>Você pode me perguntar sobre:</strong><br>
-• Nome de um produto (ex: "mouse", "teclado", "monitor", "rtx", "memoria ram")<br>
+• Nome de um produto (ex: "mouse", "teclado", "placa de video", "memoria ram")<br>
 • "Preços" ou "quanto custa"<br>
 • "Entrega" ou "frete"<br>
 • "Pagamento" ou "pix"<br>
 • "Garantia" ou "troca"<br>
 • "Contato" ou "whatsapp"<br>
-• "Sobre a loja"<br><br>
-📝 Tente reformular sua pergunta para que eu possa ajudar melhor!`;
+• "Sobre a loja"`;
         }
 
         function sendMessage() {
