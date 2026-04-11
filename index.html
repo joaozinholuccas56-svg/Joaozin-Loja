@@ -13,21 +13,22 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
             color: #333;
         }
 
         .header {
-            background-color: #0f0f1a;
+            background-color: #000000;
             color: white;
             padding: 25px 0;
             text-align: center;
+            border-bottom: 3px solid #ff0000;
         }
 
         .header h1 {
             font-size: 2rem;
             margin-bottom: 15px;
-            color: #ff6b35;
+            color: #ff0000;
         }
 
         .nav {
@@ -48,7 +49,7 @@
         }
 
         .nav a:hover {
-            background-color: #ff6b35;
+            background-color: #ff0000;
             color: white;
         }
 
@@ -61,7 +62,7 @@
         .titulo-secao {
             text-align: center;
             font-size: 2rem;
-            color: white;
+            color: #000000;
             margin-bottom: 40px;
         }
 
@@ -78,12 +79,14 @@
             padding: 25px;
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border: 1px solid #eee;
         }
 
         .produto-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            border-color: #ff0000;
         }
 
         .produto-icone {
@@ -93,7 +96,7 @@
 
         .produto-card h3 {
             font-size: 1.5rem;
-            color: #1a1a2e;
+            color: #000000;
             margin-bottom: 10px;
         }
 
@@ -105,13 +108,13 @@
 
         .produto-preco {
             font-size: 1.8rem;
-            color: #ff6b35;
+            color: #ff0000;
             font-weight: bold;
             margin-bottom: 20px;
         }
 
         .btn-comprar {
-            background-color: #ff6b35;
+            background-color: #ff0000;
             color: white;
             border: none;
             padding: 12px 25px;
@@ -126,21 +129,26 @@
         }
 
         .btn-comprar:hover {
-            background-color: #e55a2b;
+            background-color: #cc0000;
             transform: scale(1.02);
         }
 
         .footer {
-            background-color: #0f0f1a;
+            background-color: #000000;
             color: white;
             text-align: center;
             padding: 30px 20px;
             margin-top: 40px;
+            border-top: 3px solid #ff0000;
         }
 
         .footer a {
-            color: #ff6b35;
+            color: #ff0000;
             text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
         }
 
         /* Chatbot */
@@ -148,7 +156,7 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background-color: #ff6b35;
+            background-color: #ff0000;
             color: white;
             width: 60px;
             height: 60px;
@@ -166,7 +174,7 @@
 
         .chatbot-btn:hover {
             transform: scale(1.1);
-            background-color: #e55a2b;
+            background-color: #cc0000;
         }
 
         .chatbot-window {
@@ -185,7 +193,7 @@
         }
 
         .chatbot-header {
-            background-color: #ff6b35;
+            background-color: #ff0000;
             color: white;
             padding: 15px;
             display: flex;
@@ -219,13 +227,13 @@
         }
 
         .bot-message {
-            background-color: #1a1a2e;
+            background-color: #000000;
             color: white;
             align-self: flex-start;
         }
 
         .user-message {
-            background-color: #ff6b35;
+            background-color: #ff0000;
             color: white;
             align-self: flex-end;
         }
@@ -246,7 +254,7 @@
         }
 
         .chatbot-send {
-            background-color: #ff6b35;
+            background-color: #ff0000;
             color: white;
             border: none;
             padding: 10px 15px;
@@ -303,7 +311,7 @@
             position: fixed;
             top: 20px;
             right: 20px;
-            background-color: #ff6b35;
+            background-color: #ff0000;
             color: white;
             width: 60px;
             height: 60px;
@@ -321,14 +329,14 @@
 
         .cart-btn:hover {
             transform: scale(1.1);
-            background-color: #e55a2b;
+            background-color: #cc0000;
         }
 
         .cart-count {
             position: absolute;
             top: -5px;
             right: -5px;
-            background-color: #1a1a2e;
+            background-color: #000000;
             color: white;
             border-radius: 50%;
             width: 22px;
@@ -356,7 +364,7 @@
         }
 
         .cart-header {
-            background-color: #ff6b35;
+            background-color: #ff0000;
             color: white;
             padding: 15px;
             display: flex;
@@ -397,7 +405,7 @@
         }
 
         .cart-item-price {
-            color: #ff6b35;
+            color: #ff0000;
             font-size: 0.9rem;
         }
 
@@ -417,7 +425,7 @@
         }
 
         .btn-finalizar {
-            background-color: #1a1a2e;
+            background-color: #000000;
             color: white;
             border: none;
             padding: 12px;
@@ -425,6 +433,10 @@
             border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
+        }
+
+        .btn-finalizar:hover {
+            background-color: #333;
         }
 
         /* Modal do QR Code */
@@ -449,6 +461,7 @@
             max-width: 400px;
             width: 90%;
             animation: fadeIn 0.3s ease;
+            border: 2px solid #ff0000;
         }
 
         @keyframes fadeIn {
@@ -463,7 +476,7 @@
         }
 
         .qrcode-content h3 {
-            color: #ff6b35;
+            color: #ff0000;
             margin-bottom: 20px;
         }
 
@@ -479,7 +492,7 @@
         }
 
         .close-qrcode {
-            background-color: #ff6b35;
+            background-color: #ff0000;
             color: white;
             border: none;
             padding: 12px 25px;
@@ -490,7 +503,7 @@
         }
 
         .close-qrcode:hover {
-            background-color: #e55a2b;
+            background-color: #cc0000;
         }
 
         @media (max-width: 768px) {
@@ -750,7 +763,6 @@
         }
 
         function gerarQRCode(total) {
-            // Criar dados para o QR Code (simulação de pagamento PIX)
             const dadosPIX = {
                 valor: total,
                 loja: "Joaozin Loja",
@@ -761,16 +773,14 @@
             
             const textoQR = `Pagamento PIX - Joaozin Loja\nValor: R$ ${total.toFixed(2)}\nChave PIX: joaozin@loja.com\nPedido: ${dadosPIX.pedido}\nData: ${dadosPIX.data}`;
             
-            // Limpar QR Code anterior
             const qrcodeDiv = document.getElementById('qrcode');
             qrcodeDiv.innerHTML = '';
             
-            // Gerar novo QR Code
             currentQR = new QRCode(qrcodeDiv, {
                 text: textoQR,
                 width: 200,
                 height: 200,
-                colorDark: "#1a1a2e",
+                colorDark: "#000000",
                 colorLight: "#ffffff",
                 correctLevel: QRCode.CorrectLevel.H
             });
@@ -781,7 +791,6 @@
         function abrirQRCode(total) {
             gerarQRCode(total);
             document.getElementById('qrcodeModal').style.display = 'flex';
-            // Fechar carrinho automaticamente
             document.getElementById('cartWindow').style.display = 'none';
         }
 
@@ -796,21 +805,7 @@
             }
             
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            
-            // Abrir modal com QR Code
             abrirQRCode(total);
-            
-            // Limpar carrinho após mostrar QR Code (opcional)
-            // cart = [];
-            // saveCart();
-        }
-
-        function confirmarPagamento() {
-            // Simular confirmação de pagamento
-            alert('✅ Pagamento confirmado! Seu pedido será processado em breve.\nObrigado por comprar na Joaozin Loja! 🎉');
-            cart = [];
-            saveCart();
-            fecharQRCode();
         }
 
         function showNotification(message) {
