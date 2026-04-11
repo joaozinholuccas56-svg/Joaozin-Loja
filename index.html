@@ -46,6 +46,7 @@
             padding: 8px 15px;
             transition: all 0.3s;
             border-radius: 5px;
+            cursor: pointer;
         }
 
         .nav a:hover {
@@ -620,8 +621,8 @@
     <div class="header">
         <h1>🛍️ Loja Oficial Online</h1>
         <div class="nav">
-            <a href="#" onclick="resetSearch()">NOVO</a>
-            <a href="#" onclick="resetSearch()">LOJA</a>
+            <a onclick="resetSearch()">NOVO</a>
+            <a onclick="resetSearch()">LOJA</a>
             <a href="#">SOBRE NÓS</a>
             <a href="#">CONTATO</a>
         </div>
@@ -651,8 +652,8 @@
 
     <!-- Barra de Pesquisa -->
     <div class="search-bar" id="searchBar">
-        <input type="text" id="searchInput" placeholder="🔍 Pesquisar... 
-        <button onclick="searchProducts()">Buscar</button>
+        <input type="text" id="searchInput" placeholder="🔍 Pesquisar... (ex: placa de video, memoria ram, mouse)">
+        <button id="buscarBtn">Buscar</button>
         <button class="close-search" id="closeSearch">✕</button>
     </div>
 
@@ -759,9 +760,9 @@
             
             // Mostrar notificação com quantidade de resultados
             if (resultados.length > 0) {
-                showNotification(`🔍 Encontrados ${resultados.length} produto(s) para "${termo}"`);
+                mostrarNotificacao(`🔍 Encontrados ${resultados.length} produto(s) para "${termo}"`);
             } else {
-                showNotification(`🔍 Nenhum produto encontrado para "${termo}"`);
+                mostrarNotificacao(`🔍 Nenhum produto encontrado para "${termo}"`);
             }
         }
 
@@ -787,6 +788,23 @@
         function resetSearch() {
             document.getElementById('searchInput').value = '';
             renderizarProdutos(produtosLista);
+            mostrarNotificacao('🔄 Lista completa de produtos restaurada!');
+        }
+
+        function mostrarNotificacao(message) {
+            const notification = document.createElement('div');
+            notification.style.position = 'fixed';
+            notification.style.bottom = '100px';
+            notification.style.right = '20px';
+            notification.style.backgroundColor = '#4caf50';
+            notification.style.color = 'white';
+            notification.style.padding = '10px 20px';
+            notification.style.borderRadius = '5px';
+            notification.style.zIndex = '1002';
+            notification.style.fontWeight = 'bold';
+            notification.innerText = message;
+            document.body.appendChild(notification);
+            setTimeout(() => notification.remove(), 2000);
         }
 
         // Carrinho
@@ -814,7 +832,7 @@
                 cart.push({ name, price, quantity: 1 });
             }
             saveCart();
-            showNotification(`${name} adicionado ao carrinho! 🎉`);
+            mostrarNotificacao(`${name} adicionado ao carrinho! 🎉`);
         }
 
         function removeFromCart(index) {
@@ -905,22 +923,6 @@
             abrirQRCode(total);
         }
 
-        function showNotification(message) {
-            const notification = document.createElement('div');
-            notification.style.position = 'fixed';
-            notification.style.bottom = '100px';
-            notification.style.right = '20px';
-            notification.style.backgroundColor = '#4caf50';
-            notification.style.color = 'white';
-            notification.style.padding = '10px 20px';
-            notification.style.borderRadius = '5px';
-            notification.style.zIndex = '1002';
-            notification.style.fontWeight = 'bold';
-            notification.innerText = message;
-            document.body.appendChild(notification);
-            setTimeout(() => notification.remove(), 2000);
-        }
-
         // Abrir/fechar carrinho
         const cartBtn = document.getElementById('cartBtn');
         const cartWindow = document.getElementById('cartWindow');
@@ -934,6 +936,7 @@
         const searchBar = document.getElementById('searchBar');
         const closeSearch = document.getElementById('closeSearch');
         const searchInput = document.getElementById('searchInput');
+        const buscarBtn = document.getElementById('buscarBtn');
 
         searchBtn.addEventListener('click', () => { 
             searchBar.style.display = 'flex';
@@ -941,6 +944,10 @@
         });
         closeSearch.addEventListener('click', () => { searchBar.style.display = 'none'; });
         
+        // Evento para o botão Buscar
+        buscarBtn.addEventListener('click', searchProducts);
+        
+        // Evento para pressionar Enter
         searchInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
                 searchProducts();
